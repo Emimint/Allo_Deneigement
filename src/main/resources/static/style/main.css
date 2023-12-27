@@ -1,0 +1,29 @@
+:root {
+--primary-color:#b50303;
+
+}
+.footer {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    background-color: #b50303;
+    margin: 0;
+}
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.logo {
+    width: 140px;
+    height: 180px;
+    text-align: center;
+
+}
+.text-gras {
+    font-weight:bold;
+}
+
+.section-title {
+    font-weight: bold;
+}
