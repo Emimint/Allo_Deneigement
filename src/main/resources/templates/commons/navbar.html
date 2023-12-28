@@ -10,17 +10,27 @@
                         href="/"
                         class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none me-lg-auto"
                 >
-                    <img src="img/icons8-snowflake-64.png" height="50" />
+                    <div class="d-flex  bd-highlight ">
+                        <img class="mb-4" src="img/icons8-snowflake-64.png"/>
+                        <p>ALLO DENEIGEMENT</p>
+                    </div>
                 </a>
 
                 <ul
                         class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0 me-5"
                 >
-                    <li><a href="#" class="nav-link px-2 text-white">link</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">link</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">link</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">link</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">link</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">A propos</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Mes fournisseurs</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Nous joindre</a></li>
+                    <li><a href="#" class="nav-link px-2"><i class="fa-regular fa-bell" style="color: #ffffff;"></i></a></li>
+                    <li><a href="#" class="nav-link px-2 ">
+
+                        <div class="d-flex flex-column  bd-highlight ">
+                            <i class="fa-solid fa-globe" style="color: #ffffff;"></i>
+                            <p style="color: #ffffff;">EN</p>
+                        </div></a></li>
+
+
                 </ul>
 
                 <div class="text-end">
@@ -31,7 +41,7 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                     >
-                        Login
+                        Connexion
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="#">utilisateur</a></li>
                             <li><a class="dropdown-item" href="#">fournisseur</a></li>
@@ -40,86 +50,11 @@
                             </li>
                         </ul>
                     </button>
-                    <button type="button" class="btn btn-warning">
-                        Demande de soumission
-                    </button>
+
                 </div>
             </div>
         </div>
     </header>
 </div>
 
-<div  th:fragment="navbarConnected">
-    <div class="px-3 py-2 text-white" style="background-color: #9bbbd1">
-        <div class="container">
-            <div
-                    class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
-            >
-                <a
-                        href="/"
-                        class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
-                >
-                    <img
-                            src="img/icons8-snowflake-64.png"
-                            alt="allo-deneigment"
-                            height="50"
-                    />
-                </a>
 
-                <ul
-                        class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
-                >
-                    <li>
-                        <a href="#" class="nav-link text-white fw-bold">
-                            <img
-                                    src="img/icons8-home-50.png"
-                                    alt="logo"
-                                    class="bi d-block mx-auto mb-1"
-                                    width="24"
-                                    height="24"
-                            />
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white fw-bold">
-                            <img
-                                    src="img/icons8-dashboard-50.png"
-                                    alt="logo"
-                                    class="bi d-block mx-auto mb-1"
-                                    width="24"
-                                    height="24"
-                            />
-                            Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white fw-bold">
-                            <img
-                                    src="img/icons8-list-64.png"
-                                    alt="logo"
-                                    class="bi d-block mx-auto mb-1"
-                                    width="24"
-                                    height="24"
-                            />
-                            Orders
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="nav-link text-white fw-bold">
-                            <img
-                                    src="img/icons8-male-user-24.png"
-                                    alt="logo"
-                                    class="bi d-block mx-auto mb-1"
-                                    width="24"
-                                    height="24"
-                            />
-                            Profil
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
