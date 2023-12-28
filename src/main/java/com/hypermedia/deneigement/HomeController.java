@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/home")
+   @RequestMapping("/home")
     public String test() {
         return "index";
+    }
+
+    @RequestMapping("/Footer")
+    public String showFooterPage() {
+        return "Footer";
     }
 }
