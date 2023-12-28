@@ -1,0 +1,60 @@
+<!-- navbar-fragment.html -->
+
+<div th:fragment="navbar">
+    <header class="p-3 text-white" style="background-color: #b50303">
+        <div class="container">
+            <div
+                    class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+            >
+                <a
+                        href="/"
+                        class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none me-lg-auto"
+                >
+                    <div class="d-flex  bd-highlight ">
+                        <img class="mb-4" src="img/icons8-snowflake-64.png"/>
+                        <p>ALLO DENEIGEMENT</p>
+                    </div>
+                </a>
+
+                <ul
+                        class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0 me-5"
+                >
+                    <li><a href="#" class="nav-link px-2 text-white">A propos</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Mes fournisseurs</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Nous joindre</a></li>
+                    <li><a href="#" class="nav-link px-2"><i class="fa-regular fa-bell" style="color: #ffffff;"></i></a></li>
+                    <li><a href="#" class="nav-link px-2 ">
+
+                        <div class="d-flex flex-column  bd-highlight ">
+                            <i class="fa-solid fa-globe" style="color: #ffffff;"></i>
+                            <p style="color: #ffffff;">EN</p>
+                        </div></a></li>
+
+
+                </ul>
+
+                <div class="text-end">
+                    <button
+                            type="button"
+                            class="btn btn-outline-light me-2 dropdown-toggle"
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        Connexion
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">utilisateur</a></li>
+                            <li><a class="dropdown-item" href="#">fournisseur</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">administrateur</a>
+                            </li>
+                        </ul>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+
