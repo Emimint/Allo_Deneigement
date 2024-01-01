@@ -15,9 +15,4 @@ public class HomeController {
     public String showLogin() {
         return "login";
     }
-
-    @RequestMapping("/Footer")
-    public String showFooterPage() {
-        return "Footer";
-    }
 }

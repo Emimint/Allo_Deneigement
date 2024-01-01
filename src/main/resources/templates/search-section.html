@@ -1,0 +1,56 @@
+<div th:fragment="search-section" class="container-fluid d-flex align-items-center justify-content-center" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('image/snow-plow.jpg'); background-size: cover; background-position: center;">
+    <div class="search-box bg-light rounded shadow p-5">
+      <div class="text-black text-center p-5">
+        <h2 class="mb-3">Notre liste de fournisseurs</h2>
+        <h5 class="mb-4">Decouvrez notre selection de professionnels repondant a vos besoins</h5>
+        <div class="container p-3">
+          <div class="row justify-content-center mb-2">
+
+            <div class="col-lg-2 col-md-6">
+              <p class="d-inline-block h6"> Cherchez par:</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 d-flex">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="searchType" id="codePostal" checked>
+                <label class="form-check-label" for="codePostal">
+                </label>
+              </div>
+              <form role="search">
+                <input type="search" class="form-control" placeholder="Code postal..." aria-label="Search">
+              </form>
+            </div>
+
+            <div class="col-lg-4 col-md-6 d-flex">
+              <div class="px-2">
+                <p class="d-inline-block h6"> ou </p>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="searchType" id="allFournisseurs">
+                <label class="form-check-label h6" for="allFournisseurs">
+                  Tous les fournisseurs
+                </label>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-md-6">
+              <button type="button" class="btn btn-light me-2">Filtrer</button>
+            </div>
+
+        </div>
+        <div class="container-fluid">
+          <div class="row" style="min-width: 20wh;">
+            <div class="col mb-3 text-start">
+            <!-- Listings des regions les plus recherches-->
+              <h4 class="h5 my-2 d-flex" style="border-bottom: 1px solid #d3d3d3; font-weight: 700;">Recherchez par region</h4>
+              <div class="nav-item mb-2 h6"><a href="#" class="nav-link p-0 ">Montreal</a></div>
+              <div class="nav-item mb-2 h6"><a href="#" class="nav-link p-0 ">Laval</a></div>
+              <div class="nav-item mb-2 h6"><a href="#" class="nav-link p-0 ">Quebec</a></div>
+              <div class="nav-item mb-2 h6"><a href="#" class="nav-link p-0 ">Rosemont</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
