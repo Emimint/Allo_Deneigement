@@ -100,3 +100,29 @@ footer p {
     color : var(--primary-color);
     text-decoration: underline;
 }
+.contact-page{
+    margin: 20;
+    padding:var(--text-align);
+    font-family:var(--primary-font);
+    font-size: 24px;
+    color:black;
+}
+.about-page{
+        margin: 20;
+        padding:var(--text-align);
+        font-family:var(--primary-font);
+        font-size: 20px;
+        color:black;
+}
+.about-img {
+        width: 100%;
+               max-width: 100%;
+               height: 500;
+               display: block;
+               margin: 0 auto;
+               filter: blur(2px);
+               background-size: cover;
+    }
+h1{
+        font-weight:700;
+}
