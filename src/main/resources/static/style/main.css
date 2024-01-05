@@ -100,3 +100,7 @@ footer p {
     color : var(--primary-color);
     text-decoration: underline;
 }
+
+.list-group-item.active {
+    background-color: var(--primary-color);
+}
