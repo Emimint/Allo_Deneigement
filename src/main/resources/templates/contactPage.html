@@ -4,171 +4,121 @@
 <head th:replace="~{commons/navbar::navbar}"/>
 <body class="d-flex flex-column vh-100">
 
-<div class="container contact-page">
-    <div class="row">
-        <div class="col-md-6">
-            <form>
+<form class="needs-validation" novalidate>
+    <div class="container contact-page">
+        <div class="row">
+            <div class="col-md-6">
                 <div class="mb-3">
-                    <label>NOM ET PRÉNOM</label>
-                    <input type="text" class="form-control" placeholder="Nom et prenom" value="MARK DUPRE" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <label for="validationTooltip01">NOM ET PRÉNOM</label>
+                    <input type="text" class="form-control" id="validationTooltip01" placeholder="Nom et prénom" value="MARK DUPRE" required>
+                    <div class="valid-tooltip">
+                        Le nom et prénom ont été saisis correctement.
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label>COURRIEL</label>
+                    <label for="validationTooltipUsername">COURRIEL</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="COURRIEL" aria-describedby="inputGroupPrepend" required>
-                        <div class="invalid-feedback">
-                            Please choose a username.
+                        <input type="text" class="form-control" placeholder="COURRIEL" id="validationTooltipUsername" aria-describedby="inputGroupPrepend" required>
+                        <div class="invalid-tooltip">
+                            S'il vous plaît veuillez choisir un e-mail correct.
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <div class="col-md-6">
-            <form>
+            <div class="col-md-6">
                 <div class="mb-3">
-                    <label >ENTREPRISE</label>
-                    <input type="text" class="form-control" placeholder="Nom entreprise" value="ENTREPRISE" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <label for="validationTooltip03">ENTREPRISE</label>
+                    <input type="text" class="form-control" id="validationTooltip03" placeholder="Nom entreprise" value="ENTREPRISE">
+                    <div class="valid-tooltip">
+                        Le nom de l'entreprise a bien été saisi.
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label>TELEPHONE</label>
-                    <input type="text" class="form-control" placeholder="Telephone" value="TELEPHONE" required>
-                    <div class="valid-feedback">
-                        Looks good!
+                    <label for="validationTooltip04">TELEPHONE</label>
+                    <input type="tel" class="form-control" id="validationTooltip04" placeholder="Telephone" pattern="[0-9\s]{10}" value="TELEPHONE">
+                    <div class="invalid-tooltip">
+                        Veuillez fournir un numéro de téléphone valide. Format attendu.
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-8">
-            <form>
+        <div class="row">
+            <div class="col-md-8">
                 <div>
-
-                    <label>ADRESSE</label>
-                    <input type="text" class="form-control" placeholder="ADRESSE" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid adresse.
+                    <label for="validationTooltip05">ADRESSE</label>
+                    <input type="text" class="form-control" id="validationTooltip05" placeholder="ADRESSE">
+                    <div class="invalid-tooltip">
+                        S'il vous plaît veuillez saisir une adresse valide.
                     </div>
-
                 </div>
-
-            </form>
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <ul class="nav flex-column contact-page">
-                <li class="nav-item mb-2 ">
-                    <label>VILLE</label>
-                    <input type="text" class="form-control" placeholder="VILLE" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid city.
-                    </div>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <ul class="nav flex-column contact-page">
-                <li class="nav-item mb-2">
-                    <label>CODE POSTAL</label>
-                    <input type="text" class="form-control" placeholder="CODE POSTAL" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid zip.
-                    </div>
-            </ul>
+            </div>
         </div>
 
-    </div>
-    <p>Vous nous contactez pour :</p>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-                <label class="form-check-label" for="flexCheckDefault1">
-                    PROBLÉME TECHNIQUE
-                </label>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <ul class="nav flex-column contact-page">
+                    <li class="nav-item mb-2 ">
+                        <label for="validationTooltip06">VILLE</label>
+                        <input type="text" class="form-control" id="validationTooltip06" placeholder="VILLE">
+                        <div class="invalid-feedback">
+                            S'il vous plaît veuillez saisir une ville valide.
+                        </div>
+                </ul>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked>
-                <label class="form-check-label" for="flexCheckChecked1">
-                    DÉLAI EXPIRÉ
-                </label>
+            <div class="col-md-3 mb-3">
+                <label for="validationTooltip07">Pays</label>
+                <input type="text" class="form-control" id="validationTooltip07" placeholder="pays">
+                <div class="invalid-tooltip">
+                    S'il vous plaît veuillez saisir un pays valide.
+                </div>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
-                <label class="form-check-label" for="flexCheckDefault2">
-                    PAS DE RETOUR DU CLIENT/ FOURNISSEUR
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked>
-                <label class="form-check-label" for="flexCheckChecked2">
-                    TRANSPORT DE NEIGE
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked>
-                <label class="form-check-label" for="flexCheckChecked3">
-                    SERVICE D'ABRASIF
-                </label>
+            <div class="col-md-3 mb-3">
+                <ul class="nav flex-column contact-page">
+                    <li class="nav-item mb-2">
+                        <label for="validationTooltip08">CODE POSTAL</label>
+                        <input type="text" class="form-control" id="validationTooltip08" placeholder="CODE POSTAL">
+                        <div class="invalid-tooltip">
+                            S'il vous plaît veuillez saisir un code postal valide.
+                        </div>
+                </ul>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
-                <label class="form-check-label" for="flexCheckDefault3">
-                    TONTE DE PELOUSE
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4" checked>
-                <label class="form-check-label" for="flexCheckChecked4">
-                    PAYSAGEMENT
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
-                <label class="form-check-label" for="flexCheckDefault4">
-                    RAMASSAGE DE FEUILLES
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5" checked>
-                <label class="form-check-label" for="flexCheckChecked5">
-                    NETTOYAGE PRINTANIER
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked6" checked>
-                <label class="form-check-label" for="flexCheckChecked6">
-                    TRANSPORT EN VRAC
-                </label>
+
+        <div class="mb-3">
+            <label for="dropdownMenu" class="form-label">Sélectionnez un problème :</label>
+            <select class="form-select" id="dropdownMenu" required>
+                <option value="" disabled selected>Sélectionnez un problème</option>
+                <option value="probleme_technique">Problème technique</option>
+                <option value="delai_expi">Délai expiré</option>
+                <option value="retard_service">Retard dans le service</option>
+                <option value="mauvaise_communication">Mauvaise communication</option>
+                <option value="endommagement_propriete">Endommagement de la propriété</option>
+                <option value="couts_imprevus">Coûts imprévus</option>
+                <option value="probleme_contractuels">Problème contractuel</option>
+                <option value="manque_flexibilite">Manque de flexibilité</option>
+                <option value="manque_professionnalisme">Manque de professionnalisme</option>
+            </select>
+            <div class="invalid-feedback">
+                Veuillez sélectionner un problème.
             </div>
         </div>
+
+        <div>
+            <label id="information" class="form-label">AUTRE INFORMATION/REMARQUES.</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" cols="50" maxlength="100"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">Envoyer</button>
 
     </div>
-
-    <div>
-            <textarea id="information" name="informationArea" class="form-control">
-               AUTRE INFORMATION/REMARQUES.
-            </textarea>
-    </div>
-    <button type="envoyer" weight="50" height="50" class="btn btn-primary mt-4">Envoyer</button>
-
-</div>
+</form>
 
 
 <div th:replace="~{commons/footer::footer}"></div>

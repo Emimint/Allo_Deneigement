@@ -115,14 +115,15 @@ footer p {
         color:black;
 }
 .about-img {
+
+        filter: opacity(50%);
         width: 100%;
-               max-width: 100%;
-               height: 500;
-               display: block;
-               margin: 0 auto;
-               filter: blur(2px);
-               background-size: cover;
-    }
+        max-width: 100%;
+        height: 500;
+        display: block;
+        margin: 0 auto;
+        background-size: cover;
+}
 h1{
         font-weight:700;
 }

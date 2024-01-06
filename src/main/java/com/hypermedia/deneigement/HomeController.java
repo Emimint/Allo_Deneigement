@@ -15,4 +15,9 @@ public class HomeController {
     public String showLogin() {
         return "login";
     }
+
+    @RequestMapping("/contactPage")
+    public String showContactPage(){
+       return "contactPage";
+    }
 }
