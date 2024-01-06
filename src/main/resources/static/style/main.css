@@ -1,5 +1,7 @@
 :root {
     --primary-color:#b50303;
+    --primary-color-light: #d26767;
+    --primary-color-dark: #6c0101;
     --primary-font: HelveticaNeue, Helvetica Neue, helvetica, Sans-Serif;
     --primary-text-color: white;
     --primary-text-color-black: black;
@@ -104,3 +106,69 @@ footer p {
 .list-group-item.active {
     background-color: var(--primary-color);
 }
+
+section.masthead {
+  padding-top: 10.5rem;
+  padding-bottom: 6rem;
+  text-align: center;
+}
+section.masthead .masthead-subheading {
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.5rem;
+  margin-bottom: 25px;
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@media (min-width: 768px) {
+  section.masthead {
+    padding-top: 17rem;
+    padding-bottom: 12.5rem;
+  }
+  section.masthead .masthead-subheading {
+    font-size: 2.25rem;
+    font-style: italic;
+    line-height: 2.25rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.ad-service {
+    background: var(--primary-color-light);
+}
+
+    .ad-service .card {
+      border:none;
+      padding: 10px 50px;
+    }
+
+    .ad-service .card::after {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .ad-service .card:hover {
+
+      transform: scale(1.02, 1.02);
+      -webkit-transform: scale(1.02, 1.02);
+      backface-visibility: hidden;
+      will-change: transform;
+      box-shadow: 0 1rem 3rem rgba(0,0,0,.75) !important;
+    }
+
+    .ad-service .card:hover::after {
+      opacity: 1;
+    }
+
+    .ad-service .btn-lg {
+        border-radius: 5px;
+    }
+
+    .ad-service .card:hover .btn {
+      color:white;
+      background: var(--primary-color-light)
+    }
+
