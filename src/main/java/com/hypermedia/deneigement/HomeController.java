@@ -15,4 +15,9 @@ public class HomeController {
     public String showLogin() {
         return "login";
     }
+
+    @RequestMapping("/fournisseur")
+    public String showFournisseur() {
+        return "pages/fournisseur";
+    }
 }
