@@ -129,6 +129,7 @@ footer p {
 
 .about-page p {
  padding-bottom: 5rem;
+}
 
 .list-group-item.active {
     background-color: var(--primary-color);
