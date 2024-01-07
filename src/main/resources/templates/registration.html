@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{commons/head::head}" />
+<div th:replace="~{commons/navbar::navbar}"></div>
+<body
+style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('image/snow-plow.jpg'); background-size: cover; background-position: center;">
+
+<div >
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3 ">
+        <div class="container h-100 ">
+            <div class="row d-flex  h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6 flex-fill ">
+                    <div class="card m-5 p-5 " style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Créer un compte</h2>
+
+                            <form>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example1cg">Nom</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example1cg">Prénom</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example3cg">Courriel</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example4cg">Mot de passe</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example4cdg">Répétez le mot de passe</label>
+                                </div>
+
+                                <div class="form-check d-flex justify-content-center mb-5">
+                                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                                    <label class="form-check-label" for="form2Example3g">
+                                        J'accèpte les <a href="#!" class="text-body"><u>termes et conditions dur service</u></a>
+                                    </label>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <button type="button"
+                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">S'inscrire</button>
+                                </div>
+
+                                <p class="text-center text-muted mt-5 mb-0">Vous avez déjà un compte ? <a href="#!"
+                                                                                                          class="fw-bold text-body"><u>Connectez-vous</u></a></p>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div th:replace="~{commons/footer::footer}"></div>
+
+</body>
+</html>
