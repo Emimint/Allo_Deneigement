@@ -121,6 +121,12 @@ footer p {
         margin: 0 auto;
         background-size: cover;
 }
-h1{
+
+.about-page h1 {
         font-weight:700;
+        padding-top: 5rem;
+}
+
+.about-page p {
+ padding-bottom: 5rem;
 }
