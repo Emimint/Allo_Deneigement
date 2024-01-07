@@ -5,6 +5,7 @@
     --primary-text-color-black: black;
     --font-weight-light: 100;
     --font-weight-bold: 900;
+    --text-align: center;
 }
 
  body {

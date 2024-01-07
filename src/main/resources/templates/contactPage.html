@@ -10,20 +10,20 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="validationTooltip01">NOM ET PRÉNOM</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Nom et prénom" value="MARK DUPRE" required>
+                        <label for="validationTooltip01">Nom et Prénom</label>
+                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Nom et prénom" value="Mark Dupre" required>
                         <div class="valid-tooltip">
                             Le nom et prénom ont été saisis correctement.
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="validationTooltipUsername">COURRIEL</label>
+                        <label for="validationTooltipUsername">Courriel</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="COURRIEL" id="validationTooltipUsername" aria-describedby="inputGroupPrepend" required>
+                            <input type="text" class="form-control" placeholder="Courriel" id="validationTooltipUsername" aria-describedby="inputGroupPrepend" required>
                             <div class="invalid-tooltip">
                                 S'il vous plaît veuillez choisir un e-mail correct.
                             </div>
@@ -33,18 +33,18 @@
 
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="validationTooltip03">ENTREPRISE</label>
-                        <input type="text" class="form-control" id="validationTooltip03" placeholder="Nom entreprise" value="ENTREPRISE">
+                        <label for="validationTooltip03">Entreprise</label>
+                        <input type="text" class="form-control" id="validationTooltip03" placeholder="Nom entreprise" value="Entreprise">
                         <div class="valid-tooltip">
                             Le nom de l'entreprise a bien été saisi.
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="validationTooltip04">TELEPHONE</label>
-                        <input type="tel" class="form-control" id="validationTooltip04" placeholder="Telephone" pattern="[0-9\s]{10}" value="TELEPHONE">
+                        <label for="validationTooltip04">Téléphone</label>
+                        <input type="tel" class="form-control" id="validationTooltip04" placeholder="Téléphone" pattern="[0-9\s]{10}" value="Téléphone">
                         <div class="invalid-tooltip">
-                            Veuillez fournir un numéro de téléphone valide. Format attendu.
+                            Veuillez fournir un numéro de téléphone valide.
                         </div>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
             <div class="row">
                 <div class="col-md-8">
                     <div>
-                        <label for="validationTooltip05">ADRESSE</label>
-                        <input type="text" class="form-control" id="validationTooltip05" placeholder="ADRESSE">
+                        <label for="validationTooltip05">Adresse</label>
+                        <input type="text" class="form-control" id="validationTooltip05" placeholder="Adresse">
                         <div class="invalid-tooltip">
                             S'il vous plaît veuillez saisir une adresse valide.
                         </div>
@@ -66,16 +66,16 @@
                 <div class="col-md-6 mb-3">
                     <ul class="nav flex-column contact-page">
                         <li class="nav-item">
-                            <label for="validationTooltip06">VILLE</label>
-                            <input type="text" class="form-control" id="validationTooltip06" placeholder="VILLE">
+                            <label for="validationTooltip06">Ville</label>
+                            <input type="text" class="form-control" id="validationTooltip06" placeholder="Ville">
                             <div class="invalid-feedback">
                                 S'il vous plaît veuillez saisir une ville valide.
                             </div>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="validationTooltip07">PAYS</label>
-                    <input type="text" class="form-control" id="validationTooltip07" placeholder="pays">
+                    <label for="validationTooltip07">Pays</label>
+                    <input type="text" class="form-control" id="validationTooltip07" placeholder="Pays">
                     <div class="invalid-tooltip">
                         S'il vous plaît veuillez saisir un pays valide.
                     </div>
@@ -83,8 +83,8 @@
                 <div class="col-md-3 mb-3">
                     <ul class="nav flex-column contact-page">
                         <li class="nav-item">
-                            <label for="validationTooltip08">CODE POSTAL</label>
-                            <input type="text" class="form-control" id="validationTooltip08" placeholder="CODE POSTAL">
+                            <label for="validationTooltip08">Code Postal</label>
+                            <input type="text" class="form-control" id="validationTooltip08" placeholder="Code Postal">
                             <div class="invalid-tooltip">
                                 S'il vous plaît veuillez saisir un code postal valide.
                             </div>
@@ -112,7 +112,7 @@
             </div>
 
             <div>
-                <label id="information" class="form-label">AUTRE INFORMATION/REMARQUES.</label>
+                <label id="information" class="form-label">Autre Informations/Remarques.</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" cols="50" maxlength="100"></textarea>
             </div>
 
@@ -122,6 +122,25 @@
 
         </div>
     </form>
+    <script>
+
+(function () {
+  'use strict'
+
+  var forms = document.querySelectorAll('.needs-validation')
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
 </div>
 
 <div th:replace="~{commons/footer::footer}"></div>
