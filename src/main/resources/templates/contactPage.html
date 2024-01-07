@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commons/head::head}"/>
+<head th:replace="~{commons/navbar::navbar}"/>
+<body class="d-flex flex-column vh-100">
+
+<div class="container-fluid my-6 p-3" style="width:60%;">
+    <form class="needs-validation" novalidate>
+        <div class="container contact-page mx-auto p-2">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="validationTooltip01">Nom et Prénom</label>
+                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Nom et prénom" value="Mark Dupre" required>
+                        <div class="valid-tooltip">
+                            Le nom et prénom ont été saisis correctement.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="validationTooltipUsername">Courriel</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Courriel" id="validationTooltipUsername" aria-describedby="inputGroupPrepend" required>
+                            <div class="invalid-tooltip">
+                                S'il vous plaît veuillez choisir un e-mail correct.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="validationTooltip03">Entreprise</label>
+                        <input type="text" class="form-control" id="validationTooltip03" placeholder="Nom entreprise" value="Entreprise">
+                        <div class="valid-tooltip">
+                            Le nom de l'entreprise a bien été saisi.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="validationTooltip04">Téléphone</label>
+                        <input type="tel" class="form-control" id="validationTooltip04" placeholder="Téléphone" pattern="[0-9\s]{10}" value="Téléphone">
+                        <div class="invalid-tooltip">
+                            Veuillez fournir un numéro de téléphone valide.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div>
+                        <label for="validationTooltip05">Adresse</label>
+                        <input type="text" class="form-control" id="validationTooltip05" placeholder="Adresse">
+                        <div class="invalid-tooltip">
+                            S'il vous plaît veuillez saisir une adresse valide.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-end">
+                <div class="col-md-6 mb-3">
+                    <ul class="nav flex-column contact-page">
+                        <li class="nav-item">
+                            <label for="validationTooltip06">Ville</label>
+                            <input type="text" class="form-control" id="validationTooltip06" placeholder="Ville">
+                            <div class="invalid-feedback">
+                                S'il vous plaît veuillez saisir une ville valide.
+                            </div>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationTooltip07">Pays</label>
+                    <input type="text" class="form-control" id="validationTooltip07" placeholder="Pays">
+                    <div class="invalid-tooltip">
+                        S'il vous plaît veuillez saisir un pays valide.
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <ul class="nav flex-column contact-page">
+                        <li class="nav-item">
+                            <label for="validationTooltip08">Code Postal</label>
+                            <input type="text" class="form-control" id="validationTooltip08" placeholder="Code Postal">
+                            <div class="invalid-tooltip">
+                                S'il vous plaît veuillez saisir un code postal valide.
+                            </div>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="dropdownMenu" class="form-label">Sélectionnez un problème :</label>
+                <select class="form-select" id="dropdownMenu" required>
+                    <option value="" disabled selected>Sélectionnez un problème</option>
+                    <option value="probleme_technique">Problème technique</option>
+                    <option value="delai_expi">Délai expiré</option>
+                    <option value="retard_service">Retard dans le service</option>
+                    <option value="mauvaise_communication">Mauvaise communication</option>
+                    <option value="endommagement_propriete">Endommagement de la propriété</option>
+                    <option value="couts_imprevus">Coûts imprévus</option>
+                    <option value="probleme_contractuels">Problème contractuel</option>
+                    <option value="manque_flexibilite">Manque de flexibilité</option>
+                    <option value="manque_professionnalisme">Manque de professionnalisme</option>
+                </select>
+                <div class="invalid-feedback">
+                    Veuillez sélectionner un problème.
+                </div>
+            </div>
+
+            <div>
+                <label id="information" class="form-label">Autre Informations/Remarques.</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" cols="50" maxlength="100"></textarea>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn mt-4" style="background-color:#b50303;color:white;width:20%;">Envoyer</button>
+            </div>
+
+        </div>
+    </form>
+    <script>
+
+(function () {
+  'use strict'
+
+  var forms = document.querySelectorAll('.needs-validation')
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
+</div>
+
+<div th:replace="~{commons/footer::footer}"></div>
+</body>
+</html>

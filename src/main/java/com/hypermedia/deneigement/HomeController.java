@@ -20,4 +20,9 @@ public class HomeController {
     public String showFournisseur() {
         return "pages/fournisseur";
     }
+    
+    @RequestMapping("/contactPage")
+    public String showContactPage(){
+       return "contactPage";
+    }
 }
