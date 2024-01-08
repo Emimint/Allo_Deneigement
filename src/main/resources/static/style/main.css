@@ -192,7 +192,7 @@ footer p {
     color: var(--primary-color);
 }
 
-.carousel-inner .btn {
+.carousel-inner .btn, #searchButton {
     color: #fff;
     background-color:var(--primary-color);
     border: none;

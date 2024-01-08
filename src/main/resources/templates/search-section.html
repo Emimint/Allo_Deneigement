@@ -67,9 +67,9 @@
               <p class="d-inline-block h6"> Cherchez par:</p>
             </div>
 
-            <div class="col-lg-4 col-md-6 d-flex">
+            <div class="col-lg-3 col-md-6 d-flex">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="searchType" id="codePostal" checked>
+                <input class="form-check-input" type="radio" name="searchType" id="codePostal">
                 <label class="form-check-label" for="codePostal">
                 </label>
               </div>
@@ -78,20 +78,24 @@
               </form>
             </div>
 
-            <div class="col-lg-4 col-md-6 d-flex">
+            <div class="col-lg-3 col-md-6 d-flex">
               <div class="px-2">
                 <p class="d-inline-block h6"> ou </p>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="searchType" id="allFournisseurs">
+                <input class="form-check-input" type="radio" name="searchType" id="allFournisseurs"  checked>
                 <label class="form-check-label h6" for="allFournisseurs">
                   Tous les fournisseurs
                 </label>
               </div>
             </div>
 
-            <div class="col-lg-2 col-md-6">
+            <div class="col-lg-1 col-md-6">
               <button type="button" class="btn btn-light me-2" data-bs-target="#exampleModalCenter" id="filtrerButton" data-bs-toggle="modal">Filtrer</button>
+            </div>
+
+            <div class="col-lg-1 col-md-6">
+              <button type="button" class="btn btn-light me-2" id="searchButton">Rechercher</button>
             </div>
 
         </div>
@@ -115,7 +119,7 @@
                   </div>
 
                   <!--    2) Suppliers addresses-->
-                  <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" style="max-height: 500px; overflow-y: auto;">
+                  <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary mb-4" style="max-height: 500px; overflow-y: auto;">
                     <div class="list-group list-group-flush border-bottom scrollarea">
                       <div class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
                         <div class="d-flex w-100 align-items-center justify-content-between">
@@ -222,7 +226,7 @@
                   </div>
 
                   <!--    4) Map-->
-                  <div id="map" style="min-height: 500px;border:1px solid black;"></div>
+                  <div id="map" class=" mb-4" style="min-height: 500px;border:1px solid black;"></div>
                 </div>
               </div>
               <script src="scripts/map-info.js"></script>
