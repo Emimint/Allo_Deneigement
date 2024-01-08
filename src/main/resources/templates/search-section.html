@@ -96,14 +96,136 @@
 
         </div>
         <div class="container-fluid">
-          <div class="row" style="min-width: 20wh;">
-            <div class="col mb-3 text-start">
-            <!-- Listings des regions les plus recherches-->
-              <h4 class="h5 my-2 d-flex" style="border-bottom: 1px solid #d3d3d3; font-weight: 700;">Recherchez par region</h4>
-              <div class="nav-item mb-2 h6"><a href="#" class="nav-link p-0 ">Montreal</a></div>
-              <div class="nav-item mb-2 h6"><a href="#" class="nav-link p-0 ">Laval</a></div>
-              <div class="nav-item mb-2 h6"><a href="#" class="nav-link p-0 ">Quebec</a></div>
-              <div class="nav-item mb-2 h6"><a href="#" class="nav-link p-0 ">Rosemont</a></div>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a href="#home-list" class="nav-link active" data-bs-toggle="tab">Liste</a>
+            </li>
+            <li class="nav-item">
+              <a href="#carte" class="nav-link" data-bs-toggle="tab">Carte</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="home-list">
+              <div class="row">
+                <div class="col">
+
+                  <!--    1) Numbers of results to show-->
+                  <div>
+                    14 fournisseurs trouves [pres de l'adresse]
+                  </div>
+
+                  <!--    2) Suppliers addresses-->
+                  <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" style="max-height: 500px; overflow-y: auto;">
+                    <div class="list-group list-group-flush border-bottom scrollarea">
+                      <div class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                          <strong class="mb-1">
+                            <i class="fa-solid fa-map-pin" style="color:white"></i>
+                            Deneigement Martineau et Fils
+                          </strong>
+                          <small class="text-body-secondary">
+                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
+                            3.6/5
+                          </small>
+                        </div>
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                          <div class="col-10 mb-1 small">4512 rue Peel Montréal, Montreal, QC H1T 4F5</div>
+                          <button class="btn btn-light">Contacter</button>
+                        </div>
+                      </div>
+                      <div class="list-group-item list-group-item-action py-3 lh-sm">
+                        <div class="d-flex w-100 align-items-start justify-content-between">
+                          <strong class="mb-1">
+                            <i class="fa-solid fa-map-pin" style="color:#b50303"></i>
+                            Déneigement TM - Montreal Nord - Commercial - Residential
+                          </strong>
+                          <small class="text-body-secondary">
+                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
+                            4.8/5
+                          </small>
+                        </div>
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                          <div class="col-10 mb-1 small">11473 av Hurteau Montréal-Nord, Montreal, QC H1T 3W8</div>
+                          <button class="btn btn-light">Contacter</button>
+                        </div>
+                      </div>
+                      <div class="list-group-item list-group-item-action py-3 lh-sm">
+                        <div class="d-flex w-100 align-items-start justify-content-between">
+                          <strong class="mb-1">
+                            <i class="fa-solid fa-map-pin" style="color:#b50303"></i>
+                            Atout deneigement
+                          </strong>
+                          <small class="text-body-secondary">
+                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
+                            3.0/5
+                          </small>
+                        </div>
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                          <div class="col-10 mb-1 small">Salabery de Valleefield, QC J5Y 9P4</div>
+                          <button class="btn btn-light">Contacter</button>
+                        </div>
+                      </div>
+                      <div class="list-group-item list-group-item-action py-3 lh-sm">
+                        <div class="d-flex w-100 align-items-start justify-content-between">
+                          <strong class="mb-1">
+                            <i class="fa-solid fa-map-pin" style="color:#b50303"></i>
+                            Bye bye Snow
+                          </strong>
+                          <small class="text-body-secondary">
+                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
+                            4.9/5
+                          </small>
+                        </div>
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                          <div class="col-10 mb-1 small">Moncton, CA Y4K 6G5 </div>
+                          <button class="btn btn-light">Contacter</button>
+                        </div>
+                      </div>
+                      <div class="list-group-item list-group-item-action py-3 lh-sm">
+                        <div class="d-flex w-100 align-items-start justify-content-between">
+                          <strong class="mb-1">
+                            <i class="fa-solid fa-map-pin" style="color:#b50303"></i>
+                            Allo La Neige
+                          </strong>
+                          <small class="text-body-secondary">
+                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
+                            2.9/5
+                          </small>
+                        </div>
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                          <div class="col-10 mb-1 small">Missouri, FL, 45874 </div>
+                          <button class="btn btn-light">Contacter</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="carte">
+              <div class="row">
+                <div class="col">
+
+                  <!--    3) [OPTIONAL] additional filters-->
+                  <div class="d-flex">
+                    <div>
+                      <p>
+                        Filtres par :
+                      </p>
+                    </div>
+                    <div class="mx-2">
+                      <button type="button" class="btn btn-light me-2">Residence</button>
+                    </div>
+                    <div>
+                      <button type="button" class="btn btn-light me-2">Services</button>
+                    </div>
+                  </div>
+
+                  <!--    4) Map-->
+                  <div id="map" style="min-height: 500px;border:1px solid black;"></div>
+                </div>
+              </div>
+              <script src="scripts/map-info.js"></script>
             </div>
           </div>
         </div>
