@@ -1,2 +1,2 @@
 # Allo_Deneigement
-A SpringBoot + Vanilla Javascript app made with Bootstrap and MySQL.
+A SpringBoot + Vanilla Javascript app with Bootstrap and MySQL.
