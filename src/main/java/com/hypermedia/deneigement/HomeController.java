@@ -20,11 +20,6 @@ public class HomeController {
     public String showRegistration() {
         return "registration";
     }
-
-    @RequestMapping("/Footer")
-    public String showFooterPage() {
-        return "Footer";}
-
         
     @RequestMapping("/fournisseur")
     public String showFournisseur() {
