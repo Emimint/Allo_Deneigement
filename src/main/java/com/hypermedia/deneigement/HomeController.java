@@ -15,4 +15,19 @@ public class HomeController {
     public String showLogin() {
         return "login";
     }
+
+    @RequestMapping("/registration")
+    public String showRegistration() {
+        return "registration";
+    }
+        
+    @RequestMapping("/fournisseur")
+    public String showFournisseur() {
+        return "pages/fournisseur";
+    }
+    
+    @RequestMapping("/contactPage")
+    public String showContactPage(){
+       return "contactPage";
+    }
 }
