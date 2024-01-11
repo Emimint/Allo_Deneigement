@@ -16,6 +16,11 @@ public class HomeController {
         return "login";
     }
 
+    @RequestMapping("/registration")
+    public String showRegistration() {
+        return "registration";
+    }
+        
     @RequestMapping("/fournisseur")
     public String showFournisseur() {
         return "pages/fournisseur";
