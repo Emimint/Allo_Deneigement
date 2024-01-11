@@ -13,13 +13,13 @@ style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255
                <h2 class="text-center p-3 mb-3">Créer un compte</h2>
                <!--form start-->
 
-               <form action="#" th:with="isAdmin=${true}">
-                   <!-- should be replaced later with if="${user.role == 'ADMIN'}"-->
-                   <div class="input-group mb-3 mt-5" th:if="true">
+               <form action="#">
+
+                  <!-- <div class="input-group mb-3 mt-5" th:if="true">
                        <span class="input-group-text"><i class="fa fa-user"></i></span>
                        <input type="text" class="form-control" placeholder="nom de la compagnie">
-                   </div>
-                   <div class="input-group mb-3">
+                   </div>-->
+                   <div class="input-group mb-3 ">
                        <span class="input-group-text"><i class="fa fa-user"></i></span>
                        <input type="text" class="form-control" placeholder="Prenom">
                    </div>
@@ -46,14 +46,7 @@ style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255
                        <button type="button" class="btn btn-success mb-3">Soumettre</button><br>
                        <p class="text-center text-muted">Vous avez déjà un compte ? <a href="#">Connectez-vous</a></p>
 
-
-                       <!-- should be replaced later with if="${user.role==SUPPLIER}"-->
-                       <a class="text-center mb-4" href="#" th:if="false"> Vous êtes un fournisseur ?</a>
-                       <!-- should be replaced later with if="${user.role==USER}"-->
-                       <a  class="text-center mb-4" href="#" th:if="true"> Vous êtes un utilisateur ?</a>
-
-
-
+                     <a id="link-role" class="text-center mb-4"> Vous êtes un fournisseur ?</a>
 
                    </div>
                </form>
@@ -66,5 +59,7 @@ style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255
 <div th:replace="~{commons/footer::footer}"></div>
 
 
+<script src="scripts/registration-form-user-update.js" ></script>
 </body>
+
 </html>
