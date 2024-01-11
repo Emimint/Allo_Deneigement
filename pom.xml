@@ -24,11 +24,25 @@
 			<version>5.3.2</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/jquery -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.webjars/font-awesome -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>font-awesome</artifactId>
 			<version>6.5.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars.npm/leaflet -->
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>leaflet</artifactId>
+			<version>1.9.4</version>
 		</dependency>
 
 		<dependency>

@@ -23,6 +23,16 @@ public class HomeController {
 
     @RequestMapping("/Footer")
     public String showFooterPage() {
-        return "Footer";
+        return "Footer";}
+
+        
+    @RequestMapping("/fournisseur")
+    public String showFournisseur() {
+        return "pages/fournisseur";
+    }
+    
+    @RequestMapping("/contactPage")
+    public String showContactPage(){
+       return "contactPage";
     }
 }
