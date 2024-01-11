@@ -97,8 +97,8 @@ footer p {
   overflow-wrap: break-word;
 }
 .search-box {
-  width: 60%;
-  height: 80%;
+    width: 80%;
+    height: 90%;
 }
 
 .nav-link {
@@ -196,10 +196,10 @@ footer p {
   color: var(--primary-color);
 }
 
-.carousel-inner .btn {
-  color: #fff;
-  background-color: var(--primary-color);
-  border: none;
+.carousel-inner .btn, #searchButton {
+    color: #fff;
+    background-color:var(--primary-color);
+    border: none;
 }
 section.masthead {
   padding-top: 10.5rem;
