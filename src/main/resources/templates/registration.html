@@ -13,8 +13,13 @@ style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255
                <h2 class="text-center p-3 mb-3">Créer un compte</h2>
                <!--form start-->
 
-               <form action="#" >
-                   <div class="input-group mb-3">
+               <form action="#">
+
+                  <div id="admin-input" class="input-group mb-3 mt-5">
+                       <span class="input-group-text"><i class="fa fa-building"></i></span>
+                       <input type="text" class="form-control" placeholder="nom de la compagnie">
+                   </div>
+                   <div class="input-group mb-3 ">
                        <span class="input-group-text"><i class="fa fa-user"></i></span>
                        <input type="text" class="form-control" placeholder="Prenom">
                    </div>
@@ -40,8 +45,8 @@ style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255
                        </label>
                        <button type="button" class="btn btn-success mb-3">Soumettre</button><br>
                        <p class="text-center text-muted">Vous avez déjà un compte ? <a href="#">Connectez-vous</a></p>
-                       <a class="text-center mb-4" href="#"> Vous êtes un fournisseur ?</a>
 
+                     <a id="link-role" class="text-center mb-4" href="#"> Vous êtes un fournisseur ?</a>
 
                    </div>
                </form>
@@ -51,8 +56,10 @@ style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255
         </div>
     </div>
 </div>
-
 <div th:replace="~{commons/footer::footer}"></div>
 
+
+<script src="scripts/registration-form-user-update.js" ></script>
 </body>
+
 </html>
