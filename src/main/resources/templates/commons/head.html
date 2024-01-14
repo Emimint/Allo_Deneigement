@@ -1,14 +1,13 @@
-  <head th:fragment="head">
+<head th:fragment="head">
     <meta charset="UTF-8" />
     <title>Allo Déneigement</title>
     <link rel="icon" href="image/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/webjars/font-awesome/6.5.1/css/all.css" rel="stylesheet"/>
-    <link href="/webjars/leaflet/1.9.4/dist/leaflet.css" rel="stylesheet"/>
+    <link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/font-awesome/6.5.1/css/all.css}" rel="stylesheet"/>
+    <link th:href="@{/webjars/leaflet/1.9.4/dist/leaflet.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="style/main.css" />
-    <script src="/webjars/jquery/3.5.1/dist/jquery.js"></script>
-    <script src="/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script src="/webjars/leaflet/1.9.4/dist/leaflet.js"></script>
-  </head>
-
+    <script th:src="@{/webjars/jquery/3.5.1/dist/jquery.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/webjars/leaflet/1.9.4/dist/leaflet.js}"></script>
+</head>
