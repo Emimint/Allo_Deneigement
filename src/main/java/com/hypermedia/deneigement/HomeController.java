@@ -30,4 +30,9 @@ public class HomeController {
     public String showContactPage(){
        return "contactPage";
     }
+
+    @RequestMapping("/historique")
+    public String showFournisseurs() {
+        return "pages/historique-utilisateur";
+    }
 }

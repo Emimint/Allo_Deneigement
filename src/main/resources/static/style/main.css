@@ -271,3 +271,15 @@ section.masthead .masthead-subheading {
   color: white;
   background: var(--primary-color-light);
 }
+
+.dataTables_filter {
+display: none;
+}
+
+.dataTables_length {
+    margin-bottom: 1rem;
+}
+
+#showData_wrapper {
+    font-size: 1rem;
+}
