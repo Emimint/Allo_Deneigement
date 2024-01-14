@@ -9,7 +9,7 @@ $(document).ready(function() {
             targets: 6,
             render: function (data, type, row, meta)
             {
-                data = '<a href="/fournisseur">Details</a>';
+                data = '<a href="/fournisseur"><i class="fa-sharp fa-solid fa-circle-info" style="color: #b50303;"></i></a>';
                 return data;
             }
         }],
