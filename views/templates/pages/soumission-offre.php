@@ -9,6 +9,7 @@
     <div class="step-circle" onclick="displayStep(1)">1</div>
     <div class="step-circle" onclick="displayStep(2)">2</div>
     <div class="step-circle" onclick="displayStep(3)">3</div>
+    <div class="step-circle" onclick="displayStep(4)">4</div>
   </div>
 
   <form id="multi-step-form">
@@ -39,6 +40,17 @@
       <div class="mb-3">
         <label for="field3" class="form-label">Field 3:</label>
         <input type="text" class="form-control" id="field3" name="field3">
+      </div>
+      <button type="button" class="btn btn-primary prev-step">Previous</button>
+      <button type="button" class="btn btn-primary next-step">Next</button>
+    </div>
+
+        <div class="step step-4">
+      <!-- Step 4 form fields here -->
+      <h3>Step 4</h3>
+      <div class="mb-3">
+        <label for="field4" class="form-label">Field 4:</label>
+        <input type="text" class="form-control" id="field4" name="field4">
       </div>
       <button type="button" class="btn btn-primary prev-step">Previous</button>
       <button type="submit" class="btn btn-success">Submit</button>
