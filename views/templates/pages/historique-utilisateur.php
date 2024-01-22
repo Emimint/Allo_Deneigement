@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html>
-<?php include("../commons/head.php"); ?>
-<?php include("../commons/head.php"); ?>
-<?php include("../commons/navbar.php"); ?>
+<?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
 <div class="my-5">
     <table id="showData" class="table table-striped nowrap table-hover">
         <thead>
@@ -19,8 +17,5 @@
         </thead>
         <tbody id="tbody"></tbody>
     </table>
-    <script src="static/scripts/load-table.js"></script>
 </div>
-<?php include_once("../commons/footer.php"); ?>
-</body>
-</html>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>

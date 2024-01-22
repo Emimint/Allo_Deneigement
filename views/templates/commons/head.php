@@ -1,23 +1,21 @@
-<?php
-if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
+<?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
-    <base href="<?=BASE_URL?>">
     <title>Allo Déneigement</title>
     <link rel="icon" href="static/image/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- CSS LIBRAIRIES -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="assets/fontawesome/css/fontawesome.css" rel="stylesheet"/>
-    <link href="assets/fontawesome/css/brands.css" rel="stylesheet">
-    <link href="assets/fontawesome/css/solid.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL;?>/assets/fontawesome/css/fontawesome.css" rel="stylesheet"/>
+    <link href="<?php echo BASE_URL;?>/assets/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL;?>/assets/fontawesome/css/solid.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
     <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet"/>
-    <link href="static/style/main.css" rel="stylesheet"/>
+    <link href="<?php echo BASE_URL;?>/static/style/main.css" rel="stylesheet"/>
     <!-- JS LIBRAIRIES -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 			  crossorigin="anonymous"></script>
