@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head th:replace="~{commons/head::head}" />
-<div th:replace="~{commons/navbar::navbar}"></div>
-<body
-style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('image/snow-plow.jpg'); background-size: cover; background-position: center;">
-
-
-<div class="container">
-    <div class="row">""
+<?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
+<div class="container" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('<?php echo BASE_URL;?>/static/image/snow-plow.jpg'); background-size: cover; background-position: center;">
+    <div class="row">
         <div class="col-lg-6 bg-white text-dark m-auto" >
            <div class="form-card" style=" padding: 50px">
                <h2 class="text-center p-3 mb-3">Créer un compte</h2>
@@ -56,10 +51,7 @@ style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255
         </div>
     </div>
 </div>
-<div th:replace="~{commons/footer::footer}"></div>
-
-
-<script src="scripts/registration-form-user-update.js" ></script>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>
+<script src="<?php echo BASE_URL;?>/static/scripts/registration-form-user-update.js" ></script>
 </body>
-
 </html>

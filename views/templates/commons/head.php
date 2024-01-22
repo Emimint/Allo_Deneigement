@@ -25,4 +25,4 @@
      crossorigin=""></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
   </head>
-  <body class="d-flex flex-column vh-100">
+  <body class="d-flex flex-column vh-100 text-grey">

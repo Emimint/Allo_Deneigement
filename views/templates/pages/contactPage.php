@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<?php include("/templates/commons/head.php"); ?>
-<?php include("/templates/commons/navbar.php"); ?>
-<body class="d-flex flex-column vh-100">
-
+<?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
 <div class="container-fluid my-6 p-3" style="width:60%;">
     <form class="needs-validation" novalidate>
         <div class="container contact-page mx-auto p-2">
@@ -121,27 +119,24 @@
 
         </div>
     </form>
-    <script>
-
-(function () {
-  'use strict'
-
-  var forms = document.querySelectorAll('.needs-validation')
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-</script>
 </div>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>
+<script>
+    (function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+            }
 
-<div th:replace="~{commons/footer::footer}"></div>
+            form.classList.add('was-validated')
+        }, false)
+        })
+    })();
+</script>
 </body>
 </html>

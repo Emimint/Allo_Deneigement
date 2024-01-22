@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{commons/head::head}"/>
-<head th:replace="~{commons/navbar::navbar}"/>
-<body class="d-flex flex-column vh-100 " style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('image/snow-plow.jpg'); background-size: cover; background-position: center;">
-<div class="login container mt-auto fw-bold">
-    <div class="form-signin m-auto col-sm-6">
+<?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
+<div class="login vh-100 vw-100 fw-bold m-auto d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('<?php echo BASE_URL;?>/static/image/snow-plow.jpg'); background-size: cover; background-position: center;">
+    <div class="form-signin col-sm-6 m-auto">
         <form novalidate class="needs-validation">
             <br>
             <h1 class="mb-3 deep-shadow text-center">CONNEXION</h1>
@@ -28,7 +26,7 @@
         </form>
     </div>
 </div>
-<head th:replace="~{commons/footer::footer}"/>
-<script src="scripts/css-validation.js"></script>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>
+<script src="<?php echo BASE_URL;?>/static/scripts/css-validation.js"></script>
 </body>
 </html>

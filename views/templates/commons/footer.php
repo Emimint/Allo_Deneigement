@@ -40,7 +40,3 @@
         </div>
     </footer>
 </div>
-<script src="<?php echo BASE_URL;?>/static/scripts/map-info.js"></script>
-<script src="<?php echo BASE_URL;?>/static/scripts/load-table.js"></script>
-</body>
-</html> 
