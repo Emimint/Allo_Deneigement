@@ -325,3 +325,18 @@ display: none;
 #multi-step-form {
   overflow-x: hidden;
 }
+
+/* fournisseur */
+
+.accordion-button:focus {
+  color: var(--primary-color) !important;
+  box-shadow: 0 0 0 0.25rem rgba(181,3,3, 0.25) !important;
+}
+
+.accordion-button:not(.collapsed) {
+  color: var(--primary-color-light);
+  background-color: rgba(181, 3, 3, 0.25) !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: none;}
