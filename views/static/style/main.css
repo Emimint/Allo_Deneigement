@@ -290,10 +290,26 @@ display: none;
   max-width: 550px;
 }
 
+.progress-bar {
+  background-color: var(--primary-color);
+}
+
 .step-container {
   position: relative;
   text-align: center;
+  width: 90%;
   transform: translateY(-43%);
+}
+
+.step-container h5 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.step-container > div {
+  width: 40%;
+  margin: 0 .5rem;
+  padding: 1rem;
 }
 
 .step-circle {
@@ -301,7 +317,7 @@ display: none;
   height: 30px;
   border-radius: 50%;
   background-color: #fff;
-  border: 2px solid #007bff;
+  border: 2px solid var(--primary-color) !important;
   line-height: 30px;
   font-weight: bold;
   display: flex;
@@ -318,7 +334,7 @@ display: none;
   left: 50px;
   width: calc(100% - 100px);
   height: 2px;
-  background-color: #007bff;
+  background-color: var(--primary-color) !important;
   z-index: -1;
 }
 

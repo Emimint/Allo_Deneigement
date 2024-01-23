@@ -2,14 +2,29 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
 <div id="container" class="container mt-5">
-  <div class="progress px-1" style="height: 3px;">
+  <div class="progress px-1 m-3" style="height: 3px;">
     <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
-  <div class="step-container d-flex justify-content-between">
-    <div class="step-circle" onclick="displayStep(1)">1</div>
-    <div class="step-circle" onclick="displayStep(2)">2</div>
-    <div class="step-circle" onclick="displayStep(3)">3</div>
-    <div class="step-circle" onclick="displayStep(4)">4</div>
+  <div class="step-container d-flex">
+    <div class="d-flex flex-column align-items-center">
+      <div class="step-circle" onclick="displayStep(1)">1</div>
+      <h5 class="text-wrap">Choix du service</h5>
+    </div>
+    <div class="d-flex flex-column align-items-center">
+      <div class="step-circle" onclick="displayStep(2)">2</div>
+
+      <h5>Valider adresse</h5>
+    </div>
+        <div class="d-flex flex-column align-items-center">
+          <div class="step-circle" onclick="displayStep(3)">3</div>
+
+      <h5>Infos complementaires</h5>
+    </div>
+        <div class="d-flex flex-column align-items-center">
+          <div class="step-circle" onclick="displayStep(4)">4</div>
+
+      <h5>Recapitulatif</h5>
+    </div>
   </div>
 
   <form id="multi-step-form">
