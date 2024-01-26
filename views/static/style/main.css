@@ -295,11 +295,38 @@ section.masthead .masthead-subheading {
 }
 
 
-/* "Soumission_offre" */
+/* Soumission offre */
 
 #soumission-container {
   max-width: 80vh;
 }
+
+#soumission-container button {
+  background-color: var(--primary-color);
+  color: white;
+  border: 1px solid var(--primary-color);
+}
+
+#soumission-container .btn:focus {
+  box-shadow: 0 0 0 0.25rem var(--primary-color-light-shadow);
+}
+
+#soumission-container .btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+#soumission-container .recapitulatif {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 2rem;
+  font-size: 1rem;
+}
+
+#soumission-container .recapitulatif h2 {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
 
 .progress {
   width: 80%;
@@ -371,18 +398,4 @@ section.masthead .masthead-subheading {
 
 .accordion-button:not(.collapsed)::after {
   background-image: none;
-}
-
-#soumission-container button {
-  background-color: var(--primary-color);
-  color: white;
-  border: 1px solid var(--primary-color);
-}
-
-#soumission-container .btn:focus {
-  box-shadow: 0 0 0 0.25rem var(--primary-color-light-shadow);
-}
-
-#soumission-container .btn:hover {
-  background-color: var(--primary-color-dark);
 }
