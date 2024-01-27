@@ -1,4 +1,4 @@
-<div th:fragment="customer-review-section" class="container text-black p-3">
+<div class="container text-black p-3">
   <div class="container text-center my-3">
     <div class="row">
       <div id="recipeCarousel" class="carousel slide w-100">
@@ -6,7 +6,7 @@
           <div class="carousel-item active">
             <div class="col-md-4">
               <div class="card" style="width: 18rem;">
-                <img src="image/avatar.svg" style="width: 70px;height: 70px;" class="img-fluid img-thumbnail mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
+                <img src="<?php echo BASE_URL;?>/static/image/avatar.svg" style="width: 70px;height: 70px;" class="img-fluid img-thumbnail mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
                 <div class="card-body">
                   <h5 class="card-title">"Service impeccable"</h5>
                   <div class="d-flex justify-content-center mb-3">
@@ -31,7 +31,7 @@
           <div class="carousel-item">
             <div class="col-md-4">
               <div class="card" style="width: 18rem;">
-                <img src="image/avatar-2.jpg" style="width: 70px;height: 70px;" class="img-fluid img-thumbnail mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
+                <img src="<?php echo BASE_URL;?>/static/image/avatar-2.jpg" style="width: 70px;height: 70px;" class="img-fluid img-thumbnail mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
                 <div class="card-body">
                   <h5 class="card-title">"Bof..."</h5>
                   <div class="d-flex justify-content-center mb-3">
@@ -55,7 +55,7 @@
           <div class="carousel-item">
             <div class="col-md-4">
               <div class="card" style="width: 18rem;">
-                <img src="image/avatar-1.jpg" style="width: 70px;height: 70px;" class="img-fluid img-thumbnail mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
+                <img src="<?php echo BASE_URL;?>/static/image/avatar-1.jpg" style="width: 70px;height: 70px;" class="img-fluid img-thumbnail mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
                 <div class="card-body">
                   <h5 class="card-title">"Bon boulot!"</h5>
                   <div class="d-flex justify-content-center mb-3">
@@ -80,7 +80,7 @@
           <div class="carousel-item">
             <div class="col-md-4">
               <div class="card" style="width: 18rem;">
-                <img src="image/avatar.svg" style="width: 70px;height: 70px;" class="card-img-top mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
+                <img src="<?php echo BASE_URL;?>/static/image/avatar.svg" style="width: 70px;height: 70px;" class="card-img-top mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
                 <div class="card-body">
                   <h5 class="card-title">"Service impeccable"</h5>
                   <div class="d-flex justify-content-center mb-3">
@@ -105,7 +105,7 @@
           <div class="carousel-item">
             <div class="col-md-4">
               <div class="card" style="width: 18rem;">
-                <img src="image/avatar.svg" style="width: 70px;height: 70px;" class="card-img-top mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
+                <img src="<?php echo BASE_URL;?>/static/image/avatar.svg" style="width: 70px;height: 70px;" class="card-img-top mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
                 <div class="card-body">
                   <h5 class="card-title">"Service impeccable"</h5>
                   <div class="d-flex justify-content-center mb-3">
@@ -130,7 +130,7 @@
           <div class="carousel-item">
             <div class="col-md-4">
               <div class="card" style="width: 18rem;">
-                <img src="image/avatar.svg" style="width: 70px;height: 70px;" class="card-img-top mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
+                <img src="<?php echo BASE_URL;?>/static/image/avatar.svg" style="width: 70px;height: 70px;" class="card-img-top mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
                 <div class="card-body">
                   <h5 class="card-title">"Service impeccable"</h5>
                   <div class="d-flex justify-content-center mb-3">
@@ -164,5 +164,5 @@
       </div>
     </div>
   </div>
-  <script src="scripts/review-carousel.js"></script>
+  <script src="<?php echo BASE_URL;?>/static/scripts/review-carousel.js"></script>
 </div>

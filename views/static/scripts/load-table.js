@@ -1,6 +1,9 @@
 $(document).ready(function() {
+
+    var BASE_URL = 'http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php';
+
     new DataTable('#showData', {
-        ajax: '../test-table.json',
+        ajax: './test-table.json',
         scrollCollapse: true,
         scroller: true,
         scrollY: 300,
@@ -9,7 +12,7 @@ $(document).ready(function() {
             targets: 6,
             render: function (data, type, row, meta)
             {
-                data = '<div style="width:100%; display:flex; justify-content: space-around;"><a href="/fournisseur"><i class="fa-sharp fa-solid fa-circle-info" style="color: #b50303;"></i></a></div>';
+                data = `<div style="width:100%; display:flex; justify-content: space-around;"><a href="${BASE_URL}"><i class="fa-sharp fa-solid fa-circle-info" style="color: #b50303;"></i></a></div>`;
                 return data;
             }
         },

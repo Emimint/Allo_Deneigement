@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{commons/head::head}" />
-<body class="d-flex text-dark flex-column vh-100 align-items-center">
-<div th:replace="~{commons/navbar::navbar}"></div>
 <div class="my-5">
     <table id="showData" class="table table-striped nowrap table-hover">
         <thead>
@@ -19,8 +14,4 @@
         </thead>
         <tbody id="tbody"></tbody>
     </table>
-    <script src="scripts/load-table.js"></script>
 </div>
-<div th:replace="~{commons/footer::footer}"></div>
-</body>
-</html>
