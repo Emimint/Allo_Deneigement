@@ -10,21 +10,26 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="validationTooltip01">Nom et Prénom</label>
-                        <input type="text" class="form-control" id="validationTooltip01" placeholder="Nom et prénom" required>
-                        <div class="valid-tooltip">
-                            Le nom et prénom ont été saisis correctement.
+                        <label for="validationCustom01">Nom</label>
+                        <input type="text" class="form-control" id="validationCustom01" placeholder="Nom" required>
+                        <div class="valid-feedback">
+
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="validationTooltipUsername">Courriel</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
+                        <label for="validationCustom03">Entreprise</label>
+                        <input type="text" class="form-control" id="validationCustom03" placeholder="Nom entreprise">
+                        <div class="valid-feedback">
 
-                            </div>
-                            <input type="email" class="form-control" placeholder="name@example.com" id="validationTooltipUsername" aria-describedby="inputGroupPrepend" required>
-                            <div class="invalid-tooltip">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="validationCustomUsername">Courriel</label>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="name@example.com" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                            <div class="invalid-feedback">
                                 S'il vous plaît veuillez choisir un e-mail correct.
                             </div>
                         </div>
@@ -33,62 +38,20 @@
 
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="validationTooltip03">Entreprise</label>
-                        <input type="text" class="form-control" id="validationTooltip03" placeholder="Nom entreprise">
-                        <div class="valid-tooltip">
-                            Le nom de l'entreprise a bien été saisi.
+                        <label for="validationCustom02">Prenom</label>
+                        <input type="text" class="form-control" id="validationCustom02" placeholder="Prénom" required>
+                        <div class="valid-feedback">
+
                         </div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="validationTooltip04">Téléphone</label>
-                        <input type="tel" class="form-control" id="validationTooltip04" placeholder="Téléphone" pattern="[0-9\s]{10}">
-                        <div class="invalid-tooltip">
+                        <label for="validationCustom04">Téléphone</label>
+                        <input type="tel" class="form-control" id="validationCustom04" placeholder="Téléphone" pattern="[0-9\s]{10}">
+                        <div class="invalid-feedback">
                             Veuillez fournir un numéro de téléphone valide.
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-8">
-                    <div>
-                        <label for="validationTooltip05">Adresse</label>
-                        <input type="text" class="form-control" id="validationTooltip05" placeholder="Adresse">
-                        <div class="invalid-tooltip">
-                            S'il vous plaît veuillez saisir une adresse valide.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row align-items-end">
-                <div class="col-md-6 mb-3">
-                    <ul class="nav flex-column contact-page">
-                        <li class="nav-item">
-                            <label for="validationTooltip06">Ville</label>
-                            <input type="text" class="form-control" id="validationTooltip06" placeholder="Ville">
-                            <div class="invalid-feedback">
-                                S'il vous plaît veuillez saisir une ville valide.
-                            </div>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationTooltip07">Pays</label>
-                    <input type="text" class="form-control" id="validationTooltip07" placeholder="Pays">
-                    <div class="invalid-tooltip">
-                        S'il vous plaît veuillez saisir un pays valide.
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <ul class="nav flex-column contact-page">
-                        <li class="nav-item">
-                            <label for="validationTooltip08">Code Postal</label>
-                            <input type="text" class="form-control" id="validationTooltip08" placeholder="Code Postal">
-                            <div class="invalid-tooltip">
-                                S'il vous plaît veuillez saisir un code postal valide.
-                            </div>
-                    </ul>
                 </div>
             </div>
 
@@ -122,27 +85,8 @@
 
         </div>
     </form>
-    <script>
-
-(function () {
-  'use strict'
-
-  var forms = document.querySelectorAll('.needs-validation')
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-</script>
 </div>
-
 <div th:replace="~{commons/footer::footer}"></div>
+<script src="scripts/css-validation.js"></script>
 </body>
 </html>
