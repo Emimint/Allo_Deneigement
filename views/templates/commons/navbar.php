@@ -1,6 +1,6 @@
 <?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
-            <div>
-            <header class="p-3 text-white" style="background-color: #b50303">
+    <div>
+        <header class="p-3 text-white" style="background-color: #b50303">
             <div class="container-fluid">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="<?php echo BASE_URL;?>" class="d-flex align-items-center mb-3 mb-lg-0 text-white text-decoration-none me-lg-auto">
@@ -23,25 +23,33 @@
             <li><a class="dropdown-item" href="?lang=fr">Français</a></li>
             </ul>
             </li>
-            <li class="nav-linkf user is logged in-->
+            <li></li>
+            <li class="">
                 <?php
-                // Start the session
-                //session_start();
+             
                 
                 // Check if the user is logged in
-                //later replace with if (isset($_SESSION['user']))
-                if (false) {
+                if (true) {
                     // User is logged in, display user icon and a logout link
-                    
-                    echo '<a href="logout.php" ><button type="button" class="btn btn-danger btn-block ">Logout</button></a>';
+                    echo '
+                    <a href="#" class="nav-link px-2 dropdown-toggle" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span style="color:white">Hello username</a>
+                    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <li><a class="dropdown-item" href="?lang=en"><a class="nav-link" href="logout.php">Logout</a></a></li>
+                   
+                    </ul>
+                    </span>';
+
                 } else {
                     // User is not logged in, display the login button
-                    echo '<a href="login.php" > <button type="button" class="btn btn-outline-light">Connexion</button></a>';
+                    echo '<a href="'. BASE_URL .'templates/pages/login.php"><button type="button" class="btn btn-outline-light">Connexion</button></a>';
+
                 }
                 ?>
             </li>
+            
             </ul>
             </div>
             </div>
-            </header>
-            </div> 
+        </header>
+    </div> 
