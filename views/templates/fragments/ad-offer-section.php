@@ -1,5 +1,6 @@
-<div th:fragment="ad-offer-section" class="container-fluid">
-  <section class="masthead text-black" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('image/snow-plow.jpg'); background-size: cover; background-position: center;">
+<?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
+<div class="container-fluid">
+  <section class="masthead text-black" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('<?php echo BASE_URL;?>/static/image/snow-plow.jpg'); background-size: cover; background-position: center;">
     <div class="container">
       <div class="masthead-subheading">Deneigement Martineau et Fils</div>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
