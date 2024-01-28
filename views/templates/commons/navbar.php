@@ -29,13 +29,13 @@
              
                 
                 // Check if the user is logged in
-                if (true) {
+                if (false) {
                     // User is logged in, display user icon and a logout link
                     echo '
                     <a href="#" class="nav-link px-2 dropdown-toggle" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span style="color:white">Hello username</a>
                     <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-                    <li><a class="dropdown-item" href="?lang=en"><a class="nav-link" href="logout.php">Logout</a></a></li>
+                    <li><a class="dropdown-item" href="?lang=en"><a class="nav-link" href="'. BASE_URL .'templates/pages/login.php">Logout</a></a></li>
                    
                     </ul>
                     </span>';
