@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var BASE_URL = 'http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php';
+    var BASE_URL = 'http://localhost:80/Allo_Deneigement/views/templates/pages/soumission-offre.php';
 
     new DataTable('#showData', {
         ajax: './test-table.json',

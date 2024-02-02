@@ -32,7 +32,7 @@
                 Zones multiples</li>
             </ul>
             <div class="card-body text-center">
-              <button class="btn btn-lg">Selectionner</button>
+              <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/soumission-offre.php" class="btn btn-lg">Selectionner</a>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
                 Zones multiples</li>
             </ul>
             <div class="card-body text-center">
-              <button class="btn btn-lg">Selectionner</button>
+              <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/soumission-offre.php" class="btn btn-lg">Selectionner</a>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
                 Zones multiples</li>
             </ul>
             <div class="card-body text-center">
-              <button class="btn btn-lg">Selectionner</button>
+              <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/soumission-offre.php" class="btn btn-lg">Selectionner</a>
             </div>
           </div>
         </div>
@@ -90,17 +90,38 @@
 <!--      Autres services du fournisseurs-->
       <div class="row mt-2">
         <h3>Autres services</h3>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            Ramassage de feuilles mortes</li>
-          <li class="list-group-item">
-            Deglacage des cours</li>
-        </ul>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item border rounded">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Ramassage de feuilles mortes
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.
+      <br><br>
+      <div class="d-flex flex-row-reverse">
+        <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/soumission-offre.php" class="btn btn-danger text-end">Selectionner</a>
       </div>
-      <div class="row mt-2">
-        <div class="card-body text-center">
-          <button class="btn btn-lg">Demander une soumission</button>
-        </div>
+    </div>
+    </div>
+  </div>
+  <div class="accordion-item border rounded">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Deglacage des cours
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.
+          <br><br>
+      <div class="d-flex flex-row-reverse">
+        <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/soumission-offre.php" class="btn btn-danger text-end">Selectionner</a>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
       </div>
     </div>
 

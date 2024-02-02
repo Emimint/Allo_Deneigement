@@ -134,7 +134,7 @@
                         </div>
                         <div class="d-flex w-100 align-items-center justify-content-between">
                           <div class="col-10 mb-1 small">4512 rue Peel Montréal, Montreal, QC H1T 4F5</div>
-                          <button class="btn btn-light">Contacter</button>
+                          <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php" class="btn btn-light">Contacter</a>
                         </div>
                       </div>
                       <div class="list-group-item list-group-item-action py-3 lh-sm">
@@ -166,7 +166,7 @@
                         </div>
                         <div class="d-flex w-100 align-items-center justify-content-between">
                           <div class="col-10 mb-1 small">Salabery de Valleefield, QC J5Y 9P4</div>
-                          <button class="btn btn-light">Contacter</button>
+                          <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php" class="btn btn-light">Contacter</a>
                         </div>
                       </div>
                       <div class="list-group-item list-group-item-action py-3 lh-sm">
@@ -182,7 +182,7 @@
                         </div>
                         <div class="d-flex w-100 align-items-center justify-content-between">
                           <div class="col-10 mb-1 small">Moncton, CA Y4K 6G5 </div>
-                          <button class="btn btn-light">Contacter</button>
+                          <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php" class="btn btn-light">Contacter</a>
                         </div>
                       </div>
                       <div class="list-group-item list-group-item-action py-3 lh-sm">
@@ -198,7 +198,7 @@
                         </div>
                         <div class="d-flex w-100 align-items-center justify-content-between">
                           <div class="col-10 mb-1 small">Missouri, FL, 45874 </div>
-                          <button class="btn btn-light">Contacter</button>
+                          <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php" class="btn btn-light">Contacter</a>
                         </div>
                       </div>
                     </div>
