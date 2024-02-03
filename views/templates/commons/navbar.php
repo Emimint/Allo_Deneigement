@@ -15,6 +15,7 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                 <ul class="d-flex align-items-center nav col-12 col-lg-auto mb-2 mb-md-0">
                     <li class="nav-link"><a href="<?php echo BASE_URL;?>" class="nav-link px-2 text-white">A propos</a></li>
                     <li class="nav-link"><a href="<?php echo BASE_URL;?>/templates/pages/historique-utilisateur.php" class="nav-link px-2 text-white">Mes demandes de service</a></li>
+                    <li class="nav-link"><a href="<?php echo BASE_URL;?>" class="nav-link px-2 text-white">Liste de fournisseurs</a></li>
                     <li class="nav-link"><a href="<?php echo BASE_URL;?>/templates/pages/contactPage.php" class="nav-link px-2 text-white">Nous joindre</a></li>
                     <li class="nav-link"><a href="#" class="nav-link px-2"><i class="fa-regular fa-bell" style="color: #ffffff;"></i></a></li>
                     <li class="nav-link dropdown">

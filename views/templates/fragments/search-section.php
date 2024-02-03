@@ -1,4 +1,4 @@
-<div class="container-fluid d-flex align-items-center justify-content-center" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('static/image/snow-plow.jpg'); background-size: cover; background-position: center;">
+<div class="container-fluid d-flex align-items-center justify-content-center" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('<?php echo BASE_URL;?>static/image/snow-plow.jpg'); background-size: cover; background-position: center;">
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
