@@ -5,7 +5,7 @@ $(document).ready(function () {
         $(".error-message").hide();
     }
 
- 
+    resetErrors();
     let usernameError = true;
     let firstNameError = true;
     let emailError = true;
@@ -25,6 +25,11 @@ $(document).ready(function () {
 
     $(".deneigement-validate-firstname").keyup(function () {
         validateFirstname();
+    });
+
+    $(".deneigement-validate-nomEntreprise").keyup(function () {
+     validateNomEntreprise();
+            
     });
 
     $(".deneigement-validate-email").keyup(function () {
@@ -93,6 +98,23 @@ $(document).ready(function () {
         firstNameError = true;
     }
    }
+
+   // validation nom entreprise
+   
+   function validateNomEntreprise() {
+    let nomEntrepriseValue = $("input[name='nomEntreprise']").val();
+    if (nomEntrepriseValue.trim() === "") {
+        $("#entrepriseCheck").show();
+        entrepriseError = false;
+    } else if (nomEntrepriseValue.length < 3 || nomEntrepriseValue.length > 10) {
+        $("#entrepriseCheck").show();
+        $("#entrepriseCheck").html("Veuillez saisir entre 3 et 10 caractères.");
+        entrepriseError = false;
+    } else {
+        $("#entrepriseCheck").hide();
+        entrepriseError = true;
+    }
+}
 
  // validation email
    function validateEmail() {

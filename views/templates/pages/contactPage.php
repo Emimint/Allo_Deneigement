@@ -2,7 +2,9 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
 <div class="container-fluid my-6 p-3" style="width:60%;">
-        <form id="signupForm" novalidate>
+    <form class="cmxform" id="signupForm" method="get" action="form-handler.html" autocomplete="off">
+        <fieldset>
+                <legend>Formulaire de contacte</legend>
             <div class="container contact-page mx-auto p-2">
                <div class="row mb-2 ">
                     <div class="col-md-6">
@@ -10,15 +12,17 @@
                             <label>Nom</label>
                             <input type="text" id="usernames" class="form-control deneigement-validate-username"  name="nom" required>
                             <h5 id="usercheck" class="error-message usernameError">
-                              
+                              Veuillez saisir un nom valide.
                             </h5>
-                           
+                    
                         </div>
 
                         <div class="mb-3">
                             <label>Entreprise</label>
-                            <input type="text" class="form-control"  name="nomEntreprise">
-                           
+                            <input type="text" class="form-control deneigement-validate-nomEntreprise"  name="nomEntreprise">
+                                <h5 id="entepriseCheck" class="error-message  entrepriseError">
+                                 Veuillez saisir un nom d'entreprise valide.
+                                </h5>  
                             
                         </div>
                     
@@ -28,7 +32,7 @@
                                 
                                 <input type="email" class="form-control deneigement-validate-email"  name="email" id="email" required>
                                 <h5 id="emailCheck" class="error-message  emailError">
-                                     
+                                     Veuillez saisir un email valide.
                                 </h5>
                                
                             </div>
@@ -40,7 +44,7 @@
                             <label>Prenom</label>
                             <input type="text" class="form-control deneigement-validate-firstname" id="fistNames" name="prenom" required>
                             <h5 id="firstNameCheck" class="error-message  firstNameError">
-                              
+                            Veuillez saisir un prenom valide.
                             </h5>
                            
                         </div>
@@ -51,7 +55,7 @@
                             <label>Téléphone</label>
                             <input type="tel" class="form-control deneigement-validate-phoneNumber" id="phone" name="telephone">
                             <h5 id="phoneCheck" class="error-message  phoneError">
-                              
+                              Veuillez saisir un numero de telephone valide.
                             </h5>
                            
                            
@@ -64,7 +68,7 @@
                             <label>Adresse</label>
                             <input type="text" class="form-control deneigement-validate-adresse" id="adresse" name="adresse">
                             <h5 id="adresseCheck" class="error-message adresseError">
-                               
+                               Veuillez saisir une adresse valide.
                             </h5>
                     </div>
                     <div class="col-md-4">
@@ -86,7 +90,7 @@
                             <option value="Yukon">YT</option>
                         </select>
                         <h5 id="selectMenuCheck" class="error-message selectProvinceError">
-                           
+                           Veuillez choisir une province.
                         </h5>
                        
                     </div>
@@ -99,7 +103,7 @@
                                 <label>Ville</label>
                                 <input type="text" class="form-control deneigement-validate-ville" id="ville" name="ville">
                                 <h5 id="villeCheck" class="error-message villeError">
-                                    
+                                    Veuillez saisir une ville.
                                 </h5>
                                 
                             </li>
@@ -109,7 +113,7 @@
                         <label>Pays</label>
                         <input type="text" class="form-control deneigement-validate-pays" id="pays" name="pays">
                         <h5 id="paysCheck" class="error-message paysError">
-                           
+                           Veuillez saisir un pays
                         </h5>
                         
                     </div>
@@ -119,7 +123,7 @@
                                 <label>Code Postal</label>
                                 <input type="text" class="form-control deneigement-validate-codePostal" id="codePostal" name="codePostal" >
                                 <h5 id="codePostalCheck" class="error-message codePostalError">
-                                   
+                                   Veuillez saisir un code postal valide.
                                 </h5>                                
                                 
                             </li>
@@ -142,7 +146,7 @@
                         <option value="manque_professionnalisme">Manque de professionnalisme</option>
                     </select>
                     <h5 id="selectMenuCheck" class="error-message selectError">
-                       
+                       Veuillez choisir un probleme parmis la selection.
                     </h5>
                    
                 </div>
@@ -157,8 +161,9 @@
                 </div>
     
             </div>
-        </form>
-    </div>
+     </fieldset>    
+    </form>
+</div>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>
 <script src="<?php echo BASE_URL; ?>static/scripts/contactPage-validation.js"></script>
 </body>
