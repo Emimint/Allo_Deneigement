@@ -4,8 +4,8 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
 
 <div>
     <header class="p-3 text-white" style="background-color: #b50303">
-        <div class="container-fluid">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="container-fluid vw-100">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start px-5">
                 <a href="<?php echo BASE_URL; ?>" class="d-flex align-items-center mb-3 mb-lg-0 text-white text-decoration-none me-lg-auto">
                     <div class="d-flex align-items-center bd-highlight">
                         <img class="mb-4 mt-3 img-fluid img-logo" src="<?php echo BASE_URL; ?>/static/image/flocon-black.svg" style="height: 80px; width: 80px;" alt="LOGO">
