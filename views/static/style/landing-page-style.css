@@ -1,0 +1,26 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+#navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 999999;
+  top: 0;
+}
+
+.about-page {
+  margin-top: 150px;
+}
+
+.about-page div {
+  height: 100vh;
+}
+.text-center {
+  padding-top: 100px;
+}
+
+ul.d-flex {
+  font-size: 20px; /* Adjust the size as needed */
+}
