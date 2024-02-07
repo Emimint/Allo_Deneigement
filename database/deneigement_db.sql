@@ -17,10 +17,11 @@ CREATE TABLE Adresse (
     numero_civique VARCHAR(10),
     nom_rue VARCHAR(255),
     ville VARCHAR(255),
-    username VARCHAR(50),
     pays VARCHAR(255),
     province VARCHAR(255),
-    coordonnees POINT
+    coordonnees POINT,
+    id_utilisateur INT,
+    FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur)
 );
 
 CREATE TABLE Billet (
