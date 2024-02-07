@@ -8,7 +8,7 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="<?php echo BASE_URL;?>" class="d-flex align-items-center mb-3 mb-lg-0 text-white text-decoration-none me-lg-auto">
                     <div class="d-flex align-items-center bd-highlight">
-                        <img class="mb-4 mt-3 img-fluid img-logo" src="<?php echo BASE_URL;?>/static/image/flocon-black.svg" style="height: 80px; width: 80px;" alt="LOGO">
+                        <img class="mb-4 mt-3 img-fluid img-logo" src="<?php echo BASE_URL; ?>/static/image/flocon-black.svg" style="height: 80px; width: 80px;" alt="LOGO">
                         <h4>ALLO<br> DÉNEIGEMENT</h4>
                     </div>
                 </a>
