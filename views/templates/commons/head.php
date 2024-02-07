@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
   <link href="<?php echo BASE_URL; ?>/static/style/main.css" rel="stylesheet" />
-  <link  defer href="<?php echo BASE_URL; ?>/static/style/landing-page-style.css" rel="stylesheet" />
+  <link href="<?php echo BASE_URL; ?>/static/style/landing-page-style.css" rel="stylesheet" />
   <!-- JS LIBRAIRIES -->
   <!-- Jquery validate plugin -->
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.3/jquery.validate.js"></script>

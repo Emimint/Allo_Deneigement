@@ -18,7 +18,8 @@ html {
   height: 100vh;
 }
 .text-center {
-  padding-top: 100px;
+  padding-top: 50px;
+  font-size: 0.95em;
 }
 
 ul.d-flex {
