@@ -22,3 +22,48 @@ CREATE TABLE Adresse (
     province VARCHAR(255),
     coordonnees POINT
 );
+
+CREATE TABLE Billet (
+    id_billet INT AUTO_INCREMENT PRIMARY KEY,
+    motif VARCHAR(255),
+    texte TEXT,
+    date_billet DATE,
+    email VARCHAR(255)
+);
+
+CREATE TABLE Offre_de_service (
+    id_service INT AUTO_INCREMENT PRIMARY KEY,
+    prix_unitaire DECIMAL(10,2),
+    description TEXT,
+    type_clientele ENUM('Résidentiel', 'Commercial'),
+    categorie ENUM('entrée de garage', 'devant tempo', 'pelletage', 'épandage de sel', 'chaudière de sel', 'chargement de neige'),
+    id_utilisateur INT,
+    FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur)
+);
+
+CREATE TABLE Review (
+    id_review INT AUTO_INCREMENT PRIMARY KEY,
+    score INT CHECK(score >= 1 AND score <= 5),
+    commentaire TEXT,
+    id_utilisateur INT,
+    id_service INT,
+    date_commentaire DATE,
+    FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur),
+    FOREIGN KEY (id_service) REFERENCES Offre_de_service(id_service)
+);
+
+CREATE TABLE Demande_de_service (
+    id_demande INT AUTO_INCREMENT PRIMARY KEY,
+    date_debut DATE,
+    date_fin DATE,
+    status ENUM('Acceptee', 'Refusee', 'En attente', 'Completee'),
+    commentaire TEXT,
+    id_utilisateur INT,
+    id_review INT,
+    id_offre INT,
+    id_adresse INT,
+    FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur),
+    FOREIGN KEY (id_review) REFERENCES Review(id_review),
+    FOREIGN KEY (id_offre) REFERENCES Offre_de_service(id_service),
+    FOREIGN KEY (id_adresse) REFERENCES Adresse(id_adresse)
+);
