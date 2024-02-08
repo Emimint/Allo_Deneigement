@@ -1,15 +1,10 @@
-<?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
 
-</head>
 
 
-<body>
+
+
 
 <section id="navbar">
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
