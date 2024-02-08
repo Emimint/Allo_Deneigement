@@ -28,7 +28,7 @@
       </div>
       <div class="modal-body">
         <!--form-->
-
+          
         <!--form-ends-->
       </div>
         <div id="">
@@ -36,7 +36,7 @@
         </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" id="clodeBtn" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="updateBtn">Modifier</button>
         <button type="button" class="btn btn-primary" id="deleteBtn">Supprimer</button>
         <button type="button" class="btn btn-primary" id="CancelBtn">Annuler</button>
@@ -49,12 +49,12 @@
 <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>Service</th>
+                <th>id</th>
                 <th>Date de fin</th>
                 <th>Date de debut </th>
                 <th>Status</th>
-                <th>Adresse</th>
-                <th>Fournisseur</th>
+                <th>Lieu de service</th>
+                <th>commentaire</th>
                 <th>Action</th>
                 
                 
@@ -65,12 +65,13 @@
         </tbody>
         <tfoot>
             <tr>
-            <th>Offre de service</th>
+            <th>id</th>
                 <th>Date de fin</th>
                 <th>Date de debut </th>
                 <th>Status</th>
-                <th>Adresse</th>
-                <th>Fournisseur</th>
+                <th>Lieu de service</th>
+                <th>commentaire</th>
+                <th>Action</th>
                
             </tr>
         </tfoot>
