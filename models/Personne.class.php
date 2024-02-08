@@ -1,4 +1,5 @@
 <?php
+
 class Personne {
     private $id;
     private $nom;
@@ -8,18 +9,17 @@ class Personne {
     private $username;
     private $password;
     private $photo_url;
-    private $adresses; // Array of Adresse objects
 
-    public function __construct($id, $nom, $prenom, $adresse, $telephone, $username, $password, $photo_url, $adresses) {
+    // Constructor
+    public function __construct($id, $nom, $prenom, $adresse, $telephone, $username, $password, $photo_url) {
         $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->adresse = $adresse; 
+        $this->adresse = $adresse;
         $this->telephone = $telephone;
         $this->username = $username;
         $this->password = $password;
         $this->photo_url = $photo_url;
-        $this->adresses = $adresses;
     }
 
     // Getters
@@ -55,10 +55,6 @@ class Personne {
         return $this->photo_url;
     }
 
-    public function getAdresses() {
-        return $this->adresses;
-    }
-
     // Setters
     public function setId($id) {
         $this->id = $id;
@@ -92,12 +88,15 @@ class Personne {
         $this->photo_url = $photo_url;
     }
 
-    public function setAdresses($adresses) {
-        $this->adresses = $adresses;
-    }
+
+
+
+    
+
+
 
     // toString method
     public function __toString() {
-        return "Personne [id={$this->id}, nom={$this->nom}, prenom={$this->prenom}, adresse={$this->adresse}, telephone={$this->telephone}, username={$this->username}, password={$this->password}, photo_url={$this->photo_url}, adresses={$this->adresses}]";
+        return "Personne[id=$this->id, nom=$this->nom, prenom=$this->prenom, adresse=$this->adresse, telephone=$this->telephone, username=$this->username, password=$this->password, photo_url=$this->photo_url]";
     }
 }
