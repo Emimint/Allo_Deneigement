@@ -11,23 +11,17 @@ class AdresseDAO implements DAO
 {
     public static function chercher($cles)
     {
-        // Get the database connection
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        // Default value for the object to return if not found
         $uneAdresse = null;
 
-        // Prepare a PDOStatement query with SQL parameters
         $requete = $connexion->prepare("SELECT * FROM Adresse WHERE id_adresse=?");
-
-        // Execute the query
         $requete->execute(array($cles));
 
-        // Analyze the record, if it exists, and create an instance of Adresse
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
             $uneAdresse = new Adresse(
@@ -43,7 +37,6 @@ class AdresseDAO implements DAO
             );
         }
 
-        // Close the query cursor and the database connection
         $requete->closeCursor();
         ConnexionBD::close();
 
@@ -57,23 +50,17 @@ class AdresseDAO implements DAO
 
     public static function chercherAvecFiltre($filtre)
     {
-        // Get the database connection
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        // Initialize an empty array
         $tableau = [];
 
-        // Prepare a PDOStatement query with SQL parameters
         $requete = $connexion->prepare("SELECT * FROM Adresse " . $filtre);
-
-        // Execute the query
         $requete->execute();
 
-        // Analyze the records if there are any
         foreach ($requete as $enr) {
             $uneAdresse = new Adresse(
                 $enr['id_adresse'],
@@ -89,7 +76,6 @@ class AdresseDAO implements DAO
             array_push($tableau, $uneAdresse);
         }
 
-        // Close the query cursor and the database connection
         $requete->closeCursor();
         ConnexionBD::close();
 
@@ -98,17 +84,14 @@ class AdresseDAO implements DAO
 
     public static function inserer($uneAdresse)
     {
-        // Try to establish a connection
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        // Prepare the insert command
         $requete = $connexion->prepare("INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees, id_utilisateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-        // Execute it, and return the success state (true/false)
         $tableauInfos = [
             $uneAdresse->getCodePostal(),
             $uneAdresse->getNumeroCivique(),
@@ -125,17 +108,14 @@ class AdresseDAO implements DAO
 
     public static function modifier($uneAdresse)
     {
-        // Try to establish a connection
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        // Prepare the update command
         $requete = $connexion->prepare("UPDATE Adresse SET code_postal=?, numero_civique=?, nom_rue=?, ville=?, pays=?, province=?, coordonnees=?, id_utilisateur=? WHERE id_adresse=?");
 
-        // Execute it, and return the success state (true/false)
         $tableauInfos = [
             $uneAdresse->getCodePostal(),
             $uneAdresse->getNumeroCivique(),
@@ -153,17 +133,14 @@ class AdresseDAO implements DAO
 
     public static function supprimer($uneAdresse)
     {
-        // Try to establish a connection
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        // Prepare the delete command
         $requete = $connexion->prepare("DELETE FROM Adresse WHERE id_adresse=?");
 
-        // Execute it, and return the success state (true/false)
         $tableauInfos = [$uneAdresse->getIdAdresse()];
         return $requete->execute($tableauInfos);
     }
