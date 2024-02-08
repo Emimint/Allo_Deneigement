@@ -17,145 +17,25 @@ class Administrateur {
     }
 
    // fontion modier compte
-    public function modifierCompte($idCompte, $nouveauUsername, $nouveauPrenom, $nouvelEmail, $nouveauPassword) {
-        try {
-              // requete SQL  de mise à jour
-            $query = "UPDATE compte SET username = ?, prenom = ?, email = ?, password = ? WHERE id = ?";
-            $statement = $this->connexion->prepare($query);
-    
-       
-            $resultat = $statement->execute([$nouveauUsername, $nouveauPrenom, $nouvelEmail, $nouveauPassword, $idCompte]);
-    
-           
-            if ($resultat) {
-                return "Modification du compte réussie.";
-            } else {
-                return "Échec de la modification du compte.";
-            }
-        } catch (PDOException $e) {
-        
-            return "Erreur PDO : " . $e->getMessage();
-        }
-    }
+    public function modifierCompte($idCompte, $nouveauUsername, $nouveauPrenom, $nouvelEmail, $nouveauPassword) {}
     
      // fontion trouver compte
-    public function trouverCompte($idCompte) {
-        try{
-         
-            $query = "SELECT * FROM COMPTE WHERE id = ?";
-            $statement = $this->connexion->prepare($query);
-            
-           
-            $statement->execute([$idCompte]);
-
-         
-            $compte = $statement->fetch(PDO::FETCH_ASSOC);
-
-         
-            if ($compte) {
-                return $compte; 
-            } else {
-                return null; 
-            }
-        } catch (PDOException $e) {
-           
-            return "Erreur PDO : " . $e->getMessage();
-        }
-          
-            
-        }
-       
-    }
+    public function trouverCompte($idCompte) { }
 
      // fontion supprimer compte
-    public function supprimerCompte($idCompte) {
-       try{
-       
-         $query = "DELET FROM administrateur WHERE id = ?";
-         $statement = $this->connexion->prepare($query);
-
-         $statement->execute([$idCompte]);
-
-         if($statement->rowCount()> 0){
-            return "Le compte a ete supprime avec succes.";
-         } else{
-            
-            return "Aucun compte trouve avec cette ID.";
-         }
-
-       }catch (PDOException $e) {
-      
-        return "Erreur PDO : " . $e->getMessage();
-    }
-       
-    }
+    public function supprimerCompte($idCompte) {}
 
     // Méthodes pour gérer les offres de service
 
      // fontion ajouter offre
-    public function ajouterOffre($offreService) {
-       try{
-        $query = "INSET INTO Offre_de_service (id_service, prix,description, type_clientele, categorie, type_facturation, fournisseur) VALUES(?,?,?,?,?,?) ";
-        $statement = $this->connexion->prepare($query);
-
-        $statement->execute([Offre_de_service->getId_service(), Offre_de_service->getNom(), Offre_de_service->getDescription(), Offre_de_service->getPrix(), Offre_de_service->getType_clientele(), Offre_de_service->getCategorie(), Offre_de_service->getType_facturation(),Offre_de_service->getFournisseur()]);
-
-        if($statement->rowCount()> 0){
-            return "Le compte a ete supprime avec succes.";
-         } else{
-            
-            return "Aucun compte trouve avec cette ID.";
-         }
-
-       }catch (PDOException $e) {
-      
-        return "Erreur PDO : " . $e->getMessage();
-    }
-    }
+    public function ajouterOffre($offreService) {}
 
 
      // fontion trouver offre
-    public function trouverOffre($idOffre) {
-        try {
-            // Requête SQL SELECT pour récupérer les données de l'offre de service
-            $query = "SELECT * FROM offres_service WHERE id = ?";
-            $statement = $this->connexion->prepare($query);
-    
-           
-            $statement->execute([$idOffre]);
-    
-           
-            $offre = $statement->fetch(PDO::FETCH_ASSOC);
-    
-            
-            return $offre ? $offre : null;
-        } catch (PDOException $e) {
-           
-            return "Erreur PDO : " . $e->getMessage();
-        }
-    }
+    public function trouverOffre($idOffre) {  }
     
     // fontion supprimer offre
-    public function supprimerOffre($idOffre) {
-        try {
-            
-            $query = "DELETE FROM offres_service WHERE id = ?";
-            $statement = $this->connexion->prepare($query);
-    
-          
-            $statement->execute([$idOffre]);
-    
-          
-            if ($statement->rowCount() > 0) {
-                return "L'offre de service a été supprimée avec succès.";
-            } else {
-                return "Erreur : l'offre de service n'a pas pu être supprimée.";
-            }
-        } catch (PDOException $e) {
-          
-            return "Erreur PDO : " . $e->getMessage();
-        }
-    }
+    public function supprimerOffre($idOffre) {}
     
 
     // Getters
@@ -212,7 +92,11 @@ class Administrateur {
         $this->telephone = $telephone;
     }
 
-   
+    public function __toString(){
+
+        return ", Nom: " . $this->nom . ", Prénom: " . $this->prenom . ", Email: " . $this->email ",Adresse: ".$this->adresse ",Telephone: " ;
+        
+    }
 }
 
 ?>
