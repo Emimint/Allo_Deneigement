@@ -25,7 +25,6 @@ class Adresse
         $this->id_utilisateur = $id_utilisateur;
     }
 
-    // Getters
     public function getIdAdresse()
     {
         return $this->id_adresse;
@@ -71,7 +70,6 @@ class Adresse
         return $this->id_utilisateur;
     }
 
-    // toString method
     public function __toString()
     {
         return "Adresse [id_adresse=" . $this->id_adresse . ", code_postal=" . $this->code_postal . ", numero_civique=" . $this->numero_civique . ", nom_rue=" . $this->nom_rue . ", ville=" . $this->ville . ", pays=" . $this->pays . ", province=" . $this->province . ", coordonnees=" . $this->coordonnees . ", id_utilisateur=" . $this->id_utilisateur . "]";
