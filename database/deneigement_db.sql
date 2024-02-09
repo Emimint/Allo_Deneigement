@@ -97,13 +97,12 @@ CREATE TABLE Fournisseur (
     id INT PRIMARY KEY,
     nom VARCHAR(255),
     prenom VARCHAR(255),
-    adresse INT,
     telephone VARCHAR(20),
     username VARCHAR(50),
     password VARCHAR(255),
     photo_url VARCHAR(255),
     nom_de_la_compagnie VARCHAR(255),
     note_globale INT,
-    FOREIGN KEY (adresse) REFERENCES Adresse(id_adresse)
+   
 );
 
