@@ -2,15 +2,15 @@
 
 
 class Personne {
-    private $id;
-    private $nom;
-    private $prenom;
-    private $adresse; 
-    private $telephone;
-    private $username;
-    private $password;
-    private $photo_url;
-    private $adresses;
+    protected $id;
+    protected $nom;
+    protected $prenom;
+    protected $adresse; 
+    protected $telephone;
+    protected $username;
+    protected $password;
+    protected $photo_url;
+    protected $adresses;
 
     public function __construct($id, $nom, $prenom, $adresse, $telephone, $username, $password, $photo_url, $adresses) {
         $this->id = $id;
