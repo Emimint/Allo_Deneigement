@@ -94,8 +94,8 @@ class Administrateur {
 
     public function __toString(){
 
-        return ", Nom: " . $this->nom . ", Prénom: " . $this->prenom . ", Email: " . $this->email ",Adresse: ".$this->adresse ",Telephone: " ;
-        
+        return "ID: " . $this->id ,", Utilisateur: ".$this->username ,", Mot de passe: " .$this->password , ", Nom: " . $this->nom . ", Prénom: " . $this->prenom . ", Email: " . $this->email ",Adresse: ".$this->adresse ",Telephone: " .$this->telephone ", photo: " .$this->photo_url ;
+       
     }
 }
 
