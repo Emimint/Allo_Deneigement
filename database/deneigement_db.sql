@@ -33,7 +33,7 @@ CREATE TABLE Utilisateur (
     nom VARCHAR(255),
     prenom VARCHAR(255),
     telephone VARCHAR(20),
-    username VARCHAR(50),
+    username VARCHAR(50) UNIQUE,
     password VARCHAR(255),
     url_photo VARCHAR(255)
 );
@@ -58,7 +58,7 @@ CREATE TABLE Fournisseur (
     nom_contact VARCHAR(255),
     prenom_contact VARCHAR(255),
     telephone VARCHAR(20),
-    username VARCHAR(50),
+    username VARCHAR(50) UNIQUE,
     password VARCHAR(255),
     photo_url VARCHAR(255),
     note_globale INT
@@ -78,7 +78,7 @@ CREATE TABLE Administrateur (
     nom VARCHAR(255),
     prenom VARCHAR(255),
     telephone VARCHAR(20),
-    username VARCHAR(50),
+    username VARCHAR(50) UNIQUE,
     password VARCHAR(255),
     photo_url VARCHAR(255)
 );
