@@ -5,22 +5,25 @@ class Administrateur {
     private $nom;
     private $prenom;
     private $telephone;
+    private $email;
     private $username;
     private $password;
     private $photo_url;
 
     // Constructeur
-    public function __construct($id_administrateur, $nom, $prenom, $telephone, $username, $password, $photo_url) {
+    public function __construct($id_administrateur, $nom, $prenom, $telephone, $email, $username, $password, $photo_url) {
         $this->id_administrateur = $id_administrateur;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->telephone = $telephone;
+        $this->email = $email;
         $this->username = $username;
         $this->password = $password;
         $this->photo_url = $photo_url;
     }
 
-    // Méthodes getter
+
+    // Méthodes getter pour les  attributs
     public function getIdAdministrateur() {
         return $this->id_administrateur;
     }
@@ -37,6 +40,10 @@ class Administrateur {
         return $this->telephone;
     }
 
+    public function getEmail() {
+        return $this->email;
+    }
+
     public function getUsername() {
         return $this->username;
     }
@@ -49,7 +56,7 @@ class Administrateur {
         return $this->photo_url;
     }
 
-    // Méthodes setter
+    // Méthodes setter pour les  attributs
     public function setNom($nom) {
         $this->nom = $nom;
     }
@@ -60,6 +67,10 @@ class Administrateur {
 
     public function setTelephone($telephone) {
         $this->telephone = $telephone;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
     }
 
     public function setUsername($username) {
@@ -74,9 +85,9 @@ class Administrateur {
         $this->photo_url = $photo_url;
     }
 
-    // Méthode magique pour convertir l'objet en chaîne de caractères
+    // Méthode toString
     public function __toString() {
-        return "ID: " . $this->id_administrateur . ", Nom: " . $this->nom . ", Prénom: " . $this->prenom . ", Téléphone: " . $this->telephone . ", Username: " . $this->username . ", Photo URL: " . $this->photo_url;
+        return "ID: " . $this->id_administrateur . ", Nom: " . $this->nom . ", Prénom: " . $this->prenom . ", Téléphone: " . $this->telephone . ", Email: " . $this->email . ", Username: " . $this->username . ", Photo URL: " . $this->photo_url;
     }
 }
 
