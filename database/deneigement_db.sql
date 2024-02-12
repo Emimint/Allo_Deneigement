@@ -92,3 +92,17 @@ CREATE TABLE Demande_de_service (
     FOREIGN KEY (id_offre) REFERENCES Offre_de_service(id_service),
     FOREIGN KEY (id_adresse) REFERENCES Adresse(id_adresse)
 );
+
+CREATE TABLE Fournisseur (
+    id INT PRIMARY KEY,
+    nom VARCHAR(255),
+    prenom VARCHAR(255),
+    telephone VARCHAR(20),
+    username VARCHAR(50),
+    password VARCHAR(255),
+    photo_url VARCHAR(255),
+    nom_de_la_compagnie VARCHAR(255),
+    note_globale INT,
+   
+);
+
