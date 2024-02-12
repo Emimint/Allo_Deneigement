@@ -1,5 +1,5 @@
 <div class="about-page">
-    <div class="py-5 my-5" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('static/image/deneigement.png'); background-size: cover; background-position: center;">
+    <div class="py-5 my-5" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('<?php echo BASE_URL;?>static/image/deneigement.png'); background-size: cover; background-position: center;">
         <div class="row">
         <div class="col-6 m-auto">
             <div class="text-center">
