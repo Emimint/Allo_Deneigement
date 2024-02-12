@@ -25,16 +25,15 @@ class FournisseurDAO implements DAO
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
             $unFournisseur = new Fournisseur(
-                $enr['id'],
-        $enr['nom'],
-        $enr['prenom'],
-        $enr['adresse'], // Adjusted to use the 'adresse' column
-        $enr['telephone'],
-        $enr['username'],
-        $enr['password'],
-        $enr['photo_url'],
-        $enr['nom_de_la_compagnie'],
-        $enr['note_globale']
+                $enr['id_fournisseur'],
+                $enr['nom_contact'],
+                $enr['prenom_contact'],
+                $enr['telephone'],
+                $enr['username'],
+                $enr['password'],
+                $enr['photo_url'],
+                $enr['nom_de_la_compagnie'],
+                $enr['note_globale']
             );
         }
 
@@ -64,10 +63,9 @@ class FournisseurDAO implements DAO
 
         foreach ($requete as $enr) {
             $unFournisseur = new Fournisseur(
-                $enr['id'],
-                $enr['nom'],
-                $enr['prenom'],
-                $enr['adresse'], // Adjusted to use the 'adresse' column
+                $enr['id_fournisseur'],
+                $enr['nom_contact'],
+                $enr['prenom_contact'],
                 $enr['telephone'],
                 $enr['username'],
                 $enr['password'],
@@ -92,7 +90,7 @@ class FournisseurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Fournisseur (nom, prenom, nom_de_la_compagnie, note_globale) VALUES (?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Fournisseur (nom_contact, prenom_contact, nom_de_la_compagnie, note_globale) VALUES (?, ?, ?, ?)");
 
         $tableauInfos = [
             $unFournisseur->getNom(),
@@ -112,7 +110,7 @@ class FournisseurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Fournisseur SET nom=?, prenom=?, nom_de_la_compagnie=?, note_globale=? WHERE id_fournisseur=?");
+        $requete = $connexion->prepare("UPDATE Fournisseur SET nom_contact=?, prenom_contact=?, nom_de_la_compagnie=?, note_globale=? WHERE id_fournisseur=?");
 
         $tableauInfos = [
             $unFournisseur->getNom(),
@@ -137,5 +135,25 @@ class FournisseurDAO implements DAO
 
         $tableauInfos = [$unFournisseur->getIdFournisseur()];
         return $requete->execute($tableauInfos);
+    }
+
+    private function getFournisseurRatings($fournisseurId) {
+        try {
+            $connexion = ConnexionBD::getInstance();
+            $requete = $connexion->prepare("SELECT note_globale FROM fournisseur WHERE id_fournisseur = ?");
+            $requete->bind_param("i", $fournisseurId);
+            $requete->execute();
+
+            $result = $requete->get_result();
+            $ratings = [];
+
+            while ($row = $result->fetch_assoc()) {
+                $ratings[] = $row['note_globale'];
+            }
+
+            return $ratings;
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la récupération des notes du fournisseur : " . $e->getMessage());
+        }
     }
 }
