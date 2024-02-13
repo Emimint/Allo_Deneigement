@@ -2,26 +2,6 @@ CREATE DATABASE deneigement_db DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_c
 
 USE deneigement_db;
 
-CREATE TABLE Utilisateur (
-    id_utilisateur INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) UNIQUE,
-    nom VARCHAR(255),
-    prenom VARCHAR(255),
-    telephone VARCHAR(20),
-    username VARCHAR(50),
-    mot_de_passe VARCHAR(255),
-    url_photo VARCHAR(255),
-    nom_companie VARCHAR(255),
-    note_globale DECIMAL(5,2)
-);
-
-INSERT INTO Utilisateur (email, nom, prenom, telephone, username, mot_de_passe, url_photo, nom_companie, note_globale) VALUES
-('utilisateur1@example.com', 'Doe', 'John', '1234567890', 'johndoe', 'motdepasse1', 'url_photo1.jpg', 'Compagnie1', 4.2),
-('utilisateur2@example.com', 'Smith', 'Alice', '9876543210', 'alicesmith', 'motdepasse2', 'url_photo2.jpg', 'Compagnie2', 3.8),
-('utilisateur3@example.com', 'Johnson', 'Michael', '5551234567', 'michaeljohnson', 'motdepasse3', 'url_photo3.jpg', NULL, NULL),
-('utilisateur4@example.com', 'Brown', 'Emma', '4445556666', 'emmabrown', 'motdepasse4', 'url_photo4.jpg', NULL, NULL),
-('utilisateur5@example.com', 'Wilson', 'David', '2223334444', 'davidwilson', 'motdepasse5', 'url_photo5.jpg', 'Compagnie3', 3.9);
-
 CREATE TABLE Adresse (
     id_adresse INT AUTO_INCREMENT PRIMARY KEY,
     code_postal VARCHAR(10),
@@ -30,22 +10,132 @@ CREATE TABLE Adresse (
     ville VARCHAR(255),
     pays VARCHAR(255),
     province VARCHAR(255),
-    coordonnees POINT,
-    id_utilisateur INT,
-    FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur)
+    coordonnees POINT
 );
 
-INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees, id_utilisateur) VALUES
-('H1A 0A1', '123', 'Rue Saint-Jacques', 'Montreal', 'Canada', 'Quebec', POINT(45.514, -73.554), 1),
-('H2B 2C3', '456', 'Avenue Laurier Ouest', 'Montreal', 'Canada', 'Quebec', POINT(45.523, -73.594), 2),
-('H3C 3D5', '789', 'Rue Sainte-Catherine', 'Montreal', 'Canada', 'Quebec', POINT(45.505, -73.562), 3),
-('H4E 4F7', '1011', 'Boulevard René-Lévesque Ouest', 'Montreal', 'Canada', 'Quebec', POINT(45.498, -73.572), 4),
-('H5G 5H9', '1213', 'Rue Sherbrooke Ouest', 'Montreal', 'Canada', 'Quebec', POINT(45.507, -73.580), 5),
-('H1H 6I2', '1415', 'Avenue Mont-Royal Est', 'Montreal', 'Canada', 'Quebec', POINT(45.532, -73.579), 1),
-('H2J 7K4', '1617', 'Rue Saint-Denis', 'Montreal', 'Canada', 'Quebec', POINT(45.516, -73.562), 2),
-('H3K 8L6', '1819', 'Avenue du Parc', 'Montreal', 'Canada', 'Quebec', POINT(45.507, -73.572), 3),
-('H4L 9M8', '2021', 'Rue Peel', 'Montreal', 'Canada', 'Quebec', POINT(45.501, -73.575), 4),
-('H5N 0P3', '2223', 'Rue Crescent', 'Montreal', 'Canada', 'Quebec', POINT(45.497, -73.579), 5);
+
+
+INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees) VALUES
+('H1A 0A1', '123', 'Rue Saint-Jacques', 'Montreal', 'Canada', 'Quebec', POINT(45.514, -73.554)),
+('H2B 2C3', '456', 'Avenue Laurier Ouest', 'Montreal', 'Canada', 'Quebec', POINT(45.523, -73.594)),
+('H3C 3D5', '789', 'Rue Sainte-Catherine', 'Montreal', 'Canada', 'Quebec', POINT(45.505, -73.562)),
+('H4E 4F7', '1011', 'Boulevard René-Lévesque Ouest', 'Montreal', 'Canada', 'Quebec', POINT(45.498, -73.572)),
+('H5G 5H9', '1213', 'Rue Sherbrooke Ouest', 'Montreal', 'Canada', 'Quebec', POINT(45.507, -73.580)),
+('H1H 6I2', '1415', 'Avenue Mont-Royal Est', 'Montreal', 'Canada', 'Quebec', POINT(45.532, -73.579)),
+('H2J 7K4', '1617', 'Rue Saint-Denis', 'Montreal', 'Canada', 'Quebec', POINT(45.516, -73.562)),
+('H3K 8L6', '1819', 'Avenue du Parc', 'Montreal', 'Canada', 'Quebec', POINT(45.507, -73.572)),
+('H4L 9M8', '2021', 'Rue Peel', 'Montreal', 'Canada', 'Quebec', POINT(45.501, -73.575)),
+('H5N 0P3', '2223', 'Rue Crescent', 'Montreal', 'Canada', 'Quebec', POINT(45.497, -73.579));
+
+CREATE TABLE Utilisateur (
+    id_utilisateur INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE,
+    nom VARCHAR(255),
+    prenom VARCHAR(255),
+    telephone VARCHAR(20),
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(255),
+    url_photo VARCHAR(255)
+);
+
+INSERT INTO Utilisateur (email, nom, prenom, telephone, username, password, url_photo) VALUES
+('john.doe@example.com', 'Doe', 'John', '1234567890', 'johndoe', 'password1', 'url_photo1.jpg'),
+('alice.smith@example.com', 'Smith', 'Alice', '9876543210', 'alicesmith', 'password2', 'url_photo2.jpg'),
+('michael.johnson@example.com', 'Johnson', 'Michael', '5551234567', 'michaeljohnson', 'password3', 'url_photo3.jpg'),
+('emma.brown@example.com', 'Brown', 'Emma', '4445556666', 'emmabrown', 'password4', 'url_photo4.jpg'),
+('david.wilson@example.com', 'Wilson', 'David', '2223334444', 'davidwilson', 'password5', 'url_photo5.jpg'),
+('sophia.miller@example.com', 'Miller', 'Sophia', '1112223333', 'sophiamiller', 'password6', 'url_photo6.jpg'),
+('james.jones@example.com', 'Jones', 'James', '6667778888', 'jamesjones', 'password7', 'url_photo7.jpg'),
+('olivia.garcia@example.com', 'Garcia', 'Olivia', '9990001111', 'oliviagarcia', 'password8', 'url_photo8.jpg'),
+('william.martinez@example.com', 'Martinez', 'William', '3334445555', 'williammartinez', 'password9', 'url_photo9.jpg'),
+('isabella.yang@example.com', 'Yang', 'Isabella', '7778889999', 'isabellayang', 'password10', 'url_photo10.jpg');
+
+
+CREATE TABLE Fournisseur (
+    id_fournisseur INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE,
+    nom_de_la_compagnie VARCHAR(255),
+    nom_contact VARCHAR(255),
+    prenom_contact VARCHAR(255),
+    telephone VARCHAR(20),
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(255),
+    photo_url VARCHAR(255),
+    note_globale INT
+);
+
+INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, telephone, username, password, photo_url, note_globale) VALUES
+('compagnie1@snow.com', 'Snow Masters', 'Smith', 'John', '1234567890', 'snowmasters', 'password1', 'photo_url1.jpg', 4),
+('compagnie2@snow.com', 'Snow Clearers Inc.', 'Johnson', 'Alice', '9876543210', 'snowclearers', 'password2', 'photo_url2.jpg', 4),
+('compagnie3@snow.com', 'Snow Angels', 'Brown', 'Michael', '5551234567', 'snowangels', 'password3', 'photo_url3.jpg', 3),
+('compagnie4@snow.com', 'Ice Busters', 'Wilson', 'Emma', '4445556666', 'icebusters', 'password4', 'photo_url4.jpg', 5),
+('compagnie5@snow.com', 'Frost Fighters', 'Garcia', 'David', '2223334444', 'frostfighters', 'password5', 'photo_url5.jpg', 4);
+
+
+CREATE TABLE Administrateur (
+    id_administrateur INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE,
+    nom VARCHAR(255),
+    prenom VARCHAR(255),
+    telephone VARCHAR(20),
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(255),
+    photo_url VARCHAR(255)
+);
+
+INSERT INTO Administrateur (email, nom, prenom, telephone, username, password, photo_url) VALUES
+('admin1@deneigement.ca', 'Admin1', 'Smith', '1234567890', 'admin1', 'password1', 'photo_url1.jpg'),
+('admin2@deneigement.ca', 'Admin2', 'Johnson', '9876543210', 'admin2', 'password2', 'photo_url2.jpg');
+
+
+CREATE TABLE Liste_adresses_Utilisateur (
+    id_utilisateur INT,
+    id_adresse INT,
+    FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur),
+    FOREIGN KEY (id_adresse) REFERENCES Adresse(id_adresse),
+    PRIMARY KEY (id_utilisateur, id_adresse)
+);
+
+INSERT INTO Liste_adresses_Utilisateur (id_utilisateur, id_adresse) VALUES
+(1, 1), 
+(2, 2),  
+(3, 3), 
+(4, 4),  
+(5, 5),  
+(6, 6),  
+(7, 7),  
+(8, 8),  
+(9, 9),  
+(10, 10); 
+
+
+CREATE TABLE Liste_adresses_Fournisseur (
+    id_fournisseur INT,
+    id_adresse INT,
+    FOREIGN KEY (id_fournisseur) REFERENCES Fournisseur(id_fournisseur),
+    FOREIGN KEY (id_adresse) REFERENCES Adresse(id_adresse),
+    PRIMARY KEY (id_fournisseur, id_adresse)
+);
+
+INSERT INTO Liste_adresses_Fournisseur (id_fournisseur, id_adresse) VALUES
+(1, 1), 
+(2, 2),  
+(3, 3),  
+(4, 4),  
+(5, 5);  
+
+
+CREATE TABLE Liste_adresses_Administrateur (
+    id_administrateur INT,
+    id_adresse INT,
+    FOREIGN KEY (id_administrateur) REFERENCES Administrateur(id_administrateur),
+    FOREIGN KEY (id_adresse) REFERENCES Adresse(id_adresse),
+    PRIMARY KEY (id_administrateur, id_adresse)
+);
+
+INSERT INTO Liste_adresses_Administrateur (id_administrateur, id_adresse) VALUES
+(1, 1),
+(2, 2);
 
 
 CREATE TABLE Billet (
@@ -58,13 +148,20 @@ CREATE TABLE Billet (
 
 CREATE TABLE Offre_de_service (
     id_service INT AUTO_INCREMENT PRIMARY KEY,
+    id_fournisseur INT,
     prix_unitaire DECIMAL(10,2),
     description TEXT,
     type_clientele ENUM('Résidentiel', 'Commercial'),
     categorie ENUM('Entrée de garage', 'Devant tempo', 'Pelletage', 'Epandage de sel', 'Chaudière de sel', 'Chargement de neige'),
-    id_utilisateur INT,
-    FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur)
+    FOREIGN KEY (id_fournisseur) REFERENCES Fournisseur(id_fournisseur)
 );
+
+INSERT INTO Offre_de_service (id_fournisseur, prix_unitaire, description, type_clientele, categorie) VALUES
+(1, 50.00, 'Déneigement de l''entrée de garage', 'Résidentiel', 'Entrée de garage'),
+(2, 45.00, 'Pelletage devant le tempo', 'Résidentiel', 'Devant tempo'),
+(3, 60.00, 'Épandage de sel sur les trottoirs', 'Commercial', 'Epandage de sel'),
+(4, 80.00, 'Entretien de chaudière à sel', 'Commercial', 'Chaudière de sel'),
+(5, 70.00, 'Chargement de neige après la tempête', 'Résidentiel', 'Chargement de neige');
 
 CREATE TABLE Review (
     id_review INT AUTO_INCREMENT PRIMARY KEY,
@@ -77,6 +174,14 @@ CREATE TABLE Review (
     FOREIGN KEY (id_service) REFERENCES Offre_de_service(id_service)
 );
 
+INSERT INTO Review (score, commentaire, id_utilisateur, id_service, date_commentaire) VALUES
+(4, 'Service de déneigement rapide et efficace.', 1, 1, '2023-01-15'),
+(5, 'Excellent service de pelletage, je recommande vivement!', 2, 2, '2023-02-02'),
+(3, 'L''épandage de sel a été bien fait mais un peu cher.', 3, 3, '2023-03-10'),
+(4, 'La chaudière a été entretenue de manière professionnelle.', 4, 4, '2023-04-22'),
+(5, 'Le chargement de neige a été réalisé rapidement après la tempête.', 5, 5, '2023-05-05');
+
+
 CREATE TABLE Demande_de_service (
     id_demande INT AUTO_INCREMENT PRIMARY KEY,
     date_debut DATE,
@@ -84,25 +189,20 @@ CREATE TABLE Demande_de_service (
     status ENUM('Acceptée', 'Refusée', 'En attente', 'Completée'),
     commentaire TEXT,
     id_utilisateur INT,
+    id_fournisseur INT,
     id_review INT,
     id_offre INT,
     id_adresse INT,
     FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur),
+    FOREIGN KEY (id_fournisseur) REFERENCES Fournisseur(id_fournisseur),
     FOREIGN KEY (id_review) REFERENCES Review(id_review),
     FOREIGN KEY (id_offre) REFERENCES Offre_de_service(id_service),
     FOREIGN KEY (id_adresse) REFERENCES Adresse(id_adresse)
 );
 
-CREATE TABLE Fournisseur (
-    id INT PRIMARY KEY,
-    nom VARCHAR(255),
-    prenom VARCHAR(255),
-    telephone VARCHAR(20),
-    username VARCHAR(50),
-    password VARCHAR(255),
-    photo_url VARCHAR(255),
-    nom_de_la_compagnie VARCHAR(255),
-    note_globale INT,
-   
-);
-
+INSERT INTO Demande_de_service (date_debut, date_fin, status, commentaire, id_utilisateur, id_fournisseur, id_review, id_offre, id_adresse) VALUES
+('2023-01-20', '2023-01-25', 'En attente', 'Besoin de déneigement urgent.', 6, 1, NULL, 1, 1),
+('2023-02-05', '2023-02-10', 'Acceptée', 'Besoin de pelletage devant le tempo.', 7, 2, NULL, 2, 2),
+('2023-03-15', '2023-03-20', 'Refusée', 'Besoin d''épandage de sel pour le stationnement.', 8, 3, NULL, 3, 3),
+('2023-04-25', '2023-04-30', 'En attente', 'Entretien de chaudière à sel nécessaire.', 9, 4, NULL, 4, 4),
+('2023-05-10', '2023-05-15', 'Acceptée', 'Besoin de chargement de neige après la tempête.', 10, 5, NULL, 5, 5);
