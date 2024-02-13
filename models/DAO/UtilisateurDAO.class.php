@@ -31,10 +31,8 @@ class UtilisateurDAO implements DAO
                 $enr['prenom'],
                 $enr['telephone'],
                 $enr['username'],
-                $enr['mot_de_passe'],
-                $enr['url_photo'],
-                $enr['nom_companie'],
-                $enr['note_globale']
+                $enr['password'],
+                $enr['url_photo']
             );
         }
 
@@ -60,7 +58,7 @@ class UtilisateurDAO implements DAO
 
         $tableau = [];
 
-        $requete = $connexion->prepare("SELECT * FROM utilisateur " . $filtre);
+        $requete = $connexion->prepare("SELECT * FROM Utilisateur " . $filtre);
         $requete->execute();
 
         foreach ($requete as $enr) {
@@ -71,10 +69,8 @@ class UtilisateurDAO implements DAO
                 $enr['prenom'],
                 $enr['telephone'],
                 $enr['username'],
-                $enr['mot_de_passe'],
-                $enr['url_photo'],
-                $enr['nom_companie'],
-                $enr['note_globale']
+                $enr['password'],
+                $enr['url_photo']
             );
             array_push($tableau, $unUtilisateur);
         }
@@ -94,7 +90,7 @@ class UtilisateurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Utilisateur (email, nom, prenom, telephone, username, mot_de_passe, url_photo, nom_companie, note_globale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Utilisateur (email, nom, prenom, telephone, username, password, url_photo) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         $tableauInfos = [
             $unUtilisateur->getEmail(),
@@ -103,9 +99,7 @@ class UtilisateurDAO implements DAO
             $unUtilisateur->getTelephone(),
             $unUtilisateur->getUsername(),
             $unUtilisateur->getMotDePasse(),
-            $unUtilisateur->getUrlPhoto(),
-            $unUtilisateur->getNomCompanie(),
-            $unUtilisateur->getNoteGlobale()
+            $unUtilisateur->getUrlPhoto()
         ];
 
         return $requete->execute($tableauInfos);
@@ -120,7 +114,7 @@ class UtilisateurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Utilisateur SET email=?, nom=?, prenom=?, telephone=?, username=?, mot_de_passe=?, url_photo=?, nom_companie=?, note_globale=? WHERE id_utilisateur=?");
+        $requete = $connexion->prepare("UPDATE Utilisateur SET email=?, nom=?, prenom=?, telephone=?, username=?, password=?, url_photo=? WHERE id_utilisateur=?");
 
         $tableauInfos = [
             $unUtilisateur->getEmail(),
@@ -130,8 +124,6 @@ class UtilisateurDAO implements DAO
             $unUtilisateur->getUsername(),
             $unUtilisateur->getMotDePasse(),
             $unUtilisateur->getUrlPhoto(),
-            $unUtilisateur->getNomCompanie(),
-            $unUtilisateur->getNoteGlobale(),
             $unUtilisateur->getIdUtilisateur()
         ];
 
