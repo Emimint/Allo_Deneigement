@@ -146,6 +146,15 @@ CREATE TABLE Billet (
     email VARCHAR(255)
 );
 
+INSERT INTO Billet (motif, texte, date_billet, email) VALUES
+('Plainte', 'Le service de déneigement que j\'ai reçu était très insatisfaisant. Le fournisseur n\'a pas respecté les horaires convenus et la qualité du travail était médiocre.', '2024-02-01', 'client@example.com'),
+('Plainte', 'J\'ai commandé un service de déneigement pour mon entrée de garage mais le fournisseur n\'est jamais venu. J\'ai payé à l\'avance et je souhaite un remboursement immédiat.', '2024-02-02', 'client2@example.com'),
+('Plainte', 'Le fournisseur a endommagé ma pelouse lors du déneigement. Je demande un remboursement des dommages causés.', '2024-02-03', 'client3@example.com'),
+('Mot de passe perdu', 'J\'ai oublié mon mot de passe et je ne peux pas accéder à mon compte. Merci de m\'aider à réinitialiser mon mot de passe.', '2024-02-04', 'utilisateur@example.com'),
+('Demande d\'information', 'Je souhaite obtenir des informations sur vos services de déneigement pour une résidence. Pouvez-vous me fournir des détails sur les tarifs et les options disponibles ?', '2024-02-05', 'client4@example.com'),
+('Demande d\'information', 'Bonjour, j\'aimerais savoir si vous offrez des contrats de déneigement pour les entreprises. Merci de me fournir des informations sur vos services commerciaux.', '2024-02-05', 'entreprise@example.com');
+
+
 CREATE TABLE Offre_de_service (
     id_service INT AUTO_INCREMENT PRIMARY KEY,
     id_fournisseur INT,
