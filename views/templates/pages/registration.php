@@ -12,65 +12,53 @@
                <h2 class="text-center p-3 mb-3">Créer un compte</h2>
                <!--form start-->
 
-<form action="#" class="needs-validation" novalidate>
+               <form id="myForm" action="#" class="needs-validation" novalidate>
 
-  <div id="admin-input" class="input-group mb-3 mt-5">
-    <span class="input-group-text"><i class="fa fa-building"></i></span>
-    <input type="text" class="form-control" placeholder="nom de la compagnie" required>
-    <div class="invalid-feedback">invalid input</div>
-  </div>
+<div id="admin-input" class="input-group mb-3 mt-5">
+  <span class="input-group-text"><i class="fa fa-building"></i></span>
+  <input type="text" class="form-control" placeholder="nom de la compagnie" id="companyName" required>
+  <div class="invalid-feedback" id="companyNameError"></div>
+</div>
 
-  <div class="input-group mb-3 ">
-    <span class="input-group-text"><i class="fa fa-user"></i></span>
-    <input type="text" class="form-control" placeholder="Prenom" required>
-    <div class="invalid-feedback">invalid input</div>
+<div class="input-group mb-3 ">
+  <span class="input-group-text"><i class="fa fa-user"></i></span>
+  <input type="text" class="form-control" placeholder="Prenom" id="firstName" required>
+  <div class="invalid-feedback" id="firstNameError"></div>
+</div>
 
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa fa-user"></i></span>
+  <input type="text" class="form-control" placeholder="Nom" id="lastName" required>
+  <div class="invalid-feedback" id="lastNameError"></div>
+</div>
 
-  </div>
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+  <input type="email" class="form-control" placeholder="Courriel" id="email" required>
+  <div class="invalid-feedback" id="emailError"></div>
+</div>
 
-  <div class="input-group mb-3">
-    <span class="input-group-text"><i class="fa fa-user"></i></span>
-    <input type="text" class="form-control" placeholder="Nom" required>
-    <div class="invalid-feedback">invalid input</div>
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa fa-lock"></i></span>
+  <input type="password" class="form-control" placeholder="Mot de passe" id="password" required>
+  <div class="invalid-feedback" id="passwordError"></div>
+</div>
 
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa fa-lock"></i></span>
+  <input type="password" class="form-control" placeholder="Confirmer mot de passe" id="confirmPassword" required>
+  <div class="invalid-feedback" id="confirmPasswordError"></div>
+</div>
 
-  </div>
-
-  <div class="input-group mb-3">
-    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-    <input type="email" class="form-control" placeholder="Courriel" required>
-    <div class="invalid-feedback">invalid input</div>
-
-
-  </div>
-
-  <div class="input-group mb-3">
-    <span class="input-group-text"><i class="fa fa-lock"></i></span>
-    <input type="password" class="form-control" placeholder="Mot de passe" required>
-    <div class="invalid-feedback">invalid input</div>
-
-
-  </div>
-
-  <div class="input-group mb-3">
-    <span class="input-group-text"><i class="fa fa-lock"></i></span>
-    <input type="password" class="form-control" placeholder="Confirmer mot de passe" required>
-    <div class="invalid-feedback">invalid input</div>
-
-
-  </div>
-
-  <div class="d-flex flex-column justify-content-center pt-6">
-    <label class="text-center text-muted mt-3">
-      <input type="checkbox" id="agreeCheckbox" required> J'accepte les termes et conditions du service
-    </label>
-    <button type="submit" class="btn btn-success mb-3">Soumettre</button><br>
-    <p class="text-center text-muted">Vous avez déjà un compte ? <a href="#">Connectez-vous</a></p>
-
-    <a id="link-role" class="text-center mb-4" href="#"> Vous êtes un fournisseur ?</a>
-  </div>
-
-    </form>
+<div class="d-flex flex-column justify-content-center pt-6">
+  <label>
+    <input type="checkbox" id="agreeCheckbox" required> Agree to terms and conditions
+  </label>
+  <button type="submit" class="btn btn-success mb-3">Submit</button>
+  <p class="text-muted">Already have an account? <a href="#">Log in</a></p>
+  <a id="link-role" href="#">Are you a supplier?</a>
+</div>
+</form>
            </div>
 
             <!--form ends-->
