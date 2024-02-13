@@ -32,8 +32,7 @@ class AdresseDAO implements DAO
                 $enr['ville'],
                 $enr['pays'],
                 $enr['province'],
-                $enr['coordonnees'],
-                $enr['id_utilisateur']
+                $enr['coordonnees']
             );
         }
 
@@ -70,8 +69,7 @@ class AdresseDAO implements DAO
                 $enr['ville'],
                 $enr['pays'],
                 $enr['province'],
-                $enr['coordonnees'],
-                $enr['id_utilisateur']
+                $enr['coordonnees']
             );
             array_push($tableau, $uneAdresse);
         }
@@ -90,7 +88,7 @@ class AdresseDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees, id_utilisateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         $tableauInfos = [
             $uneAdresse->getCodePostal(),
@@ -99,8 +97,7 @@ class AdresseDAO implements DAO
             $uneAdresse->getVille(),
             $uneAdresse->getPays(),
             $uneAdresse->getProvince(),
-            $uneAdresse->getCoordonnees(),
-            $uneAdresse->getIdUtilisateur()
+            $uneAdresse->getCoordonnees()
         ];
 
         return $requete->execute($tableauInfos);
@@ -114,7 +111,7 @@ class AdresseDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Adresse SET code_postal=?, numero_civique=?, nom_rue=?, ville=?, pays=?, province=?, coordonnees=?, id_utilisateur=? WHERE id_adresse=?");
+        $requete = $connexion->prepare("UPDATE Adresse SET code_postal=?, numero_civique=?, nom_rue=?, ville=?, pays=?, province=?, coordonnees=? WHERE id_adresse=?");
 
         $tableauInfos = [
             $uneAdresse->getCodePostal(),
@@ -124,7 +121,6 @@ class AdresseDAO implements DAO
             $uneAdresse->getPays(),
             $uneAdresse->getProvince(),
             $uneAdresse->getCoordonnees(),
-            $uneAdresse->getIdUtilisateur(),
             $uneAdresse->getIdAdresse()
         ];
 
