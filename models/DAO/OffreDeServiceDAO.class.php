@@ -19,19 +19,18 @@ class OffreDeServiceDAO implements DAO
 
         $uneOffre = null;
 
-        $requete = $connexion->prepare("SELECT * FROM Offre_de_service WHERE id_offre=?");
-
+        $requete = $connexion->prepare("SELECT * FROM Offre_de_service WHERE id_service=?");
         $requete->execute(array($cles));
 
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
             $uneOffre = new OffreDeService(
-                $enr['id_offre'],
-                $enr['titre'],
+                $enr['id_service'],
+                $enr['id_fournisseur'],
+                $enr['prix_unitaire'],
                 $enr['description'],
-                $enr['prix'],
-                $enr['id_utilisateur'],
-                $enr['date_creation']
+                $enr['type_clientele'],
+                $enr['categorie']
             );
         }
 
@@ -40,7 +39,6 @@ class OffreDeServiceDAO implements DAO
 
         return $uneOffre;
     }
-
 
     public static function chercherTous()
     {
@@ -58,17 +56,16 @@ class OffreDeServiceDAO implements DAO
         $tableau = [];
 
         $requete = $connexion->prepare("SELECT * FROM Offre_de_service " . $filtre);
-
         $requete->execute();
 
         foreach ($requete as $enr) {
             $uneOffre = new OffreDeService(
-                $enr['id_offre'],
-                $enr['titre'],
+                $enr['id_service'],
+                $enr['id_fournisseur'],
+                $enr['prix_unitaire'],
                 $enr['description'],
-                $enr['prix'],
-                $enr['id_utilisateur'],
-                $enr['date_creation']
+                $enr['type_clientele'],
+                $enr['categorie']
             );
             array_push($tableau, $uneOffre);
         }
@@ -79,7 +76,6 @@ class OffreDeServiceDAO implements DAO
         return $tableau;
     }
 
-
     public static function inserer($uneOffre)
     {
         try {
@@ -88,19 +84,18 @@ class OffreDeServiceDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Offre_de_service (titre, description, prix, id_utilisateur, date_creation) VALUES (?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Offre_de_service (id_fournisseur, prix_unitaire, description, type_clientele, categorie) VALUES (?, ?, ?, ?, ?)");
 
         $tableauInfos = [
-            $uneOffre->getTitre(),
+            $uneOffre->getIdFournisseur(),
+            $uneOffre->getPrixUnitaire(),
             $uneOffre->getDescription(),
-            $uneOffre->getPrix(),
-            $uneOffre->getIdUtilisateur(),
-            $uneOffre->getDateCreation()
+            $uneOffre->getTypeClientele(),
+            $uneOffre->getCategorie()
         ];
 
         return $requete->execute($tableauInfos);
     }
-
 
     public static function modifier($uneOffre)
     {
@@ -110,20 +105,19 @@ class OffreDeServiceDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Offre_de_service SET titre=?, description=?, prix=?, id_utilisateur=?, date_creation=? WHERE id_offre=?");
+        $requete = $connexion->prepare("UPDATE Offre_de_service SET id_fournisseur=?, prix_unitaire=?, description=?, type_clientele=?, categorie=? WHERE id_service=?");
 
         $tableauInfos = [
-            $uneOffre->getTitre(),
+            $uneOffre->getIdFournisseur(),
+            $uneOffre->getPrixUnitaire(),
             $uneOffre->getDescription(),
-            $uneOffre->getPrix(),
-            $uneOffre->getIdUtilisateur(),
-            $uneOffre->getDateCreation(),
-            $uneOffre->getIdOffre()
+            $uneOffre->getTypeClientele(),
+            $uneOffre->getCategorie(),
+            $uneOffre->getIdService()
         ];
 
         return $requete->execute($tableauInfos);
     }
-
 
     public static function supprimer($uneOffre)
     {
@@ -133,9 +127,9 @@ class OffreDeServiceDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("DELETE FROM Offre_de_service WHERE id_offre=?");
+        $requete = $connexion->prepare("DELETE FROM Offre_de_service WHERE id_service=?");
 
-        $tableauInfos = [$uneOffre->getIdOffre()];
+        $tableauInfos = [$uneOffre->getIdService()];
         return $requete->execute($tableauInfos);
     }
 }
