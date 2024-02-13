@@ -104,5 +104,9 @@ class Fournisseur {
     public function setNoteGlobale($note_globale) {
         $this->note_globale = $note_globale;
     }
+
+    public function __toString() {
+        return "ID Fournisseur: " . $this->id_fournisseur . ", Email: " . $this->email . ", Nom de la compagnie: " . $this->nom_de_la_compagnie . ", Nom du contact: " . $this->nom_contact . ", Prenom du contact: " . $this->prenom_contact . ", Telephone: " . $this->telephone . ", Username: " . $this->username . ", Password: " . $this->password . ", Photo URL: " . $this->photo_url . ", Note Globale: " . $this->note_globale;
+    }
 }
 
