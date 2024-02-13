@@ -8,11 +8,12 @@ class DemandeDeService
     private $status;
     private $commentaire;
     private $idUtilisateur;
+    private $idFournisseur;
     private $idReview;
     private $idOffre;
     private $idAdresse;
 
-    public function __construct($idDemande, $dateDebut, $dateFin, $status, $commentaire, $idUtilisateur, $idReview, $idOffre, $idAdresse)
+    public function __construct($idDemande, $dateDebut, $dateFin, $status, $commentaire, $idUtilisateur, $idFournisseur, $idReview, $idOffre, $idAdresse)
     {
         $this->idDemande = $idDemande;
         $this->dateDebut = $dateDebut;
@@ -20,6 +21,7 @@ class DemandeDeService
         $this->status = $status;
         $this->commentaire = $commentaire;
         $this->idUtilisateur = $idUtilisateur;
+        $this->idFournisseur = $idFournisseur;
         $this->idReview = $idReview;
         $this->idOffre = $idOffre;
         $this->idAdresse = $idAdresse;
@@ -55,6 +57,11 @@ class DemandeDeService
         return $this->idUtilisateur;
     }
 
+    public function getIdFournisseur()
+    {
+        return $this->idFournisseur;
+    }
+
     public function getIdReview()
     {
         return $this->idReview;
@@ -72,6 +79,6 @@ class DemandeDeService
 
     public function __toString()
     {
-        return "Demande de service [ID: " . $this->idDemande . ", Date de début: " . $this->dateDebut . ", Date de fin: " . $this->dateFin . ", Status: " . $this->status . ", Commentaire: " . $this->commentaire . ", ID Utilisateur: " . $this->idUtilisateur . ", ID Review: " . $this->idReview . ", ID Offre: " . $this->idOffre . ", ID Adresse: " . $this->idAdresse . "]";
+        return "Demande de service [ID: " . $this->idDemande . ", Date de début: " . $this->dateDebut . ", Date de fin: " . $this->dateFin . ", Status: " . $this->status . ", Commentaire: " . $this->commentaire . ", ID Utilisateur: " . $this->idUtilisateur . ", ID Fournisseur: " . $this->idFournisseur . ", ID Review: " . $this->idReview . ", ID Offre: " . $this->idOffre . ", ID Adresse: " . $this->idAdresse . "]";
     }
 }

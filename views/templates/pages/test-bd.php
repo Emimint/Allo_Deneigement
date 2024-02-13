@@ -1,23 +1,29 @@
-		<?php
-        // si la constante n'existe pas, on la crée
-        if (defined("DOSSIER_BASE_INCLUDE") == false) {
-            define("DOSSIER_BASE_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/");
-        }
-        // Importe l'interface DAO et la classe Produit
-        include_once(DOSSIER_BASE_INCLUDE . "models/adresse.class.php");
-        include_once(DOSSIER_BASE_INCLUDE . 'models/DAO/AdresseDAO.class.php');
-        include_once(DOSSIER_BASE_INCLUDE . "models/utilisateur.class.php");
-        include_once(DOSSIER_BASE_INCLUDE . 'models/DAO/UtilisateurDAO.class.php');
-        ?>
+<?php
+// Vérifiez si la constante DOSSIER_BASE_INCLUDE n'est pas déjà définie
+if (!defined("DOSSIER_BASE_INCLUDE")) {
+    define("DOSSIER_BASE_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/");
+}
 
-		<h2>Méthode chercherTous</h2>
-		<?php
-        $utilisateur1 = UtilisateurDAO::chercher(1);
-        echo "<h3>On cherche tous les adresses pour {$utilisateur1->getNom()} ";
-        $filtre = " WHERE id_utilisateur={$utilisateur1->getIdUtilisateur()}";
-        echo " :</h3>";
-        $liste_adresses = AdresseDAO::chercherAvecFiltre($filtre);
-        foreach ($liste_adresses as $adresse) {
-            echo "<p>" . $adresse->getCodePostal() . " -  rue " . $adresse->getNomRue() . "</p>";
-        }
-        ?>
+// Incluez les fichiers nécessaires
+include_once(DOSSIER_BASE_INCLUDE . "models/DAO/DAO.interface.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/billet.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/DAO/BilletDAO.class.php");
+
+
+try {
+    // Récupérez tous les billets
+    $liste_billets = BilletDAO::chercherTous();
+echo "nimporte quoi";
+    // Affichez les billets
+    foreach ($liste_billets as $billet) {
+        echo "<p>ID: " . $billet->getIdBillet() . "</p>";
+        echo "<p>Motif: " . $billet->getMotif() . "</p>";
+        echo "<p>Texte: " . $billet->getTexte() . "</p>";
+        echo "<p>Date: " . $billet->getDateBillet() . "</p>";
+        echo "<p>Email: " . $billet->getEmail() . "</p>";
+        echo "<hr>";
+    }
+} catch (Exception $e) {
+    echo "Erreur: " . $e->getMessage();
+}
+?>

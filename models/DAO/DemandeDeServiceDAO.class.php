@@ -31,6 +31,7 @@ class DemandeDeServiceDAO implements DAO
                 $enr['status'],
                 $enr['commentaire'],
                 $enr['id_utilisateur'],
+                $enr['id_fournisseur'],
                 $enr['id_review'],
                 $enr['id_offre'],
                 $enr['id_adresse']
@@ -70,6 +71,7 @@ class DemandeDeServiceDAO implements DAO
                 $enr['status'],
                 $enr['commentaire'],
                 $enr['id_utilisateur'],
+                $enr['id_fournisseur'],
                 $enr['id_review'],
                 $enr['id_offre'],
                 $enr['id_adresse']
@@ -92,7 +94,7 @@ class DemandeDeServiceDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Demande_de_service (date_debut, date_fin, status, commentaire, id_utilisateur, id_review, id_offre, id_adresse) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Demande_de_service (date_debut, date_fin, status, commentaire, id_utilisateur, id_fournisseur, id_review, id_offre, id_adresse) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $tableauInfos = [
             $uneDemande->getDateDebut(),
@@ -100,6 +102,7 @@ class DemandeDeServiceDAO implements DAO
             $uneDemande->getStatus(),
             $uneDemande->getCommentaire(),
             $uneDemande->getIdUtilisateur(),
+            $uneDemande->getIdFournisseur(),
             $uneDemande->getIdReview(),
             $uneDemande->getIdOffre(),
             $uneDemande->getIdAdresse()
@@ -117,7 +120,7 @@ class DemandeDeServiceDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Demande_de_service SET date_debut=?, date_fin=?, status=?, commentaire=?, id_utilisateur=?, id_review=?, id_offre=?, id_adresse=? WHERE id_demande=?");
+        $requete = $connexion->prepare("UPDATE Demande_de_service SET date_debut=?, date_fin=?, status=?, commentaire=?, id_utilisateur=?, id_fournisseur=?, id_review=?, id_offre=?, id_adresse=? WHERE id_demande=?");
 
         $tableauInfos = [
             $uneDemande->getDateDebut(),
@@ -125,6 +128,7 @@ class DemandeDeServiceDAO implements DAO
             $uneDemande->getStatus(),
             $uneDemande->getCommentaire(),
             $uneDemande->getIdUtilisateur(),
+            $uneDemande->getIdFournisseur(),
             $uneDemande->getIdReview(),
             $uneDemande->getIdOffre(),
             $uneDemande->getIdAdresse(),
