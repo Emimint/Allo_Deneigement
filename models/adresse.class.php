@@ -1,103 +1,77 @@
 <?php
-class Personne {
-    private $id;
-    private $nom;
-    private $prenom;
-    private $adresse;
-    private $telephone;
-    private $username;
-    private $password;
-    private $photo_url;
-    private $adresses; // Array of Adresse objects
 
-    public function __construct($id, $nom, $prenom, $adresse, $telephone, $username, $password, $photo_url, $adresses) {
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->adresse = $adresse; 
-        $this->telephone = $telephone;
-        $this->username = $username;
-        $this->password = $password;
-        $this->photo_url = $photo_url;
-        $this->adresses = $adresses;
+class Adresse
+{
+    private $id_adresse;
+    private $code_postal;
+    private $numero_civique;
+    private $nom_rue;
+    private $ville;
+    private $pays;
+    private $province;
+    private $coordonnees;
+    private $id_utilisateur;
+
+    public function __construct($id_adresse, $code_postal, $numero_civique, $nom_rue, $ville, $pays, $province, $coordonnees, $id_utilisateur)
+    {
+        $this->id_adresse = $id_adresse;
+        $this->code_postal = $code_postal;
+        $this->numero_civique = $numero_civique;
+        $this->nom_rue = $nom_rue;
+        $this->ville = $ville;
+        $this->pays = $pays;
+        $this->province = $province;
+        $this->coordonnees = $coordonnees;
+        $this->id_utilisateur = $id_utilisateur;
     }
 
-    // Getters
-    public function getId() {
-        return $this->id;
+    public function getIdAdresse()
+    {
+        return $this->id_adresse;
     }
 
-    public function getNom() {
-        return $this->nom;
+    public function getCodePostal()
+    {
+        return $this->code_postal;
     }
 
-    public function getPrenom() {
-        return $this->prenom;
+    public function getNumeroCivique()
+    {
+        return $this->numero_civique;
     }
 
-    public function getAdresse() {
-        return $this->adresse;
+    public function getNomRue()
+    {
+        return $this->nom_rue;
     }
 
-    public function getTelephone() {
-        return $this->telephone;
+    public function getVille()
+    {
+        return $this->ville;
     }
 
-    public function getUsername() {
-        return $this->username;
+    public function getPays()
+    {
+        return $this->pays;
     }
 
-    public function getPassword() {
-        return $this->password;
+    public function getProvince()
+    {
+        return $this->province;
     }
 
-    public function getPhotoUrl() {
-        return $this->photo_url;
+    public function getCoordonnees()
+    {
+        return $this->coordonnees;
     }
 
-    public function getAdresses() {
-        return $this->adresses;
+    public function getIdUtilisateur()
+    {
+        return $this->id_utilisateur;
     }
 
-    // Setters
-    public function setId($id) {
-        $this->id = $id;
-    }
-
-    public function setNom($nom) {
-        $this->nom = $nom;
-    }
-
-    public function setPrenom($prenom) {
-        $this->prenom = $prenom;
-    }
-
-    public function setAdresse($adresse) {
-        $this->adresse = $adresse;
-    }
-
-    public function setTelephone($telephone) {
-        $this->telephone = $telephone;
-    }
-
-    public function setUsername($username) {
-        $this->username = $username;
-    }
-
-    public function setPassword($password) {
-        $this->password = $password;
-    }
-
-    public function setPhotoUrl($photo_url) {
-        $this->photo_url = $photo_url;
-    }
-
-    public function setAdresses($adresses) {
-        $this->adresses = $adresses;
-    }
-
-    // toString method
-    public function __toString() {
-        return "Personne [id={$this->id}, nom={$this->nom}, prenom={$this->prenom}, adresse={$this->adresse}, telephone={$this->telephone}, username={$this->username}, password={$this->password}, photo_url={$this->photo_url}, adresses={$this->adresses}]";
+    public function __toString()
+    {
+        return "Adresse [id_adresse=" . $this->id_adresse . ", code_postal=" . $this->code_postal . ", numero_civique=" . $this->numero_civique . ", nom_rue=" . $this->nom_rue . ", ville=" . $this->ville . ", pays=" . $this->pays . ", province=" . $this->province . ", coordonnees=" . $this->coordonnees . ", id_utilisateur=" . $this->id_utilisateur . "]";
     }
 }
