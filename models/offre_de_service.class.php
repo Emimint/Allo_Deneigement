@@ -3,20 +3,20 @@
 class OffreDeService
 {
     private $idOffre;
-    private $titre;
+    private $idFournisseur;
+    private $prixUnitaire;
     private $description;
-    private $prix;
-    private $idUtilisateur;
-    private $dateCreation;
+    private $typeClientele;
+    private $categorie;
 
-    public function __construct($idOffre, $titre, $description, $prix, $idUtilisateur, $dateCreation)
+    public function __construct($idOffre, $idFournisseur, $prixUnitaire, $description, $typeClientele, $categorie)
     {
         $this->idOffre = $idOffre;
-        $this->titre = $titre;
+        $this->idFournisseur = $idFournisseur;
+        $this->prixUnitaire = $prixUnitaire;
         $this->description = $description;
-        $this->prix = $prix;
-        $this->idUtilisateur = $idUtilisateur;
-        $this->dateCreation = $dateCreation;
+        $this->typeClientele = $typeClientele;
+        $this->categorie = $categorie;
     }
 
     public function getIdOffre()
@@ -24,9 +24,14 @@ class OffreDeService
         return $this->idOffre;
     }
 
-    public function getTitre()
+    public function getIdFournisseur()
     {
-        return $this->titre;
+        return $this->idFournisseur;
+    }
+
+    public function getPrixUnitaire()
+    {
+        return $this->prixUnitaire;
     }
 
     public function getDescription()
@@ -34,19 +39,14 @@ class OffreDeService
         return $this->description;
     }
 
-    public function getPrix()
+    public function getTypeClientele()
     {
-        return $this->prix;
+        return $this->typeClientele;
     }
 
-    public function getIdUtilisateur()
+    public function getCategorie()
     {
-        return $this->idUtilisateur;
-    }
-
-    public function getDateCreation()
-    {
-        return $this->dateCreation;
+        return $this->categorie;
     }
 
     public function setIdOffre($idOffre)
@@ -54,9 +54,14 @@ class OffreDeService
         $this->idOffre = $idOffre;
     }
 
-    public function setTitre($titre)
+    public function setIdFournisseur($idFournisseur)
     {
-        $this->titre = $titre;
+        $this->idFournisseur = $idFournisseur;
+    }
+
+    public function setPrixUnitaire($prixUnitaire)
+    {
+        $this->prixUnitaire = $prixUnitaire;
     }
 
     public function setDescription($description)
@@ -64,18 +69,18 @@ class OffreDeService
         $this->description = $description;
     }
 
-    public function setPrix($prix)
+    public function setTypeClientele($typeClientele)
     {
-        $this->prix = $prix;
+        $this->typeClientele = $typeClientele;
     }
 
-    public function setIdUtilisateur($idUtilisateur)
+    public function setCategorie($categorie)
     {
-        $this->idUtilisateur = $idUtilisateur;
+        $this->categorie = $categorie;
     }
 
-    public function setDateCreation($dateCreation)
+    public function __toString()
     {
-        $this->dateCreation = $dateCreation;
+        return "OffreDeService [idOffre=" . $this->idOffre . ", idFournisseur=" . $this->idFournisseur . ", prixUnitaire=" . $this->prixUnitaire . ", description=" . $this->description . ", typeClientele=" . $this->typeClientele . ", categorie=" . $this->categorie . "]";
     }
 }

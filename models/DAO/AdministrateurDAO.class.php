@@ -5,9 +5,9 @@ if (defined("DOSSIER_BASE_INCLUDE") == false) {
 }
 
 include_once(DOSSIER_BASE_INCLUDE . "models/DAO/DAO.interface.php");
-include_once(DOSSIER_BASE_INCLUDE . "models/utilisateur.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/administrateur.class.php");
 
-class UtilisateurDAO implements DAO
+class AdministrateurDAO implements DAO
 {
     public static function chercher($cles)
     {
@@ -17,29 +17,29 @@ class UtilisateurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $unUtilisateur = null;
+        $unAdministrateur = null;
 
-        $requete = $connexion->prepare("SELECT * FROM Utilisateur WHERE id_utilisateur=?");
+        $requete = $connexion->prepare("SELECT * FROM Administrateur WHERE id_administrateur=?");
         $requete->execute(array($cles));
 
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
-            $unUtilisateur = new Utilisateur(
-                $enr['id_utilisateur'],
-                $enr['email'],
+            $unAdministrateur = new Administrateur(
+                $enr['id_administrateur'],
                 $enr['nom'],
                 $enr['prenom'],
                 $enr['telephone'],
+                $enr['email'],
                 $enr['username'],
                 $enr['password'],
-                $enr['url_photo']
+                $enr['photo_url']
             );
         }
 
         $requete->closeCursor();
         ConnexionBD::close();
 
-        return $unUtilisateur;
+        return $unAdministrateur;
     }
 
 
@@ -58,21 +58,21 @@ class UtilisateurDAO implements DAO
 
         $tableau = [];
 
-        $requete = $connexion->prepare("SELECT * FROM Utilisateur " . $filtre);
+        $requete = $connexion->prepare("SELECT * FROM Administrateur " . $filtre);
         $requete->execute();
 
         foreach ($requete as $enr) {
-            $unUtilisateur = new Utilisateur(
-                $enr['id_utilisateur'],
-                $enr['email'],
+            $unAdministrateur = new Administrateur(
+                $enr['id_administrateur'],
                 $enr['nom'],
                 $enr['prenom'],
                 $enr['telephone'],
+                $enr['email'],
                 $enr['username'],
                 $enr['password'],
-                $enr['url_photo']
+                $enr['photo_url']
             );
-            array_push($tableau, $unUtilisateur);
+            array_push($tableau, $unAdministrateur);
         }
 
         $requete->closeCursor();
@@ -82,7 +82,7 @@ class UtilisateurDAO implements DAO
     }
 
 
-    public static function inserer($unUtilisateur)
+    public static function inserer($unAdministrateur)
     {
         try {
             $connexion = ConnexionBD::getInstance();
@@ -90,23 +90,23 @@ class UtilisateurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Utilisateur (email, nom, prenom, telephone, username, password, url_photo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Administrateur (nom, prenom, telephone, email, username, password, photo_url) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         $tableauInfos = [
-            $unUtilisateur->getEmail(),
-            $unUtilisateur->getNom(),
-            $unUtilisateur->getPrenom(),
-            $unUtilisateur->getTelephone(),
-            $unUtilisateur->getUsername(),
-            $unUtilisateur->getMotDePasse(),
-            $unUtilisateur->getUrlPhoto()
+            $unAdministrateur->getNom(),
+            $unAdministrateur->getPrenom(),
+            $unAdministrateur->getTelephone(),
+            $unAdministrateur->getEmail(),
+            $unAdministrateur->getUsername(),
+            $unAdministrateur->getPassword(),
+            $unAdministrateur->getPhotoUrl()
         ];
 
         return $requete->execute($tableauInfos);
     }
 
 
-    public static function modifier($unUtilisateur)
+    public static function modifier($unAdministrateur)
     {
         try {
             $connexion = ConnexionBD::getInstance();
@@ -114,24 +114,24 @@ class UtilisateurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Utilisateur SET email=?, nom=?, prenom=?, telephone=?, username=?, password=?, url_photo=? WHERE id_utilisateur=?");
+        $requete = $connexion->prepare("UPDATE Administrateur SET nom=?, prenom=?, telephone=?, email=?, username=?, password=?, photo_url=? WHERE id_administrateur=?");
 
         $tableauInfos = [
-            $unUtilisateur->getEmail(),
-            $unUtilisateur->getNom(),
-            $unUtilisateur->getPrenom(),
-            $unUtilisateur->getTelephone(),
-            $unUtilisateur->getUsername(),
-            $unUtilisateur->getMotDePasse(),
-            $unUtilisateur->getUrlPhoto(),
-            $unUtilisateur->getIdUtilisateur()
+            $unAdministrateur->getNom(),
+            $unAdministrateur->getPrenom(),
+            $unAdministrateur->getTelephone(),
+            $unAdministrateur->getEmail(),
+            $unAdministrateur->getUsername(),
+            $unAdministrateur->getPassword(),
+            $unAdministrateur->getPhotoUrl(),
+            $unAdministrateur->getIdAdministrateur()
         ];
 
         return $requete->execute($tableauInfos);
     }
 
 
-    public static function supprimer($unUtilisateur)
+    public static function supprimer($unAdministrateur)
     {
         try {
             $connexion = ConnexionBD::getInstance();
@@ -139,9 +139,9 @@ class UtilisateurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("DELETE FROM Utilisateur WHERE id_utilisateur=?");
+        $requete = $connexion->prepare("DELETE FROM Administrateur WHERE id_administrateur=?");
 
-        $tableauInfos = [$unUtilisateur->getIdUtilisateur()];
+        $tableauInfos = [$unAdministrateur->getIdAdministrateur()];
         return $requete->execute($tableauInfos);
     }
 }

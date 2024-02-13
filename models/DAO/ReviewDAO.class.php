@@ -5,9 +5,9 @@ if (defined("DOSSIER_BASE_INCLUDE") == false) {
 }
 
 include_once(DOSSIER_BASE_INCLUDE . "models/DAO/DAO.interface.php");
-include_once(DOSSIER_BASE_INCLUDE . "models/offre_de_service.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/Review.class.php");
 
-class OffreDeServiceDAO implements DAO
+class ReviewDAO implements DAO
 {
     public static function chercher($cles)
     {
@@ -17,27 +17,27 @@ class OffreDeServiceDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $uneOffre = null;
+        $uneReview = null;
 
-        $requete = $connexion->prepare("SELECT * FROM Offre_de_service WHERE id_service=?");
+        $requete = $connexion->prepare("SELECT * FROM Review WHERE id_review=?");
         $requete->execute(array($cles));
 
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
-            $uneOffre = new OffreDeService(
+            $uneReview = new Review(
+                $enr['id_review'],
+                $enr['score'],
+                $enr['commentaire'],
+                $enr['id_utilisateur'],
                 $enr['id_service'],
-                $enr['id_fournisseur'],
-                $enr['prix_unitaire'],
-                $enr['description'],
-                $enr['type_clientele'],
-                $enr['categorie']
+                $enr['date_commentaire']
             );
         }
 
         $requete->closeCursor();
         ConnexionBD::close();
 
-        return $uneOffre;
+        return $uneReview;
     }
 
     public static function chercherTous()
@@ -55,19 +55,19 @@ class OffreDeServiceDAO implements DAO
 
         $tableau = [];
 
-        $requete = $connexion->prepare("SELECT * FROM Offre_de_service " . $filtre);
+        $requete = $connexion->prepare("SELECT * FROM Review " . $filtre);
         $requete->execute();
 
         foreach ($requete as $enr) {
-            $uneOffre = new OffreDeService(
+            $uneReview = new Review(
+                $enr['id_review'],
+                $enr['score'],
+                $enr['commentaire'],
+                $enr['id_utilisateur'],
                 $enr['id_service'],
-                $enr['id_fournisseur'],
-                $enr['prix_unitaire'],
-                $enr['description'],
-                $enr['type_clientele'],
-                $enr['categorie']
+                $enr['date_commentaire']
             );
-            array_push($tableau, $uneOffre);
+            array_push($tableau, $uneReview);
         }
 
         $requete->closeCursor();
@@ -76,7 +76,7 @@ class OffreDeServiceDAO implements DAO
         return $tableau;
     }
 
-    public static function inserer($uneOffre)
+    public static function inserer($uneReview)
     {
         try {
             $connexion = ConnexionBD::getInstance();
@@ -84,20 +84,20 @@ class OffreDeServiceDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Offre_de_service (id_fournisseur, prix_unitaire, description, type_clientele, categorie) VALUES (?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Review (score, commentaire, id_utilisateur, id_service, date_commentaire) VALUES (?, ?, ?, ?, ?)");
 
         $tableauInfos = [
-            $uneOffre->getIdFournisseur(),
-            $uneOffre->getPrixUnitaire(),
-            $uneOffre->getDescription(),
-            $uneOffre->getTypeClientele(),
-            $uneOffre->getCategorie()
+            $uneReview->getScore(),
+            $uneReview->getCommentaire(),
+            $uneReview->getIdUtilisateur(),
+            $uneReview->getIdService(),
+            $uneReview->getDateCommentaire()
         ];
 
         return $requete->execute($tableauInfos);
     }
 
-    public static function modifier($uneOffre)
+    public static function modifier($uneReview)
     {
         try {
             $connexion = ConnexionBD::getInstance();
@@ -105,21 +105,21 @@ class OffreDeServiceDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Offre_de_service SET id_fournisseur=?, prix_unitaire=?, description=?, type_clientele=?, categorie=? WHERE id_service=?");
+        $requete = $connexion->prepare("UPDATE Review SET score=?, commentaire=?, id_utilisateur=?, id_service=?, date_commentaire=? WHERE id_review=?");
 
         $tableauInfos = [
-            $uneOffre->getIdFournisseur(),
-            $uneOffre->getPrixUnitaire(),
-            $uneOffre->getDescription(),
-            $uneOffre->getTypeClientele(),
-            $uneOffre->getCategorie(),
-            $uneOffre->getIdService()
+            $uneReview->getScore(),
+            $uneReview->getCommentaire(),
+            $uneReview->getIdUtilisateur(),
+            $uneReview->getIdService(),
+            $uneReview->getDateCommentaire(),
+            $uneReview->getIdReview()
         ];
 
         return $requete->execute($tableauInfos);
     }
 
-    public static function supprimer($uneOffre)
+    public static function supprimer($uneReview)
     {
         try {
             $connexion = ConnexionBD::getInstance();
@@ -127,9 +127,9 @@ class OffreDeServiceDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("DELETE FROM Offre_de_service WHERE id_service=?");
+        $requete = $connexion->prepare("DELETE FROM Review WHERE id_review=?");
 
-        $tableauInfos = [$uneOffre->getIdService()];
+        $tableauInfos = [$uneReview->getIdReview()];
         return $requete->execute($tableauInfos);
     }
 }
