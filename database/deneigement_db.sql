@@ -60,11 +60,11 @@ CREATE TABLE Fournisseur (
     telephone VARCHAR(20),
     username VARCHAR(50) UNIQUE,
     password VARCHAR(255),
-    photo_url VARCHAR(255),
+    url_photo VARCHAR(255),
     note_globale INT
 );
 
-INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, telephone, username, password, photo_url, note_globale) VALUES
+INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, telephone, username, password, url_photo, note_globale) VALUES
 ('compagnie1@snow.com', 'Snow Masters', 'Smith', 'John', '1234567890', 'snowmasters', 'password1', 'photo_url1.jpg', 4),
 ('compagnie2@snow.com', 'Snow Clearers Inc.', 'Johnson', 'Alice', '9876543210', 'snowclearers', 'password2', 'photo_url2.jpg', 4),
 ('compagnie3@snow.com', 'Snow Angels', 'Brown', 'Michael', '5551234567', 'snowangels', 'password3', 'photo_url3.jpg', 3),
@@ -80,10 +80,10 @@ CREATE TABLE Administrateur (
     telephone VARCHAR(20),
     username VARCHAR(50) UNIQUE,
     password VARCHAR(255),
-    photo_url VARCHAR(255)
+    url_photo VARCHAR(255)
 );
 
-INSERT INTO Administrateur (email, nom, prenom, telephone, username, password, photo_url) VALUES
+INSERT INTO Administrateur (email, nom, prenom, telephone, username, password, url_photo) VALUES
 ('admin1@deneigement.ca', 'Admin1', 'Smith', '1234567890', 'admin1', 'password1', 'photo_url1.jpg'),
 ('admin2@deneigement.ca', 'Admin2', 'Johnson', '9876543210', 'admin2', 'password2', 'photo_url2.jpg');
 
@@ -98,6 +98,8 @@ CREATE TABLE Liste_adresses_Utilisateur (
 
 INSERT INTO Liste_adresses_Utilisateur (id_utilisateur, id_adresse) VALUES
 (1, 1), 
+ (1, 2), 
+(1, 3),
 (2, 2),  
 (3, 3), 
 (4, 4),  
@@ -135,6 +137,8 @@ CREATE TABLE Liste_adresses_Administrateur (
 
 INSERT INTO Liste_adresses_Administrateur (id_administrateur, id_adresse) VALUES
 (1, 1),
+(1, 8),
+(1, 9),
 (2, 2);
 
 
