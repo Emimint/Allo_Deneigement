@@ -11,6 +11,7 @@ class Defaut extends  Controleur
 
     public function executerAction()
     {
+        $_SESSION['FLASH_MESSAGES'] = null;
         return "landing-page";
     }
 }

@@ -50,4 +50,9 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
             </div>
         </div>
     </header>
+    <?php if (isset($_SESSION['FLASH_MESSAGES'])) {
+        foreach ($_SESSION['FLASH_MESSAGES'] as $key => $value) {
+            echo format_flash_message($value);
+        }
+    } ?>
 </div>

@@ -10,8 +10,10 @@ class SeDeconnecter extends  Controleur
 	}
 	public function executerAction()
 	{
+		$_SESSION['FLASH_MESSAGES'] = null;
 		if ($this->acteur == "visiteur") {
 			array_push($this->messagesErreur, "Vous êtes déjà déconnécté.");
+			flash('Deconnexion', 'Vous êtes déjà déconnécté.', FLASH_SUCCESS);
 			return "landing-page";
 		} else {
 			$this->acteur = "visiteur";
