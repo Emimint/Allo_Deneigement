@@ -73,6 +73,13 @@ class Personne
         $this->url_photo = $url_photo;
     }
 
+    public function verifierMotPasse($mot_de_passe)
+    {
+        var_dump($mot_de_passe);
+        var_dump($this->password);
+        return $this->password == $mot_de_passe;
+    }
+
     public function __toString()
     {
         return "Personne [email=" . $this->email . ", telephone=" . $this->telephone . ", username=" . $this->username . ", password=" . $this->password . ", url_photo=" . $this->url_photo . "]";
