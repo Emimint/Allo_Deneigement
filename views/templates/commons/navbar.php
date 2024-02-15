@@ -15,7 +15,9 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
                 </a>
                 <ul class="d-flex align-items-center nav col-12 col-lg-auto mb-2 mb-md-0">
                     <li class="nav-link"><a href="<?php echo DOSSIER_BASE_INCLUDE; ?>" class="nav-link px-2 text-white">A propos</a></li>
-                    <li class="nav-link"><a href="<?php echo BASE_URL_VIEWS; ?>templates/pages/historique-utilisateur.php" class="nav-link px-2 text-white">Mes demandes de service</a></li>
+                    <li class="nav-link">
+                        <a href="?action=afficherDemandeDeServices" class="nav-link px-2 text-white">Mes demandes de service</a>
+                    </li>
                     <li class="nav-link"><a href="<?php echo BASE_URL_VIEWS; ?>templates/pages/fournisseur.php" class="nav-link px-2 text-white">Liste de fournisseurs</a></li>
                     <li class="nav-link"><a href="<?php echo BASE_URL_VIEWS; ?>templates/pages/contactPage.php" class="nav-link px-2 text-white">Nous joindre</a></li>
                     <li class="nav-link"><a href="#" class="nav-link px-2"><i class="fa-regular fa-bell" style="color: #ffffff;"></i></a></li>
@@ -31,7 +33,7 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
                     <li>
                         <?php
                         // Check if the user is logged in
-                        if (isset($_SESSION['utilisateurConnecte'])) {
+                        if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] != "visiteur") {
                         ?>
                             <div class="d-flex">
                                 <a href="#" class="nav-link px-2" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -54,5 +56,6 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
         foreach ($_SESSION['FLASH_MESSAGES'] as $key => $value) {
             echo format_flash_message($value);
         }
+        $_SESSION['FLASH_MESSAGES'] = null;
     } ?>
 </div>
