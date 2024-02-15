@@ -18,5 +18,38 @@ $nomVue = $controleur->executerAction();
 
 include_once(DOSSIER_PAGES . $nomVue . ".php");
 
-if (isset($_SESSION['utilisateurConnecte']))
-    echo $_SESSION['utilisateurConnecte'];
+// // For debugging only :
+/**
+?>
+//
+<pre>
+//     <?php
+        //     if (isset($_SESSION['utilisateurConnecte']))
+        //         echo $_SESSION['utilisateurConnecte'];
+        //     
+        ?>
+// </pre>
+
+//
+<pre>
+//     <?php
+        //     if (isset($controleur)) {
+        //         echo $nomVue;
+        //         var_dump($controleur);
+        //     }
+        //     
+        ?>
+// </pre>
+
+//
+<pre>
+//     <?php
+
+        //     if (isset($_SESSION['infoUtilisateur'])) {
+        //         echo $_SESSION['infoUtilisateur'];
+        //     }
+        //     
+        ?>
+// </pre>
+
+ */
