@@ -38,5 +38,3 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/n
 </body>
 
 </html>
-<?php
-if ($controleur) echo get_class($controleur); ?>

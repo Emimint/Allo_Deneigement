@@ -75,8 +75,6 @@ class Personne
 
     public function verifierMotPasse($mot_de_passe)
     {
-        var_dump($mot_de_passe);
-        var_dump($this->password);
         return $this->password == $mot_de_passe;
     }
 
