@@ -18,6 +18,7 @@ class SeDeconnecter extends  Controleur
 		} else {
 			$this->acteur = "visiteur";
 			unset($_SESSION['utilisateurConnecte']);
+			flash('Deconnexion', 'A bientot!', FLASH_SUCCESS);
 			return "landing-page";
 		}
 	}
