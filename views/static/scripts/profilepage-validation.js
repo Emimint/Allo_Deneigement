@@ -1,30 +1,20 @@
-  // Fonction pour afficher le contenu de la section "Profile"
-  function showProfile() {
-    document.getElementById("profileContent").style.display = "block";
-    document.getElementById("addressesContent").style.display = "none";
-    document.getElementById("photoContent").style.display = "none";
-    document.getElementById("paymentContent").style.display = "none";
-}
- // Fonction pour afficher le contenu de la section "adresse"
-function showAddresses() {
-    document.getElementById("profileContent").style.display = "none";
-    document.getElementById("addressesContent").style.display = "block";
-    document.getElementById("photoContent").style.display = "none";
-    document.getElementById("paymentContent").style.display = "none";
-}
+$(document).ready(function(){
+    // Cacher tous les contenus d'onglets sauf le premier
+    $('.tab-pane').not(':first').removeClass('active show');
 
- // Fonction pour afficher le contenu de la section "photo"
- function showPhoto() {
-    document.getElementById("profileContent").style.display = "none";
-    document.getElementById("addressesContent").style.display = "none";
-    document.getElementById("photoContent").style.display = "block";
-    document.getElementById("paymentContent").style.display = "none";
-}
+    // Lorsqu'un bouton est cliqué
+    $('.stylePersoBarreVerticale button').on('click', function () {
+        // Retirer la classe active et show de tous les onglets
+        $('.stylePersoBarreVerticale button').removeClass('active');
+        $('.tab-pane').removeClass('active show');
 
- // Fonction pour afficher le contenu de la section "paiement"
-function showPayment() {
-    document.getElementById("profileContent").style.display = "none";
-    document.getElementById("addressesContent").style.display = "none";
-    document.getElementById("photoContent").style.display = "none";
-    document.getElementById("paymentContent").style.display = "block";
-}
+        // Récupérer l'attribut data-bs-target du bouton cliqué
+        var target = $(this).attr('data-bs-target');
+        
+        // Ajouter la classe active au bouton cliqué
+        $(this).addClass('active');
+        
+        // Afficher le contenu de l'onglet correspondant au bouton cliqué
+        $(target).addClass('active show');
+    });
+});
