@@ -1,4 +1,6 @@
-<?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
+<?php
+if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Allo_Deneigement/views/');
+?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
 <div id="soumission-container" class="container mt-5 mx-2">
@@ -173,8 +175,8 @@
   </form>
 </div>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>
-<script src="<?php echo BASE_URL; ?>/static/scripts/trigger-modal.js"></script>
-<script src="<?php echo BASE_URL; ?>/static/scripts/submission.js"></script>
+<script src="<?php echo BASE_URL_VIEWS; ?>static/scripts/trigger-modal.js"></script>
+<script src="<?php echo BASE_URL_VIEWS; ?>static/scripts/submission.js"></script>
 </body>
 
 </html>
