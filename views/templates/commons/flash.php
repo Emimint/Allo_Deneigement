@@ -22,7 +22,7 @@ function create_flash_message(string $name, string $message, string $type): void
         unset($_SESSION[FLASH][$name]);
     }
     // add the message to the session
-    $_SESSION[FLASH][$name] = ['message' => $message, 'type' => $type];
+    $_SESSION[FLASH][$name] = ['name' => $name, 'message' => $message, 'type' => $type];
 }
 
 
@@ -52,8 +52,11 @@ function format_flash_message(array $flash_message): string
 
     return sprintf(
         '
-        <div class= "my-2 alert alert-%s d-flex align-items-center alert-dismissible fade show" role="alert">
+        <div class= "mx-5 my-2 alert alert-%s d-flex align-items-center alert-dismissible fade show" role="alert">
         <i class="%s mx-2"></i>
+                <div class="mx-2">
+                <strong>%s :</strong>
+                </div>
                 <div>
                 %s
                 </div>
@@ -61,6 +64,7 @@ function format_flash_message(array $flash_message): string
             </div>',
         $flash_message['type'],
         $icon_type,
+        $flash_message['name'],
         $flash_message['message']
     );
 }

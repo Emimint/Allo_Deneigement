@@ -218,4 +218,10 @@ INSERT INTO Demande_de_service (date_debut, date_fin, status, commentaire, id_ut
 ('2023-02-05', '2023-02-10', 'Acceptée', 'Besoin de pelletage devant le tempo.', 7, 2, NULL, 2, 2),
 ('2023-03-15', '2023-03-20', 'Refusée', 'Besoin d''épandage de sel pour le stationnement.', 8, 3, NULL, 3, 3),
 ('2023-04-25', '2023-04-30', 'En attente', 'Entretien de chaudière à sel nécessaire.', 9, 4, NULL, 4, 4),
-('2023-05-10', '2023-05-15', 'Acceptée', 'Besoin de chargement de neige après la tempête.', 10, 5, NULL, 5, 5);
+('2023-05-10', '2023-05-15', 'Acceptée', 'Besoin de chargement de neige après la tempête.', 10, 5, NULL, 5, 5), 
+('2024-02-15', '2024-02-20', 'Acceptée', 'Besoin de déneigement urgent.', 6, 1, NULL, 1, 1),
+('2024-02-16', '2024-02-21', 'Refusée', 'Besoin de pelletage devant le tempo.', 6, 2, NULL, 2, 2),
+('2024-02-17', '2024-02-22', 'En attente', 'Besoin d''épandage de sel pour le stationnement.', 6, 3, NULL, 3, 3),
+('2024-02-18', '2024-02-23', 'Completée', 'Entretien de chaudière à sel nécessaire.', 6, 4, NULL, 4, 4),
+('2024-02-19', '2024-02-24', 'En attente', 'Besoin de chargement de neige après la tempête.', 6, 5, NULL, 5, 5);
+
