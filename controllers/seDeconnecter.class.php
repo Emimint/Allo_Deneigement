@@ -12,12 +12,13 @@ class SeDeconnecter extends Controleur
 	{
 		if ($this->acteur == "visiteur") {
 			array_push($this->messagesErreur, "Vous êtes déjà déconnécté.");
-			flash('Deconnexion', 'Vous êtes déjà déconnécté.', FLASH_SUCCESS);
+			flash('Deconnexion', 'Vous êtes déjà déconnécté.', FLASH_ERROR);
 			return "landing-page";
 		} else {
 			$this->acteur = "visiteur";
 			unset($_SESSION['utilisateurConnecte']);
 			flash('Deconnexion', 'A bientot!', FLASH_SUCCESS);
+			session_destroy();
 			return "landing-page";
 		}
 	}
