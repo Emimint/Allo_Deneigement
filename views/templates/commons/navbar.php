@@ -2,9 +2,9 @@
 if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/');
 ?>
 
-<div>
+<div >
     <header class="p-3 text-white vw-100" style="background-color: #b50303">
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="<?php echo BASE_URL;?>" class="d-flex align-items-center mb-3 mb-lg-0 text-white text-decoration-none me-lg-auto">
                     <div class="d-flex align-items-center bd-highlight">
