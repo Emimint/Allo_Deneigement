@@ -172,7 +172,7 @@ INSERT INTO Offre_de_service (id_fournisseur, prix_unitaire, description, type_c
 
 CREATE TABLE Review (
     id_review INT AUTO_INCREMENT PRIMARY KEY,
-    score INT CHECK(score >= 1 AND score <= 5) NOT NULL,
+    score INT NOT NULL CHECK(score >= 1 AND score <= 5) ,
     commentaire TEXT,
     id_utilisateur INT NOT NULL,
     id_service INT NOT NULL,

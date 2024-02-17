@@ -88,6 +88,60 @@ class PersonneDAO
         return $tableau;
     }
 
+    public static function getId($user_type, $email)
+    {
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD.");
+        }
+
+        $requete = $connexion->prepare("SELECT id_" . $user_type . " FROM " . $user_type . " WHERE email like '%" . $email . "%' LIMIT 1;");
+
+        $requete->execute();
+
+        $id_user = $requete->fetchColumn();
+
+        $requete->closeCursor();
+
+        return $id_user;
+    }
+
+    public static function insererAdresse($user_type, $nouvelleAdresse, $email)
+    {
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD.");
+        }
+
+        try {
+            AdresseDAO::inserer($nouvelleAdresse);
+        } catch (Exception $e) {
+            throw new Exception("Impossible de faire l'ajout.");
+        }
+
+        // Check if the id_adresse exists in the adresse table
+        $id_adresse = $connexion->lastInsertId();
+        $checkQuery = $connexion->prepare("SELECT COUNT(*) FROM adresse WHERE id_adresse = ?");
+        $checkQuery->execute([$id_adresse]);
+        $count = $checkQuery->fetchColumn();
+
+        if ($count == 0) {
+            throw new Exception("id_adresse does not exist in the adresse table.");
+        }
+
+        // Insert into liste_adresses_administrateur table
+        $requete = $connexion->prepare("INSERT INTO liste_adresses_" . $user_type . " (id_" . $user_type . ", id_adresse) VALUES (?,?);");
+
+        $tableauInfos = [
+            PersonneDAO::getId($user_type, $email),
+            $id_adresse
+        ];
+
+        return $requete->execute($tableauInfos);
+    }
+
     public static function modifier($unePersonne)
     {
         if ($unePersonne instanceof Utilisateur) {

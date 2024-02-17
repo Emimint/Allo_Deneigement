@@ -245,11 +245,13 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                                         require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/create-address-field.php");
                                                         require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/flash.php");
                                                         try {
-                                                            if (count($controleur->getListeAdresses()) == 0) {
+                                                            if ($controleur->getListeAdresses() == null) {
                                                                 echo '<div class="col-md-12 text-center">
                                                             <h5 class="container my-5 mx-5 p-3 border border-3 rounded rounded-3">Aucune adresse n\'a été trouvée.</h5>
                                                             </div>';
+                                                                $hideButton = true;
                                                             } else {
+                                                                $hideButton = false;
                                                                 foreach ($controleur->getListeAdresses()
                                                                     as $key => $adresse) { ?>
                                                                     <div class="col-md-12">
@@ -267,8 +269,7 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                                 </div>
                                             </div>
                                         </div>
-                                        <button name="submitMesAdresses" type="submit" data-purpose="user_manage:submit" class="ud-btn ud-btn-large ud-btn-primary ud-heading-md">
-                                            <span>Sauvegarder</span>
+                                        <button name="submitMesAdresses" type="submit" data-purpose="user_manage:submit" class="ud-btn ud-btn-large ud-btn-primary ud-heading-md" <?php echo $hideButton ? 'style="display: none;"' : ''; ?>> <span>Sauvegarder</span>
                                         </button>
                                         <button type="button" class="btn btn-light me-2" data-bs-target="#exampleModalCenter" id="filtrerButton" data-bs-toggle="modal">Ajouter une adresse</button>
                                     </div>

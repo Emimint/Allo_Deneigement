@@ -47,31 +47,45 @@ class AfficherProfile extends  Controleur
                     $_SESSION['infoUtilisateur']->setDescription($_POST['description']);
                 }
                 $_SESSION['infoUtilisateur']->setTelephone($_POST['telephone']);
-                PersonneDAO::modifier($_SESSION['infoUtilisateur']);
+                try {
+                    PersonneDAO::modifier($_SESSION['infoUtilisateur']);
+                } catch (Exception $e) {
+                    flash('Erreur', 'Impossible de mettre à jour vos informations. Veuillez vérifier vos saisies.', FLASH_ERROR);
+                    return "profilePage";
+                }
                 flash('Mise à jour de votre profil', 'Modification effectuée avec succès.', FLASH_SUCCESS);
                 return "profilePage";
             } else if (isset($_POST['submitMesAdresses'])) {
-
-                foreach ($this->liste_adresses as $address) {
-                    foreach ($_POST as $key => $value) {
-                        if (strpos($key, 'address' . $address->getIdAdresse()) !== false) {
-                            $address->setNomRue($value);
+                if ($this->liste_adresses != null && count($this->liste_adresses) > 0) {
+                    foreach ($this->liste_adresses as $address) {
+                        foreach ($_POST as $key => $value) {
+                            if (strpos($key, 'address' . $address->getIdAdresse()) !== false) {
+                                $address->setNomRue($value);
+                            }
+                            if (strpos($key, 'city' . $address->getIdAdresse()) !== false) {
+                                $address->setVille($value);
+                            }
+                            if (strpos($key, 'country' . $address->getIdAdresse()) !== false) {
+                                $address->setPays($value);
+                            }
+                            if (strpos($key, 'zip-code' . $address->getIdAdresse()) !== false) {
+                                $address->setCodePostal($value);
+                            }
+                            AdresseDAO::modifier($address);
                         }
-                        if (strpos($key, 'city' . $address->getIdAdresse()) !== false) {
-                            $address->setVille($value);
-                        }
-                        if (strpos($key, 'country' . $address->getIdAdresse()) !== false) {
-                            $address->setPays($value);
-                        }
-                        if (strpos($key, 'zip-code' . $address->getIdAdresse()) !== false) {
-                            $address->setCodePostal($value);
-                        }
-                        AdresseDAO::modifier($address);
                     }
+                    flash('Mise à jour de vos adresses', 'Modification effectuée avec succès.', FLASH_SUCCESS);
                 }
-                flash('Mise à jour de vos adresses', 'Modification effectuée avec succès.', FLASH_SUCCESS);
             } else if (isset($_POST['nouvelleAdresse'])) {
+                $nouvelleAdresse = new Adresse("", $_POST['newPostalCode'], $_POST['newNumero'], $_POST['newRue'], $_POST['newVille'], $_POST['newPays'], $_POST['newProvince'], "");
+                try {
+                    PersonneDAO::insererAdresse($_SESSION['utilisateurConnecte'], $nouvelleAdresse, $_SESSION['infoUtilisateur']->getEmail());
+                } catch (Exception $e) {
+                    flash('Erreur', 'Impossible d\' ajouter cette adresse. Veuillez vérifier vos saisies.', FLASH_ERROR);
+                    return "profilePage";
+                }
                 flash('Ajout adresse', 'Nouvelle adresse ajoutée avec succès.', FLASH_SUCCESS);
+                return "profilePage";
             }
             return "profilePage";
         } else {
