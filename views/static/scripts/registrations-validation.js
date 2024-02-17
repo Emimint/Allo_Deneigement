@@ -1,12 +1,6 @@
 $(document).ready(function () {
   $("#myForm").submit(function (event) {
     event.preventDefault();
-    if (validateForm()) {
-      // Perform form submission or other actions
-      alert("Form is valid. Submitting...");
-    } else {
-      alert("Entrée invalide, veuillez vérifier le formulaire.");
-    }
   });
 
   function validateForm() {
