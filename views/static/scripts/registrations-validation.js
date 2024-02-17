@@ -1,6 +1,7 @@
 $(document).ready(function () {
   $("#myForm").submit(function (event) {
     event.preventDefault();
+    validateForm();
   });
 
   function validateForm() {
@@ -39,9 +40,17 @@ $(document).ready(function () {
     isValid =
       validateInput(
         $("#confirmPassword"),
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/,
-        "Mot de passe invalide"
+        /^(?=.*[a-z])[a-zA-Z\d]{6,}$/,
+        "Veuillez confirmer votre mot de passe."
       ) && isValid;
+
+    if ($("#password").val() !== $("#confirmPassword").val()) {
+      $("#password, #confirmPassword").addClass("is-invalid");
+      $("#confirmPassword")
+        .siblings(".invalid-feedback")
+        .text("Les mots de passe ne correspondent pas");
+      isValid = false;
+    }
 
     // Additional custom validations can be added here
 
