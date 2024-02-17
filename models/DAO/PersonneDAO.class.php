@@ -88,6 +88,27 @@ class PersonneDAO
         return $tableau;
     }
 
+    public static function supprimerAdresse($user_type, $email, $adresse)
+    {
+        $id_personne = PersonneDAO::getId($user_type, $email);
+        $id_adresse = $adresse->getIdAdresse();
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD.");
+        }
+
+        $requete = $connexion->prepare("DELETE FROM liste_adresses_" . $user_type . " WHERE liste_adresses_" . $user_type . ".id_" . $user_type . "= " . $id_personne . " AND liste_adresses_" . $user_type . ".id_adresse = " . $id_adresse . ";");
+
+        $requete->execute();
+
+        $requete->closeCursor();
+
+        ConnexionBD::close();
+
+        AdresseDAO::supprimer($adresse);
+    }
+
     public static function getId($user_type, $email)
     {
         try {

@@ -85,8 +85,29 @@ class AfficherProfile extends  Controleur
                     return "profilePage";
                 }
                 flash('Ajout adresse', 'Nouvelle adresse ajoutée avec succès.', FLASH_SUCCESS);
+                echo '<script>
+                            setTimeout(function(){
+                                window.location.reload();
+                            }, 2000); // 2000 milliseconds = 2 seconds
+                          </script>';
                 return "profilePage";
             }
+            if ($this->liste_adresses != null && count($this->liste_adresses) > 0) {
+                foreach ($this->liste_adresses as $addresse) {
+                    if (isset($_POST["deleteAdresse" . $addresse->getIdAdresse()])) {
+                        PersonneDAO::supprimerAdresse($_SESSION['utilisateurConnecte'], $_SESSION['infoUtilisateur']->getEmail(), $addresse);
+                        flash('Suppression', 'Adresse supprimée avec succès.', FLASH_SUCCESS);
+                        echo '<script>
+                            setTimeout(function(){
+                                window.location.reload();
+                            }, 2000); // 2000 milliseconds = 2 seconds
+                          </script>';
+                        return "profilePage";
+                    }
+                }
+            }
+
+
             return "profilePage";
         } else {
             return "profilePage";

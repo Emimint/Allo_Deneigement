@@ -2,9 +2,18 @@
 
 include_once(DOSSIER_BASE_INCLUDE . "models/adresse.class.php");
 
-function afficherAdresse($adresse)
+function afficherAdresse($adresse, $key)
 {
+    echo '<div class="col-md-12 d-flex justify-content-between p-2">
+            <h5>Adresse #';
+    echo $key + 1;
+    echo '</h5>
+    <button name="deleteAdresse';
+    echo $adresse->getIdAdresse();
+    echo '" type="submit" class="fa fa-window-close" aria-hidden="true"></button>
+        </div>';
     echo '<div class="row mb-5">
+     <hr>
     <div class="col mt-3">
         <div class="form-group row">
             <label for="address" class="col-4 col-form-label">Adresse</label>

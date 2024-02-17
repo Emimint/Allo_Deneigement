@@ -254,11 +254,7 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                                                 $hideButton = false;
                                                                 foreach ($controleur->getListeAdresses()
                                                                     as $key => $adresse) { ?>
-                                                                    <div class="col-md-12">
-                                                                        <h5>Adresse #<?php echo $key + 1; ?></h5>
-                                                                        <hr>
-                                                                    </div>
-                                                        <?php afficherAdresse($adresse);
+                                                        <?php afficherAdresse($adresse, $key);
                                                                 }
                                                             }
                                                         } catch (Exception $e) {
