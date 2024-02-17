@@ -57,6 +57,7 @@ CREATE TABLE Fournisseur (
     nom_de_la_compagnie VARCHAR(255),
     nom_contact VARCHAR(255),
     prenom_contact VARCHAR(255),
+    description TEXT,
     telephone VARCHAR(20),
     username VARCHAR(50) UNIQUE,
     password VARCHAR(255),
@@ -64,12 +65,12 @@ CREATE TABLE Fournisseur (
     note_globale INT
 );
 
-INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, telephone, username, password, url_photo, note_globale) VALUES
-('compagnie1@snow.com', 'Snow Masters', 'Smith', 'John', '1234567890', 'snowmasters', 'password1', 'photo_url1.jpg', 4),
-('compagnie2@snow.com', 'Snow Clearers Inc.', 'Johnson', 'Alice', '9876543210', 'snowclearers', 'password2', 'photo_url2.jpg', 4),
-('compagnie3@snow.com', 'Snow Angels', 'Brown', 'Michael', '5551234567', 'snowangels', 'password3', 'photo_url3.jpg', 3),
-('compagnie4@snow.com', 'Ice Busters', 'Wilson', 'Emma', '4445556666', 'icebusters', 'password4', 'photo_url4.jpg', 5),
-('compagnie5@snow.com', 'Frost Fighters', 'Garcia', 'David', '2223334444', 'frostfighters', 'password5', 'photo_url5.jpg', 4);
+INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, description, telephone, username, password, url_photo, note_globale) VALUES
+('compagnie1@snow.com', 'Snow Masters', 'Smith', 'John', 'Snow Masters se spécialise dans la fourniture de services de déneigement de haute qualité pour les propriétés résidentielles et commerciales.', '1234567890', 'snowmasters', 'password1', 'photo_url1.jpg', 4),
+('compagnie2@snow.com', 'Snow Clearers Inc.', 'Johnson', 'Alice', 'Snow Clearers Inc. propose des solutions complètes de déneigement adaptées aux besoins uniques de chaque client.', '9876543210', 'snowclearers', 'password2', 'photo_url2.jpg', 4),
+('compagnie3@snow.com', 'Snow Angels', 'Brown', 'Michael', 'Snow Angels est dédié à assurer un déneigement sûr et efficace pour maintenir l'accessibilité des propriétés en hiver.', '5551234567', 'snowangels', 'password3', 'photo_url3.jpg', 3),
+('compagnie4@snow.com', 'Ice Busters', 'Wilson', 'Emma', 'Ice Busters se spécialise dans des solutions proactives de gestion de la glace pour prévenir les accidents et assurer la sécurité lors de conditions glaciales.', '4445556666', 'icebusters', 'password4', 'photo_url4.jpg', 5),
+('compagnie5@snow.com', 'Frost Fighters', 'Garcia', 'David', 'Frost Fighters propose des services fiables de déneigement et de déglaçage pour aider les clients à maintenir des propriétés sûres et fonctionnelles tout au long de la saison hivernale.', '2223334444', 'frostfighters', 'password5', 'photo_url5.jpg', 4);
 
 
 CREATE TABLE Administrateur (

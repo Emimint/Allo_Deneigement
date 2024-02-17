@@ -6,6 +6,7 @@ class Fournisseur extends Personne
     private $nom_de_la_compagnie;
     private $nom_contact;
     private $prenom_contact;
+    private $description;
     private $note_globale;
 
     // Constructor
@@ -15,6 +16,7 @@ class Fournisseur extends Personne
         $this->id_fournisseur = $id_fournisseur;
         $this->nom_de_la_compagnie = $nom_de_la_compagnie;
         $this->nom_contact = $nom_contact;
+        $this->description = $description;
         $this->prenom_contact = $prenom_contact;
         $this->note_globale = $note_globale;
         $this->id = $id_fournisseur;
@@ -61,6 +63,16 @@ class Fournisseur extends Personne
         $this->prenom_contact = $prenom_contact;
     }
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
     public function getNoteGlobale()
     {
         return $this->note_globale;
@@ -73,6 +85,6 @@ class Fournisseur extends Personne
 
     public function __toString()
     {
-        return "ID Fournisseur: " . $this->id_fournisseur . ", " . parent::__toString() . ", Nom de la compagnie: " . $this->nom_de_la_compagnie . ", Nom du contact: " . $this->nom_contact . ", Prenom du contact: " . $this->prenom_contact . ", Note Globale: " . $this->note_globale;
+        return "ID Fournisseur: " . $this->id_fournisseur . ", " . parent::__toString() . ", Nom de la compagnie: " . $this->nom_de_la_compagnie . ", Nom du contact: " . $this->nom_contact . ", Prenom du contact: " . $this->prenom_contact . ", Description: " . $this->description . ", Note Globale: " . $this->note_globale;
     }
 }
