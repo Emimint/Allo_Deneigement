@@ -1,7 +1,7 @@
 <?php
 if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Allo_Deneigement/views/');
 if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://localhost:80/Allo_Deneigement/");
-if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
+// if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
 ?>
 <div>
     <header class="p-3 text-white vw-100" style="background-color: #b50303">
@@ -35,11 +35,20 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
                         // Check if the user is logged in
                         if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] != "visiteur") {
                         ?>
-                            <div class="d-flex">
-                                <a href="#" class="nav-link px-2" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span style="color:white">Hello username!</span>
-                                </a>
-                                <a class="nav-link px-2" href="?action=seDeconnecter"><span style="color:white">Logout</span></a>
+                            <div class="btn btn-outline-light dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent;border-color: transparent;">
+                                    Bienvenue, <?php
+                                                if (($_SESSION['utilisateurConnecte']) == "administrateur" || ($_SESSION['utilisateurConnecte']) == "utilisateur") {
+                                                    echo $_SESSION['infoUtilisateur']->getPrenom();
+                                                } else {
+                                                    echo $_SESSION['infoUtilisateur']->getPrenomContact();
+                                                }
+                                                ?>!
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <li><a class="dropdown-item" type="button" href="?action=afficherProfile">Votre profile</a></li>
+                                    <li><a class="dropdown-item" type="button" href="?action=seDeconnecter">Deconnexion</a></li>
+                                </ul>
                             </div>
                         <?php
                         } else {
