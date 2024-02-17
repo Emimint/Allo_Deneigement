@@ -1,6 +1,7 @@
 <?php
 include_once(DOSSIER_BASE_INCLUDE . "controllers/controleur.abstract.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "models/DAO/utilisateurDAO.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "views/templates/commons/flash.php");
 
 class SeDeconnecter extends Controleur
 {

@@ -8,9 +8,9 @@ define('DOSSIER_VIEWS', 'http://localhost:80/Allo_Deneigement/views/');
 include_once DOSSIER_BASE_INCLUDE . "controllers/manufactureControleur.class.php";
 
 if (!isset($_GET['action'])) {
-    $action = "";
+        $action = "";
 } else {
-    $action = $_GET['action'];
+        $action = $_GET['action'];
 }
 $controleur = ManufactureControleur::creerControleur($action);
 
@@ -18,38 +18,12 @@ $nomVue = $controleur->executerAction();
 
 include_once(DOSSIER_PAGES . $nomVue . ".php");
 
-// // For debugging only :
-/**
-?>
-//
-<pre>
-//     <?php
-        //     if (isset($_SESSION['utilisateurConnecte']))
-        //         echo $_SESSION['utilisateurConnecte'];
-        //     
-        ?>
-// </pre>
-
-//
-<pre>
-//     <?php
-        //     if (isset($controleur)) {
-        //         echo $nomVue;
-        //         var_dump($controleur);
-        //     }
-        //     
-        ?>
-// </pre>
-
-//
-<pre>
-//     <?php
-
-        //     if (isset($_SESSION['infoUtilisateur'])) {
-        //         echo $_SESSION['infoUtilisateur'];
-        //     }
-        //     
-        ?>
-// </pre>
-
- */
+// if (isset($_SESSION['utilisateurConnecte']))
+//         echo $_SESSION['utilisateurConnecte'];
+// if (isset($controleur)) {
+//         echo $nomVue;
+//         var_dump($controleur);
+// }
+if (isset($_SESSION['infoUtilisateur'])) {
+        echo $_SESSION['infoUtilisateur'];
+}
