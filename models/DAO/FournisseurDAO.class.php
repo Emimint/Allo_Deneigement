@@ -120,7 +120,7 @@ class FournisseurDAO  implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Fournisseur SET email=?, nom_de_la_compagnie=?, nom_contact=?, prenom_contact=?, description=?, telephone=?, username=?, password=?, photo_url=?, note_globale=? WHERE id_fournisseur=?");
+        $requete = $connexion->prepare("UPDATE Fournisseur SET email=?, nom_de_la_compagnie=?, nom_contact=?, prenom_contact=?, description=?, telephone=?, username=?, password=?, url_photo=?, note_globale=? WHERE id_fournisseur=?");
 
         $tableauInfos = [
             $fournisseur->getEmail(),
