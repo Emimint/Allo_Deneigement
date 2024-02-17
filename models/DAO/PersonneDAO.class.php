@@ -6,6 +6,7 @@ if (defined("DOSSIER_BASE_INCLUDE") == false) {
 
 include_once(DOSSIER_BASE_INCLUDE . 'models/DAO/connexionBD.class.php');
 include_once(DOSSIER_BASE_INCLUDE . "models/personne.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/adresse.class.php");
 include_once(DOSSIER_BASE_INCLUDE . 'models/DAO/AdministrateurDAO.class.php');
 include_once(DOSSIER_BASE_INCLUDE . 'models/DAO/UtilisateurDAO.class.php');
 include_once(DOSSIER_BASE_INCLUDE . 'models/DAO/FournisseurDAO.class.php');
@@ -49,7 +50,7 @@ class PersonneDAO
         return null;
     }
 
-    public static function chercherAdresses($user_type, $user_id)
+    public static function chercherAdresses($user_type, $email)
     {
         try {
             $connexion = ConnexionBD::getInstance();
@@ -59,7 +60,7 @@ class PersonneDAO
 
         $tableau = [];
 
-        $requete = $connexion->prepare("SELECT L.id_adresse, code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees from " . $user_type . " T, liste_adresses_" . $user_type . " L, adresse A WHERE T.id_" . $user_type . " = L.id_" . $user_type . " AND L.id_adresse = A.id_adresse AND T.id_" . $user_type . " = " . $user_id . ";");
+        $requete = $connexion->prepare("SELECT L.id_adresse, code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees from " . $user_type . " T, liste_adresses_" . $user_type . " L, adresse A WHERE T.id_" . $user_type . " = L.id_" . $user_type . " AND L.id_adresse = A.id_adresse AND T.email like '" . $email . "';");
 
         $requete->execute();
 
