@@ -145,6 +145,14 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-3">
+                                                        <label for="email" class="col-4 col-form-label">Téléphone</label>
+                                                        <div class="col-8">
+                                                            <input id="telephone" name="telephone" placeholder="telephone" class="form-control" required="required" type="text" value="<?php
+                                                                                                                                                                                        echo $_SESSION['infoUtilisateur']->getTelephone();
+                                                                                                                                                                                        ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row mb-3">
                                                         <label for="email" class="col-4 col-form-label">Email</label>
                                                         <div class="col-8">
                                                             <input id="email" name="email" placeholder="Email" class="form-control" required="required" type="text" value="<?php
@@ -156,7 +164,9 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                                         <div class="form-group row mb-3">
                                                             <label for="publicinfo" class="col-4 col-form-label">Décrire votre site</label>
                                                             <div class="col-8">
-                                                                <textarea id="publicinfo" name="publicinfo" cols="40" rows="4" class="form-control"></textarea>
+                                                                <textarea id="publicinfo" name="description" cols="40" rows="4" class="form-control"><?php
+                                                                                                                                                        echo $_SESSION['infoUtilisateur']->getDescription();
+                                                                                                                                                        ?></textarea>
                                                             </div>
                                                         </div>
                                                     <?php } ?>
@@ -185,7 +195,7 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <form action="?=afficherProfile" method="POST">
+                                                        <form action="?action=afficherProfile" method="POST">
                                                             <div class="um-container">
                                                                 <input type="hidden" name="csrfmiddlewaretoken" value="8pIEtG7udmnHLScoTIvcDT0mifGfGC0qiQwb2w496VODME97rBbrOMPukz7PImII">
                                                                 <div class="ud-form-group">

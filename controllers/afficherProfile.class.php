@@ -31,7 +31,24 @@ class AfficherProfile extends  Controleur
 
         if (($_SERVER['REQUEST_METHOD'] === 'POST')) {
             if (isset($_POST['submitProfil'])) {
+                if (PersonneDAO::chercherPersonne($_POST['email']) != null && $_POST['email'] != $_SESSION['infoUtilisateur']->getEmail()) {
+                    flash('Erreur', 'Cette adresse courriel est déjà utilisée.', FLASH_ERROR);
+                    return "profilePage";
+                }
+
+                if ($_SESSION['utilisateurConnecte'] == "administrateur" || $_SESSION['utilisateurConnecte'] == "utilisateur") {
+                    $_SESSION['infoUtilisateur']->setNom($_POST['nom']);
+                    $_SESSION['infoUtilisateur']->setPrenom($_POST['prenom']);
+                } else {
+                    $_SESSION['infoUtilisateur']->setNomContact($_POST['nom']);
+                    $_SESSION['infoUtilisateur']->setPrenomContact($_POST['prenom']);
+                    $_SESSION['infoUtilisateur']->setNomDeLaCompagnie($_POST['nom-companie']);
+                    $_SESSION['infoUtilisateur']->setDescription($_POST['description']);
+                }
+                $_SESSION['infoUtilisateur']->setTelephone($_POST['telephone']);
+                PersonneDAO::modifier($_SESSION['infoUtilisateur']);
                 flash('Mise à jour de votre profil', 'Modification effectuée avec succès.', FLASH_SUCCESS);
+                return "profilePage";
             } else if (isset($_POST['submitMesAdresses'])) {
                 flash('Mise à jour de vos adresses', 'Modification effectuée avec succès.', FLASH_SUCCESS);
             } else if (isset($_POST['nouvelleAdresse'])) {
