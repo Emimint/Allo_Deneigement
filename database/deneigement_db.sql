@@ -4,12 +4,12 @@ USE deneigement_db;
 
 CREATE TABLE Adresse (
     id_adresse INT AUTO_INCREMENT PRIMARY KEY,
-    code_postal VARCHAR(10),
-    numero_civique VARCHAR(10),
-    nom_rue VARCHAR(255),
-    ville VARCHAR(255),
-    pays VARCHAR(255),
-    province VARCHAR(255),
+    code_postal VARCHAR(10) NOT NULL,
+    numero_civique VARCHAR(10) NOT NULL,
+    nom_rue VARCHAR(255) NOT NULL,
+    ville VARCHAR(255)NOT NULL,
+    pays VARCHAR(255) NOT NULL,
+    province VARCHAR(255) NOT NULL,
     coordonnees POINT
 );
 
@@ -27,12 +27,12 @@ INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province
 
 CREATE TABLE Utilisateur (
     id_utilisateur INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) UNIQUE,
-    nom VARCHAR(255),
-    prenom VARCHAR(255),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
     telephone VARCHAR(20),
     username VARCHAR(50) UNIQUE,
-    password VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
     url_photo VARCHAR(255)
 );
 
@@ -50,14 +50,14 @@ INSERT INTO Utilisateur (email, nom, prenom, telephone, username, password, url_
 
 CREATE TABLE Fournisseur (
     id_fournisseur INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) UNIQUE,
-    nom_de_la_compagnie VARCHAR(255),
-    nom_contact VARCHAR(255),
-    prenom_contact VARCHAR(255),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    nom_de_la_compagnie VARCHAR(255) NOT NULL,
+    nom_contact VARCHAR(255) NOT NULL,
+    prenom_contact VARCHAR(255) NOT NULL,
     description TEXT,
     telephone VARCHAR(20),
     username VARCHAR(50) UNIQUE,
-    password VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
     url_photo VARCHAR(255),
     note_globale INT
 );
@@ -71,12 +71,12 @@ INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact
 
 CREATE TABLE Administrateur (
     id_administrateur INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) UNIQUE,
-    nom VARCHAR(255),
-    prenom VARCHAR(255),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
     telephone VARCHAR(20),
     username VARCHAR(50) UNIQUE,
-    password VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
     url_photo VARCHAR(255)
 );
 
@@ -138,10 +138,10 @@ INSERT INTO Liste_adresses_Administrateur (id_administrateur, id_adresse) VALUES
 
 CREATE TABLE Billet (
     id_billet INT AUTO_INCREMENT PRIMARY KEY,
-    motif VARCHAR(255),
-    texte TEXT,
+    motif VARCHAR(255) NOT NULL,
+    texte TEXT NOT NULL,
     date_billet DATE,
-    email VARCHAR(255)
+    email VARCHAR(255) NOT NULL
 );
 
 INSERT INTO Billet (motif, texte, date_billet, email) VALUES
@@ -155,11 +155,11 @@ INSERT INTO Billet (motif, texte, date_billet, email) VALUES
 
 CREATE TABLE Offre_de_service (
     id_service INT AUTO_INCREMENT PRIMARY KEY,
-    id_fournisseur INT,
-    prix_unitaire DECIMAL(10,2),
-    description TEXT,
-    type_clientele ENUM('Résidentiel', 'Commercial'),
-    categorie ENUM('Entrée de garage', 'Devant tempo', 'Pelletage', 'Epandage de sel', 'Chaudière de sel', 'Chargement de neige'),
+    id_fournisseur INT NOT NULL,
+    prix_unitaire DECIMAL(10,2) NOT NULL,
+    description TEXT NOT NULL,
+    type_clientele ENUM('Résidentiel', 'Commercial') NOT NULL,
+    categorie ENUM('Entrée de garage', 'Devant tempo', 'Pelletage', 'Epandage de sel', 'Chaudière de sel', 'Chargement de neige') NOT NULL,
     FOREIGN KEY (id_fournisseur) REFERENCES Fournisseur(id_fournisseur)
 );
 
@@ -172,10 +172,10 @@ INSERT INTO Offre_de_service (id_fournisseur, prix_unitaire, description, type_c
 
 CREATE TABLE Review (
     id_review INT AUTO_INCREMENT PRIMARY KEY,
-    score INT CHECK(score >= 1 AND score <= 5),
+    score INT CHECK(score >= 1 AND score <= 5) NOT NULL,
     commentaire TEXT,
-    id_utilisateur INT,
-    id_service INT,
+    id_utilisateur INT NOT NULL,
+    id_service INT NOT NULL,
     date_commentaire DATE,
     FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur),
     FOREIGN KEY (id_service) REFERENCES Offre_de_service(id_service)
@@ -191,15 +191,15 @@ INSERT INTO Review (score, commentaire, id_utilisateur, id_service, date_comment
 
 CREATE TABLE Demande_de_service (
     id_demande INT AUTO_INCREMENT PRIMARY KEY,
-    date_debut DATE,
+    date_debut DATE NOT NULL,
     date_fin DATE,
     status ENUM('Acceptée', 'Refusée', 'En attente', 'Complétée'),
     commentaire TEXT,
-    id_utilisateur INT,
-    id_fournisseur INT,
+    id_utilisateur INT NOT NULL,
+    id_fournisseur INT NOT NULL,
     id_review INT,
-    id_offre INT,
-    id_adresse INT,
+    id_offre INT NOT NULL,
+    id_adresse INT NOT NULL,
     FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur),
     FOREIGN KEY (id_fournisseur) REFERENCES Fournisseur(id_fournisseur),
     FOREIGN KEY (id_review) REFERENCES Review(id_review),
