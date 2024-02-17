@@ -28,9 +28,19 @@ class Adresse
         return $this->id_adresse;
     }
 
+    public function setIdAdresse($id_adresse)
+    {
+        $this->id_adresse = $id_adresse;
+    }
+
     public function getCodePostal()
     {
         return $this->code_postal;
+    }
+
+    public function setCodePostal($code_postal)
+    {
+        $this->code_postal = $code_postal;
     }
 
     public function getNumeroCivique()
@@ -38,9 +48,19 @@ class Adresse
         return $this->numero_civique;
     }
 
+    public function setNumeroCivique($numero_civique)
+    {
+        $this->numero_civique = $numero_civique;
+    }
+
     public function getNomRue()
     {
         return $this->nom_rue;
+    }
+
+    public function setNomRue($nom_rue)
+    {
+        $this->nom_rue = $nom_rue;
     }
 
     public function getVille()
@@ -48,9 +68,19 @@ class Adresse
         return $this->ville;
     }
 
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+    }
+
     public function getPays()
     {
         return $this->pays;
+    }
+
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
     }
 
     public function getProvince()
@@ -58,9 +88,19 @@ class Adresse
         return $this->province;
     }
 
+    public function setProvince($province)
+    {
+        $this->province = $province;
+    }
+
     public function getCoordonnees()
     {
         return $this->coordonnees;
+    }
+
+    public function setCoordonnees($coordonnees)
+    {
+        $this->coordonnees = $coordonnees;
     }
 
     public function __toString()

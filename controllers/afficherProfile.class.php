@@ -2,6 +2,7 @@
 
 include_once(DOSSIER_BASE_INCLUDE . "controllers/controleur.abstract.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "views/templates/commons/flash.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/DAO/AdresseDAO.class.php");
 
 class AfficherProfile extends  Controleur
 {
@@ -50,6 +51,24 @@ class AfficherProfile extends  Controleur
                 flash('Mise à jour de votre profil', 'Modification effectuée avec succès.', FLASH_SUCCESS);
                 return "profilePage";
             } else if (isset($_POST['submitMesAdresses'])) {
+
+                foreach ($this->liste_adresses as $address) {
+                    foreach ($_POST as $key => $value) {
+                        if (strpos($key, 'address' . $address->getIdAdresse()) !== false) {
+                            $address->setNomRue($value);
+                        }
+                        if (strpos($key, 'city' . $address->getIdAdresse()) !== false) {
+                            $address->setVille($value);
+                        }
+                        if (strpos($key, 'country' . $address->getIdAdresse()) !== false) {
+                            $address->setPays($value);
+                        }
+                        if (strpos($key, 'zip-code' . $address->getIdAdresse()) !== false) {
+                            $address->setCodePostal($value);
+                        }
+                        AdresseDAO::modifier($address);
+                    }
+                }
                 flash('Mise à jour de vos adresses', 'Modification effectuée avec succès.', FLASH_SUCCESS);
             } else if (isset($_POST['nouvelleAdresse'])) {
                 flash('Ajout adresse', 'Nouvelle adresse ajoutée avec succès.', FLASH_SUCCESS);
