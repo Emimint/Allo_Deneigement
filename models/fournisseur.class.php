@@ -10,7 +10,7 @@ class Fournisseur extends Personne
     private $note_globale;
 
     // Constructor
-    public function __construct($id_fournisseur, $email, $nom_de_la_compagnie, $nom_contact, $prenom_contact, $telephone, $username, $password, $url_photo, $note_globale)
+    public function __construct($id_fournisseur, $email, $nom_de_la_compagnie, $nom_contact, $prenom_contact, $description, $telephone, $username, $password, $url_photo, $note_globale)
     {
         parent::__construct($email, $telephone, $username, $password, $url_photo);
         $this->id_fournisseur = $id_fournisseur;

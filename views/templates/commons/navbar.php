@@ -1,7 +1,7 @@
 <?php
 if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Allo_Deneigement/views/');
 if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://localhost:80/Allo_Deneigement/");
-// if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
+if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
 ?>
 <div>
     <header class="p-3 text-white vw-100" style="background-color: #b50303">

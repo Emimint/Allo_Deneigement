@@ -1,4 +1,4 @@
-CREATE DATABASE deneigement_db DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE deneigement_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE deneigement_db;
 
@@ -12,8 +12,6 @@ CREATE TABLE Adresse (
     province VARCHAR(255),
     coordonnees POINT
 );
-
-
 
 INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees) VALUES
 ('H1A 0A1', '123', 'Rue Saint-Jacques', 'Montreal', 'Canada', 'Quebec', POINT(45.514, -73.554)),
@@ -50,7 +48,6 @@ INSERT INTO Utilisateur (email, nom, prenom, telephone, username, password, url_
 ('william.martinez@example.com', 'Martinez', 'William', '3334445555', 'williammartinez', 'password9', 'url_photo9.jpg'),
 ('isabella.yang@example.com', 'Yang', 'Isabella', '7778889999', 'isabellayang', 'password10', 'url_photo10.jpg');
 
-
 CREATE TABLE Fournisseur (
     id_fournisseur INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) UNIQUE,
@@ -68,10 +65,9 @@ CREATE TABLE Fournisseur (
 INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, description, telephone, username, password, url_photo, note_globale) VALUES
 ('compagnie1@snow.com', 'Snow Masters', 'Smith', 'John', 'Snow Masters se spécialise dans la fourniture de services de déneigement de haute qualité pour les propriétés résidentielles et commerciales.', '1234567890', 'snowmasters', 'password1', 'photo_url1.jpg', 4),
 ('compagnie2@snow.com', 'Snow Clearers Inc.', 'Johnson', 'Alice', 'Snow Clearers Inc. propose des solutions complètes de déneigement adaptées aux besoins uniques de chaque client.', '9876543210', 'snowclearers', 'password2', 'photo_url2.jpg', 4),
-('compagnie3@snow.com', 'Snow Angels', 'Brown', 'Michael', 'Snow Angels est dédié à assurer un déneigement sûr et efficace pour maintenir l'accessibilité des propriétés en hiver.', '5551234567', 'snowangels', 'password3', 'photo_url3.jpg', 3),
+('compagnie3@snow.com', 'Snow Angels', 'Brown', 'Michael', 'Snow Angels est dédié à assurer un déneigement sûr et efficace pour maintenir l\'accessibilité des propriétés en hiver.', '5551234567', 'snowangels', 'password3', 'photo_url3.jpg', 3),
 ('compagnie4@snow.com', 'Ice Busters', 'Wilson', 'Emma', 'Ice Busters se spécialise dans des solutions proactives de gestion de la glace pour prévenir les accidents et assurer la sécurité lors de conditions glaciales.', '4445556666', 'icebusters', 'password4', 'photo_url4.jpg', 5),
 ('compagnie5@snow.com', 'Frost Fighters', 'Garcia', 'David', 'Frost Fighters propose des services fiables de déneigement et de déglaçage pour aider les clients à maintenir des propriétés sûres et fonctionnelles tout au long de la saison hivernale.', '2223334444', 'frostfighters', 'password5', 'photo_url5.jpg', 4);
-
 
 CREATE TABLE Administrateur (
     id_administrateur INT AUTO_INCREMENT PRIMARY KEY,
@@ -88,7 +84,6 @@ INSERT INTO Administrateur (email, nom, prenom, telephone, username, password, u
 ('admin1@deneigement.ca', 'Admin1', 'Smith', '1234567890', 'admin1', 'password1', 'photo_url1.jpg'),
 ('admin2@deneigement.ca', 'Admin2', 'Johnson', '9876543210', 'admin2', 'password2', 'photo_url2.jpg');
 
-
 CREATE TABLE Liste_adresses_Utilisateur (
     id_utilisateur INT,
     id_adresse INT,
@@ -99,7 +94,7 @@ CREATE TABLE Liste_adresses_Utilisateur (
 
 INSERT INTO Liste_adresses_Utilisateur (id_utilisateur, id_adresse) VALUES
 (1, 1), 
- (1, 2), 
+(1, 2), 
 (1, 3),
 (2, 2),  
 (3, 3), 
@@ -110,7 +105,6 @@ INSERT INTO Liste_adresses_Utilisateur (id_utilisateur, id_adresse) VALUES
 (8, 8),  
 (9, 9),  
 (10, 10); 
-
 
 CREATE TABLE Liste_adresses_Fournisseur (
     id_fournisseur INT,
@@ -141,7 +135,6 @@ INSERT INTO Liste_adresses_Administrateur (id_administrateur, id_adresse) VALUES
 (1, 8),
 (1, 9),
 (2, 2);
-
 
 CREATE TABLE Billet (
     id_billet INT AUTO_INCREMENT PRIMARY KEY,
@@ -200,7 +193,7 @@ CREATE TABLE Demande_de_service (
     id_demande INT AUTO_INCREMENT PRIMARY KEY,
     date_debut DATE,
     date_fin DATE,
-    status ENUM('Acceptée', 'Refusée', 'En attente', 'Completée'),
+    status ENUM('Acceptée', 'Refusée', 'En attente', 'Complétée'),
     commentaire TEXT,
     id_utilisateur INT,
     id_fournisseur INT,
@@ -223,6 +216,5 @@ INSERT INTO Demande_de_service (date_debut, date_fin, status, commentaire, id_ut
 ('2024-02-15', '2024-02-20', 'Acceptée', 'Besoin de déneigement urgent.', 6, 1, NULL, 1, 1),
 ('2024-02-16', '2024-02-21', 'Refusée', 'Besoin de pelletage devant le tempo.', 6, 2, NULL, 2, 2),
 ('2024-02-17', '2024-02-22', 'En attente', 'Besoin d''épandage de sel pour le stationnement.', 6, 3, NULL, 3, 3),
-('2024-02-18', '2024-02-23', 'Completée', 'Entretien de chaudière à sel nécessaire.', 6, 4, NULL, 4, 4),
+('2024-02-18', '2024-02-23', 'Complétée', 'Entretien de chaudière à sel nécessaire.', 6, 4, NULL, 4, 4),
 ('2024-02-19', '2024-02-24', 'En attente', 'Besoin de chargement de neige après la tempête.', 6, 5, NULL, 5, 5);
-

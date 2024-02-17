@@ -33,6 +33,16 @@ class Utilisateur extends Personne
         return $this->prenom;
     }
 
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
+
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    }
+
     public function __toString()
     {
         return "Utilisateur [id_utilisateur=" . $this->id_utilisateur . ", " . parent::__toString() . ", nom=" . $this->nom . ", prenom=" . $this->prenom . "]";

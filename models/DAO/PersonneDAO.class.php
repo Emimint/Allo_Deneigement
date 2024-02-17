@@ -14,7 +14,7 @@ include_once(DOSSIER_BASE_INCLUDE . 'models/DAO/FournisseurDAO.class.php');
 class PersonneDAO
 {
 
-    public static function chercherEmail($filtre)
+    public static function chercherPersonne($filtre)
     {
         try {
             $connexion = ConnexionBD::getInstance();
@@ -86,5 +86,16 @@ class PersonneDAO
         ConnexionBD::close();
 
         return $tableau;
+    }
+
+    public static function modifier($unePersonne)
+    {
+        if ($unePersonne instanceof Utilisateur) {
+            UtilisateurDAO::modifier($unePersonne);
+        } else if ($unePersonne instanceof Administrateur) {
+            AdministrateurDAO::modifier($unePersonne);
+        } else if ($unePersonne instanceof Fournisseur) {
+            FournisseurDAO::modifier($unePersonne);
+        }
     }
 }
