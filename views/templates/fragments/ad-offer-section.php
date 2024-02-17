@@ -4,9 +4,51 @@
     <div class="container">
       <div class="masthead-subheading">Deneigement Martineau et Fils</div>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+       <!-- Ajout du bouton pour envoyer un email -->
+       <div class="text-center mb-4">
+       <button type="button" data-toggle="modal" style="background-color: #b50303; color: white;" data-target="#emailModal">Contacter Fournisseur</button>
+
+      </div>
     </div>
   </section>
+   <!-- Modal pour l'envoi d'email -->
+   <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="emailModalLabel">Envoyer un email</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
 
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-email" class="col-form-label">Adresse email du destinataire:</label>
+              <input type="email" class="form-control" id="recipient-email">
+            </div>
+            <div class="form-group">
+              <label for="email-message" class="col-form-label">Message:</label>
+              <textarea class="form-control" id="email-message"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" style="background-color: #b50303; color: white;" data-dismiss="modal">Fermer</button>
+          <button type="button" style="background-color: #b50303; color: white;" >Envoyer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Attacher un gestionnaire d'événement au bouton "Envoyer un email"
+document.querySelector('.masthead button[data-target="#emailModal"]').addEventListener('click', function() {
+    // Ouvrir le modal "Envoyer un email"
+    $('#emailModal').modal('show');
+});
+
+  </script>
   <div class="ad-service container-fluid">
     <div class="container p-5">
 <!--      Principaux services du fournisseur:-->
