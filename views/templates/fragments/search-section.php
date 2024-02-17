@@ -1,4 +1,8 @@
-<div class="container-fluid d-flex align-items-center justify-content-center" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('<?php echo BASE_URL;?>static/image/snow-plow.jpg'); background-size: cover; background-position: center;">
+<?php
+if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Allo_Deneigement/views/');
+if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://localhost:80/Allo_Deneigement/");
+?>
+<div class="container-fluid d-flex align-items-center justify-content-center" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('<?php echo BASE_URL_VIEWS; ?>static/image/snow-plow.jpg'); background-size: cover; background-position: center;">
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -7,96 +11,96 @@
         <span class="d-flex flex-row-reverse" data-bs-dismiss="modal">
           <i class="fa fa-window-close" aria-hidden="true"></i>
         </span>
-          <div class="container">
+        <div class="container">
+          <div>
+            <h3 class="bold">Type de residence</h3>
             <div>
-              <h3 class="bold">Type de residence</h3>
-              <div>
-                <div>
-                  <label>
-                    <input type="checkbox">
-                    <span class="fil-name">Commercial</span></label>
-                </div>
-              </div>
               <div>
                 <label>
                   <input type="checkbox">
-                  <span class="checkmark"></span>
-                  <span class="fil-name">Particulier</span></label>
+                  <span class="fil-name">Commercial</span></label>
               </div>
             </div>
             <div>
-              <h3 class="bold">Services proposes</h3>
+              <label>
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="fil-name">Particulier</span></label>
+            </div>
+          </div>
+          <div>
+            <h3 class="bold">Services proposes</h3>
+            <div>
               <div>
-                <div>
-                  <label>
-                    <input type="checkbox">
-                    <span class="fil-name">Ependage</span>
-                  </label>
-                </div>
+                <label>
+                  <input type="checkbox">
+                  <span class="fil-name">Ependage</span>
+                </label>
               </div>
+            </div>
+            <div>
               <div>
-                <div>
-                  <label>
-                    <input type="checkbox">
-                    <span class="fil-name">Deneigement</span>
-                  </label>
-                </div>
+                <label>
+                  <input type="checkbox">
+                  <span class="fil-name">Deneigement</span>
+                </label>
               </div>
+            </div>
+            <div>
               <div>
-                <div>
-                  <label>
-                    <input type="checkbox">
-                    <span class="fil-name">Transport de neige</span>
-                  </label>
-                </div>
+                <label>
+                  <input type="checkbox">
+                  <span class="fil-name">Transport de neige</span>
+                </label>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 
   <div class="search-box bg-light rounded shadow p-5">
-      <div class="text-black text-center p-5">
-        <h2 class="mb-3">Notre liste de fournisseurs</h2>
-        <h5 class="mb-4">Decouvrez notre selection de professionnels repondant a vos besoins</h5>
-        <div class="container p-3">
-          <div class="row justify-content-center mb-2">
+    <div class="text-black text-center p-5">
+      <h2 class="mb-3">Notre liste de fournisseurs</h2>
+      <h5 class="mb-4">Decouvrez notre selection de professionnels repondant a vos besoins</h5>
+      <div class="container p-3">
+        <div class="row justify-content-center mb-2">
 
-            <div class="col-lg-2 col-md-6">
-              <p class="d-inline-block h6"> Cherchez par:</p>
-            </div>
+          <div class="col-lg-2 col-md-6">
+            <p class="d-inline-block h6"> Cherchez par:</p>
+          </div>
 
-            <div class="col-lg-3 col-md-6 d-flex">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="searchType" id="codePostal">
-                <label class="form-check-label" for="codePostal">
-                </label>
-              </div>
-              <form role="search">
-                <input type="search" class="form-control" placeholder="Code postal..." aria-label="Search">
-              </form>
+          <div class="col-lg-3 col-md-6 d-flex">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="searchType" id="codePostal">
+              <label class="form-check-label" for="codePostal">
+              </label>
             </div>
+            <form role="search">
+              <input type="search" class="form-control" placeholder="Code postal..." aria-label="Search">
+            </form>
+          </div>
 
-            <div class="col-lg-3 col-md-6 d-flex">
-              <div class="px-2">
-                <p class="d-inline-block h6"> ou </p>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="searchType" id="allFournisseurs"  checked>
-                <label class="form-check-label h6" for="allFournisseurs">
-                  Tous les fournisseurs
-                </label>
-              </div>
+          <div class="col-lg-3 col-md-6 d-flex">
+            <div class="px-2">
+              <p class="d-inline-block h6"> ou </p>
             </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="searchType" id="allFournisseurs" checked>
+              <label class="form-check-label h6" for="allFournisseurs">
+                Tous les fournisseurs
+              </label>
+            </div>
+          </div>
 
-            <div class="col-lg-1 col-md-6">
-              <button type="button" class="btn btn-light me-2" data-bs-target="#exampleModalCenter" id="filtrerButton" data-bs-toggle="modal">Filtrer</button>
-            </div>
+          <div class="col-lg-1 col-md-6">
+            <button type="button" class="btn btn-light me-2" data-bs-target="#exampleModalCenter" id="filtrerButton" data-bs-toggle="modal">Filtrer</button>
+          </div>
 
-            <div class="col-lg-1 col-md-6">
-              <button type="button" class="btn btn-light me-2" id="searchButton">Rechercher</button>
-            </div>
+          <div class="col-lg-1 col-md-6">
+            <button type="button" class="btn btn-light me-2" id="searchButton">Rechercher</button>
+          </div>
 
         </div>
         <div class="container-fluid">
@@ -233,6 +237,6 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
-</div>
 </div>

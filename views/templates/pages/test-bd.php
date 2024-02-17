@@ -5,25 +5,24 @@ if (!defined("DOSSIER_BASE_INCLUDE")) {
 }
 
 // Incluez les fichiers nécessaires
-include_once(DOSSIER_BASE_INCLUDE . "models/DAO/DAO.interface.php");
-include_once(DOSSIER_BASE_INCLUDE . "models/billet.class.php");
-include_once(DOSSIER_BASE_INCLUDE . "models/DAO/BilletDAO.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/adresse.class.php");
+include_once(DOSSIER_BASE_INCLUDE . 'models/DAO/AdresseDAO.class.php');
+include_once(DOSSIER_BASE_INCLUDE . "models/personne.class.php");
+include_once(DOSSIER_BASE_INCLUDE . 'models/DAO/PersonneDAO.class.php');
 
 
 try {
-    // Récupérez tous les billets
-    $liste_billets = BilletDAO::chercherTous();
-echo "nimporte quoi";
-    // Affichez les billets
-    foreach ($liste_billets as $billet) {
-        echo "<p>ID: " . $billet->getIdBillet() . "</p>";
-        echo "<p>Motif: " . $billet->getMotif() . "</p>";
-        echo "<p>Texte: " . $billet->getTexte() . "</p>";
-        echo "<p>Date: " . $billet->getDateBillet() . "</p>";
-        echo "<p>Email: " . $billet->getEmail() . "</p>";
-        echo "<hr>";
+    $requete = "doe"; // adresse courriel entiere ou partielle
+    $utilisateur1 = PersonneDAO::chercherEmail($requete) ?? null;
+    echo
+    $utilisateur1 ? "<h3>On cherche tous les adresses pour " . get_class($utilisateur1) . ", " . $utilisateur1->getUsername() . " :</h3>" : "<p><h3>Aucun utilisateur trouvé</h3></p>";
+    $liste_adresses = PersonneDAO::chercherAdresses(
+        get_class($utilisateur1),
+        $utilisateur1->getId()
+    );
+    foreach ($liste_adresses as $adresse) {
+        echo "<p>" . $adresse->getCodePostal() . " -  rue " . $adresse->getNomRue() . "</p>";
     }
 } catch (Exception $e) {
     echo "Erreur: " . $e->getMessage();
 }
-?>
