@@ -119,7 +119,12 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
 
                   <!--    1) Numbers of results to show-->
                   <div>
-                    14 fournisseurs trouves [pres de l'adresse]
+                    <?php if (isset($_SESSION["liste_fournisseurs"])) {
+                      echo count($_SESSION["liste_fournisseurs"]);
+                      echo " fournisseurs trouvés";
+                    } else {
+                      echo "Aucun fournisseur trouvé";
+                    } ?>
                   </div>
 
                   <!--    2) Suppliers addresses-->
