@@ -19,7 +19,7 @@
                     $province = "";
                 }
     ?>
-                <div class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
+                <div class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true" onclick="toggleActive(this)">
                     <div class="d-flex w-100 align-items-center justify-content-between">
                         <strong class="mb-1">
                             <i class="fa-solid fa-map-pin" style="color:white"></i>
@@ -27,13 +27,13 @@
                         </strong>
                         <small class="text-body-secondary">
                             <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
-                            <?php echo $fournisseur->getNoteGlobale(); ?>
+                            <?php echo $fournisseur->getNoteGlobale(); ?>/5
                         </small>
                     </div>
                     <div class="d-flex w-100 align-items-center justify-content-between">
                         <div class="col-10 mb-1 small"><?php
                                                         echo $numeroCivique . ' ' . $nomRue . ', ' . $ville . ', ' . $province . ' ' . $codePostal; ?></div>
-                        <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php" class="btn btn-light">Contacter</a>
+                        <a href="href=?=action=ToBeDeterminated" class="btn btn-light">Contacter</a>
                     </div>
                 </div>
         <?php }
@@ -43,3 +43,12 @@
     <?php format_flash_message(["Erreur", "Impossible d'afficher les fournisseurs.", FLASH_ERROR]);
     }  ?>
 </div>
+<script>
+    function toggleActive(element) {
+        var allElements = document.querySelectorAll('.list-group-item');
+        allElements.forEach(function(el) {
+            el.classList.remove('active');
+        });
+        element.classList.add('active');
+    }
+</script>
