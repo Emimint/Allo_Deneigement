@@ -2,8 +2,8 @@
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/flash.php");
     try {
-        if ($controleur->getListeFournisseurs() != null) {
-            foreach ($controleur->getListeFournisseurs() as $fournisseur) {
+        if (isset($_SESSION["liste_fournisseurs"])) {
+            foreach ($_SESSION["liste_fournisseurs"] as $fournisseur) {
                 $liste_adresses = PersonneDAO::chercherAdresses('fournisseur', $fournisseur->getEmail());
                 if ($liste_adresses != null) {
                     $numeroCivique = $liste_adresses[0]->getNumeroCivique();

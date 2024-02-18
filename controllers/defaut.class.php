@@ -20,6 +20,7 @@ class Defaut extends  Controleur
     public function executerAction()
     {
         $this->liste_fournisseurs = FournisseurDAO::chercherTous();
+        $_SESSION["liste_fournisseurs"] = $this->liste_fournisseurs;
         return "landing-page";
     }
 }
