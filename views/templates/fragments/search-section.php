@@ -119,93 +119,19 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
 
                   <!--    1) Numbers of results to show-->
                   <div>
-                    14 fournisseurs trouves [pres de l'adresse]
+                    <?php if (isset($_SESSION["liste_fournisseurs"])) {
+                      echo count($_SESSION["liste_fournisseurs"]);
+                      echo " fournisseurs trouvés";
+                    } else {
+                      echo "Aucun fournisseur trouvé";
+                    } ?>
                   </div>
+                  <!--    1.1) Get user location: -->
+                  <p id="info-location"></p>
 
                   <!--    2) Suppliers addresses-->
                   <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary mb-4" style="max-height: 500px; overflow-y: auto;">
-                    <div class="list-group list-group-flush border-bottom scrollarea">
-                      <div class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                          <strong class="mb-1">
-                            <i class="fa-solid fa-map-pin" style="color:white"></i>
-                            Deneigement Martineau et Fils
-                          </strong>
-                          <small class="text-body-secondary">
-                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
-                            3.6/5
-                          </small>
-                        </div>
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                          <div class="col-10 mb-1 small">4512 rue Peel Montréal, Montreal, QC H1T 4F5</div>
-                          <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php" class="btn btn-light">Contacter</a>
-                        </div>
-                      </div>
-                      <div class="list-group-item list-group-item-action py-3 lh-sm">
-                        <div class="d-flex w-100 align-items-start justify-content-between">
-                          <strong class="mb-1">
-                            <i class="fa-solid fa-map-pin" style="color:#b50303"></i>
-                            Déneigement TM - Montreal Nord - Commercial - Residential
-                          </strong>
-                          <small class="text-body-secondary">
-                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
-                            4.8/5
-                          </small>
-                        </div>
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                          <div class="col-10 mb-1 small">11473 av Hurteau Montréal-Nord, Montreal, QC H1T 3W8</div>
-                          <button class="btn btn-light">Contacter</button>
-                        </div>
-                      </div>
-                      <div class="list-group-item list-group-item-action py-3 lh-sm">
-                        <div class="d-flex w-100 align-items-start justify-content-between">
-                          <strong class="mb-1">
-                            <i class="fa-solid fa-map-pin" style="color:#b50303"></i>
-                            Atout deneigement
-                          </strong>
-                          <small class="text-body-secondary">
-                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
-                            3.0/5
-                          </small>
-                        </div>
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                          <div class="col-10 mb-1 small">Salabery de Valleefield, QC J5Y 9P4</div>
-                          <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php" class="btn btn-light">Contacter</a>
-                        </div>
-                      </div>
-                      <div class="list-group-item list-group-item-action py-3 lh-sm">
-                        <div class="d-flex w-100 align-items-start justify-content-between">
-                          <strong class="mb-1">
-                            <i class="fa-solid fa-map-pin" style="color:#b50303"></i>
-                            Bye bye Snow
-                          </strong>
-                          <small class="text-body-secondary">
-                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
-                            4.9/5
-                          </small>
-                        </div>
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                          <div class="col-10 mb-1 small">Moncton, CA Y4K 6G5 </div>
-                          <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php" class="btn btn-light">Contacter</a>
-                        </div>
-                      </div>
-                      <div class="list-group-item list-group-item-action py-3 lh-sm">
-                        <div class="d-flex w-100 align-items-start justify-content-between">
-                          <strong class="mb-1">
-                            <i class="fa-solid fa-map-pin" style="color:#b50303"></i>
-                            Allo La Neige
-                          </strong>
-                          <small class="text-body-secondary">
-                            <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
-                            2.9/5
-                          </small>
-                        </div>
-                        <div class="d-flex w-100 align-items-center justify-content-between">
-                          <div class="col-10 mb-1 small">Missouri, FL, 45874 </div>
-                          <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php" class="btn btn-light">Contacter</a>
-                        </div>
-                      </div>
-                    </div>
+                    <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/fragments/liste-fournisseurs.php"); ?>
                   </div>
                 </div>
               </div>
