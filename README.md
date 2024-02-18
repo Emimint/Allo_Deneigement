@@ -1,2 +1,2 @@
 # Allo_Deneigement
-A SpringBoot + Vanilla Javascript app with Bootstrap and MySQL.
+A full stack website made with PHP, Boostrap and MariaDB.

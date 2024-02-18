@@ -399,3 +399,49 @@ section.masthead .masthead-subheading {
 .accordion-button:not(.collapsed)::after {
   background-image: none;
 }
+
+/*profile page */
+.profile-container {
+  margin-top: 20px;
+}
+
+.vertical-bar {
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;height: 100vh;
+  background-color: #f8f9fa;
+ 
+}
+
+hr {
+  width: 100%;
+}
+
+
+/* Styles pour les onglets */
+.nav-pills .nav-link {
+  color: #000;
+}
+
+/* Styles pour les formulaires */
+.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+/* Styles pour les boutons */
+.btn {
+  border-radius: 0.25rem;
+}
+
+/* Styles pour les images de profil */
+.profile-photo {
+  border-radius: 50%;
+}
+
+/* Styles pour les cartes */
+.card {
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+

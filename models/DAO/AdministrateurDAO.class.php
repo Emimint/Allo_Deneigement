@@ -32,7 +32,7 @@ class AdministrateurDAO implements DAO
                 $enr['email'],
                 $enr['username'],
                 $enr['password'],
-                $enr['photo_url']
+                $enr['url_photo']
             );
         }
 
@@ -99,7 +99,7 @@ class AdministrateurDAO implements DAO
             $unAdministrateur->getEmail(),
             $unAdministrateur->getUsername(),
             $unAdministrateur->getPassword(),
-            $unAdministrateur->getPhotoUrl()
+            $unAdministrateur->getUrlPhoto()
         ];
 
         return $requete->execute($tableauInfos);
@@ -123,7 +123,7 @@ class AdministrateurDAO implements DAO
             $unAdministrateur->getEmail(),
             $unAdministrateur->getUsername(),
             $unAdministrateur->getPassword(),
-            $unAdministrateur->getPhotoUrl(),
+            $unAdministrateur->getUrlPhoto(),
             $unAdministrateur->getIdAdministrateur()
         ];
 
