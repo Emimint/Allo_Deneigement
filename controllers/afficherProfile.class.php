@@ -77,7 +77,7 @@ class AfficherProfile extends  Controleur
                     flash('Mise à jour de vos adresses', 'Modification effectuée avec succès.', FLASH_SUCCESS);
                 }
             } else if (isset($_POST['nouvelleAdresse'])) {
-                $nouvelleAdresse = new Adresse("", $_POST['newPostalCode'], $_POST['newNumero'], $_POST['newRue'], $_POST['newVille'], $_POST['newPays'], $_POST['newProvince'], "");
+                $nouvelleAdresse = new Adresse("", $_POST['newPostalCode'], $_POST['newNumero'], $_POST['newRue'], $_POST['newVille'], $_POST['newPays'], $_POST['newProvince'], "", "");
                 try {
                     PersonneDAO::insererAdresse($_SESSION['utilisateurConnecte'], $nouvelleAdresse, $_SESSION['infoUtilisateur']->getEmail());
                 } catch (Exception $e) {

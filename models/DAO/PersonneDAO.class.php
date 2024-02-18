@@ -60,7 +60,7 @@ class PersonneDAO
 
         $tableau = [];
 
-        $requete = $connexion->prepare("SELECT L.id_adresse, code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees from " . $user_type . " T, liste_adresses_" . $user_type . " L, adresse A WHERE T.id_" . $user_type . " = L.id_" . $user_type . " AND L.id_adresse = A.id_adresse AND T.email like '" . $email . "';");
+        $requete = $connexion->prepare("SELECT L.id_adresse, code_postal, numero_civique, nom_rue, ville, pays, province, longitude, latitude from " . $user_type . " T, liste_adresses_" . $user_type . " L, adresse A WHERE T.id_" . $user_type . " = L.id_" . $user_type . " AND L.id_adresse = A.id_adresse AND T.email like '" . $email . "';");
 
         $requete->execute();
 
@@ -77,7 +77,8 @@ class PersonneDAO
                 $enr['ville'],
                 $enr['pays'],
                 $enr['province'],
-                $enr['coordonnees']
+                $enr['longitude'],
+                $enr['latitude']
             );
             array_push($tableau, $uneAdresse);
         }
