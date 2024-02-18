@@ -34,14 +34,20 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
 
   <form id="multi-step-form" class="needs-validation" novalidate>
     <div class="step step-1 m-2">
-      <h3>Services offerts par [nom du fournisseur]</h3>
+      <h3>Services offerts par <?php echo $controleur->getFournisseur()->getNomDeLaCompagnie(); ?></h3>
       <div class="mb-3">
-        <label for="field1" class="form-label">Choisissez un type de service:</label>
-        <select class="form-control" id="field1" name="field1" required>
-          <option>Deneigement</option>
-          <option>Ependage</option>
-          <option>Transport de neige</option>
-        </select>
+        <label for="field1" class="form-label">Confirmez votre choix de service:</label>
+        <?php if (count($controleur->getListeServices()) > 0) { ?>
+          <select class="form-control" id="field-1" name="field-1" required>
+            <option><?php echo $controleur->getOffreChoisie()->getDescription(); ?></option>
+            <?php foreach ($controleur->getListeServices() as
+              $index => $service) {
+              if ($service->getIdOffre() != $controleur->getOffreChoisie()->getIdOffre()) { ?>
+                <option><?php echo $service->getDescription(); ?></option>
+              <?php } ?>
+            <?php } ?>
+          <?php } ?>
+          </select>
       </div>
       <button type="button" class="btn next-step">Suivant</button>
     </div>
@@ -49,10 +55,15 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
     <div class="step step-2 m-2">
       <h3>Adresse de livraison</h3>
       <div class="mb-3">
-        <label for="field2" class="form-label">Choisissez l'adresse ou le service doit etre donne:</label>
+        <label for="field2" class="form-label">Choisissez l'adresse ou le service doit etre donné:</label>
         <select id="field2" class="form-control" name="field2" required>
-          <option>Domicile : [Adresse du client]</option>
-          <option>Adresse secondaire : [Autre adresse au dossier]</option>
+          <?php
+          if ($controleur->getListeAdresses() != null) {
+            foreach ($controleur->getListeAdresses() as
+              $index => $adresse) { ?>
+              <option>Domicile : <?php echo $adresse->getNumeroCivique() . " " . $adresse->getNomRue() . ", " . $adresse->getCodePostal() . " " . $adresse->getProvince(); ?></option>
+          <?php }
+          } ?>
           <option>Saississez une adresse...</option>
         </select>
       </div>
