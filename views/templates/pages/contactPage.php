@@ -5,7 +5,7 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
 <div class="container-fluid my-6 p-3" style="width:60%;">
-    <form class="cmxform" id="signupForm" method="get" action="form-handler.html" autocomplete="off">
+    <form  id="signupForm" method="POST" action="?action=afficherContactPage" autocomplete="off">
         <fieldset>
             <legend>Formulaire de contacte</legend>
             <div class="container contact-page mx-auto p-2">
