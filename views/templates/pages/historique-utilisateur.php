@@ -29,7 +29,8 @@ if (count($controleur->getlisteDemandesUtilisateurs()) == 0) { ?>
                 require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/create-table-body.php");
                 require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/flash.php");
                 try {
-                    afficherTableau($controleur->getlisteDemandesUtilisateurs(), $controleur->getlisteFournisseursAssocies(), $controleur->getlisteServicesAssocies());
+                    if($this->actor=="utilisateur")
+                   { afficherTableau($controleur->getlisteDemandesUtilisateurs(), $controleur->getlisteFournisseursAssocies(), $controleur->getlisteServicesAssocies());}else {afficherTableauFournisseur($controleur->getlisteDemandesUtilisateurs(), $controleur->getlisteFournisseursAssocies(), $controleur->getlisteServicesAssocies());}
                 } catch (Exception $e) {
                     format_flash_message(["Erreur", "Impossible d'afficher les demandes de services", FLASH_ERROR]);
                 }

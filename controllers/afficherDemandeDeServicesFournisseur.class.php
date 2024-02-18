@@ -5,7 +5,7 @@ include_once(DOSSIER_BASE_INCLUDE . "models/DAO/FournisseurDAO.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "models/DAO/OffreDeServiceDAO.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "views/templates/commons/flash.php");
 
-class AfficherDemandeDeServices extends Controleur
+class AfficherDemandeDeServicesFournisseur extends Controleur
 {
     private $listeDemandesUtilisateurs;
     private $listeFournisseursAssocies;
@@ -37,10 +37,10 @@ class AfficherDemandeDeServices extends Controleur
     public function executerAction()
     {
         // echo $this->acteur;
-        if ($this->acteur == "utilisateur" || $this->acteur == "fournisseur") {
+        if ($this->acteur == "Fournisseur") {
 
             // echo $_SESSION['infoUtilisateur'];
-            $user_id = $_SESSION['infoUtilisateur']->getId();
+            $user_id = $_SESSION['infoUtilisateur']->getIdFourn;
             $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_" . $_SESSION['utilisateurConnecte'] . "=" . $user_id . ";");
 
             foreach ($this->listeDemandesUtilisateurs as $demande) {
@@ -52,7 +52,7 @@ class AfficherDemandeDeServices extends Controleur
                 $nomService = $service->getDescription();
                 array_push($this->listeServicesAssocies, $nomService);
             }
-            return "historique-utilisateur";
+            return "dashbord_fournisseur";
         } else {
             array_push($this->messagesErreur, "Vous êtes déjà connécté.");
             flash('Info', 'Vous devez vous connecter pour accéder à cette page.', FLASH_INFO);
