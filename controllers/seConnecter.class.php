@@ -23,7 +23,7 @@ class SeConnecter extends Controleur
 		}
 
 		if (isset($_POST['email']) and isset($_POST['password'])) {
-			$unUtilisateur = PersonneDAO::chercherEmail($_POST['email']);
+			$unUtilisateur = PersonneDAO::chercherPersonne($_POST['email']);
 			if ($unUtilisateur == null) {
 				flash('Erreur', 'Cet utilisateur n\'existe pas.', FLASH_WARNING);
 				return "login";

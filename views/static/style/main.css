@@ -97,11 +97,8 @@ footer p {
     0 22px 30px rgba(0, 0, 0, 0.9);
 }
 
-.container .row {
-  margin-top: 150px;
-  margin-bottom: 100px;
-  overflow-wrap: break-word;
-}
+
+
 
 .search-box {
   width: 80%;
@@ -408,9 +405,10 @@ section.masthead .masthead-subheading {
 .vertical-bar {
   border-right: 1px solid #ccc;
   display: flex;
-  flex-direction: column;height: 100vh;
+  flex-direction: column;
+  height: 100vh;
   background-color: #f8f9fa;
- 
+
 }
 
 hr {
@@ -445,3 +443,11 @@ hr {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.btn-outline-light:hover {
+  background-color: var(--primary-color);
+}
+
+#dropdownMenu2:focus {
+  border-color: transparent;
+  box-shadow: none;
+}

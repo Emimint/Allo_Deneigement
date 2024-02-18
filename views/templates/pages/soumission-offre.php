@@ -3,59 +3,8 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
 ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/fragments/modal-adresse.php"); ?>
 <div id="soumission-container" class="container mt-5 mx-2">
-
-  <!-- Modal for adresse: -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered p-2">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Adresse de livraison</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form class="row g-3">
-            <div class="col-md-8">
-              <label for="inputAddress" class="form-label">Rue/avenue</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="rue Principale">
-            </div>
-
-            <div class="col-md-4">
-              <label for="inputAddress2" class="form-label">Appartement</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, etage">
-            </div>
-
-            <div class="d-flex align-items-end">
-              <div class="col-sm-6 mx-1">
-                <label for="ville">Ville</label>
-                <input class="form-control" name="ville" placeholder="Montreal" />
-                <nordpass-icon data-np-uid="cb62c672-0256-4aa3-be50-a7bc133f49bd"></nordpass-icon>
-              </div>
-              <div class="col-sm-3 mx-1">
-                <label for="PostalCode">Code Postal</label>
-                <input class="form-control" name="PostalCode" placeholder="A1B 2C3" />
-              </div>
-              <div class="col-sm-3 mx-1">
-                <label for="Province">Province</label>
-                <select class="form-control">
-                  <option>Quebec</option>
-                  <option>Ontario</option>
-                  <option>...</option>
-                </select>
-              </div>
-            </div>
-
-
-            <div class="col-12 mt-5">
-              <button type="submit" class="btn btn-primary">Soumettre</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="d-flex flex-column align-items-center justify-content-between">
     <div class=" progress px-1 my-3" style="height: 3px;">
       <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>

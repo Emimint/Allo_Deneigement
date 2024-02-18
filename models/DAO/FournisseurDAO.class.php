@@ -30,6 +30,7 @@ class FournisseurDAO  implements DAO
                 $enr['nom_de_la_compagnie'],
                 $enr['nom_contact'],
                 $enr['prenom_contact'],
+                $enr['description'],
                 $enr['telephone'],
                 $enr['username'],
                 $enr['password'],
@@ -69,6 +70,7 @@ class FournisseurDAO  implements DAO
                 $enr['nom_de_la_compagnie'],
                 $enr['nom_contact'],
                 $enr['prenom_contact'],
+                $enr['description'],
                 $enr['telephone'],
                 $enr['username'],
                 $enr['password'],
@@ -92,13 +94,14 @@ class FournisseurDAO  implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, telephone, username, password, url_photo, note_globale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, description, telephone, username, password, url_photo, note_globale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $tableauInfos = [
             $fournisseur->getEmail(),
             $fournisseur->getNomDeLaCompagnie(),
             $fournisseur->getNomContact(),
             $fournisseur->getPrenomContact(),
+            $fournisseur->getDescription(),
             $fournisseur->getTelephone(),
             $fournisseur->getUsername(),
             $fournisseur->getPassword(),
@@ -117,13 +120,14 @@ class FournisseurDAO  implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Fournisseur SET email=?, nom_de_la_compagnie=?, nom_contact=?, prenom_contact=?, telephone=?, username=?, password=?, photo_url=?, note_globale=? WHERE id_fournisseur=?");
+        $requete = $connexion->prepare("UPDATE Fournisseur SET email=?, nom_de_la_compagnie=?, nom_contact=?, prenom_contact=?, description=?, telephone=?, username=?, password=?, url_photo=?, note_globale=? WHERE id_fournisseur=?");
 
         $tableauInfos = [
             $fournisseur->getEmail(),
             $fournisseur->getNomDeLaCompagnie(),
             $fournisseur->getNomContact(),
             $fournisseur->getPrenomContact(),
+            $fournisseur->getDescription(),
             $fournisseur->getTelephone(),
             $fournisseur->getUsername(),
             $fournisseur->getPassword(),
