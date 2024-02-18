@@ -7,23 +7,26 @@ CREATE TABLE Adresse (
     code_postal VARCHAR(10) NOT NULL,
     numero_civique VARCHAR(10) NOT NULL,
     nom_rue VARCHAR(255) NOT NULL,
-    ville VARCHAR(255)NOT NULL,
+    ville VARCHAR(255) NOT NULL,
     pays VARCHAR(255) NOT NULL,
     province VARCHAR(255) NOT NULL,
-    coordonnees POINT
+    latitude DECIMAL(8,6),
+    longitude DECIMAL(9,6)
 );
 
-INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees) VALUES
-('H1A 0A1', '123', 'Rue Saint-Jacques', 'Montreal', 'Canada', 'Quebec', POINT(45.514, -73.554)),
-('H2B 2C3', '456', 'Avenue Laurier Ouest', 'Montreal', 'Canada', 'Quebec', POINT(45.523, -73.594)),
-('H3C 3D5', '789', 'Rue Sainte-Catherine', 'Montreal', 'Canada', 'Quebec', POINT(45.505, -73.562)),
-('H4E 4F7', '1011', 'Boulevard René-Lévesque Ouest', 'Montreal', 'Canada', 'Quebec', POINT(45.498, -73.572)),
-('H5G 5H9', '1213', 'Rue Sherbrooke Ouest', 'Montreal', 'Canada', 'Quebec', POINT(45.507, -73.580)),
-('H1H 6I2', '1415', 'Avenue Mont-Royal Est', 'Montreal', 'Canada', 'Quebec', POINT(45.532, -73.579)),
-('H2J 7K4', '1617', 'Rue Saint-Denis', 'Montreal', 'Canada', 'Quebec', POINT(45.516, -73.562)),
-('H3K 8L6', '1819', 'Avenue du Parc', 'Montreal', 'Canada', 'Quebec', POINT(45.507, -73.572)),
-('H4L 9M8', '2021', 'Rue Peel', 'Montreal', 'Canada', 'Quebec', POINT(45.501, -73.575)),
-('H5N 0P3', '2223', 'Rue Crescent', 'Montreal', 'Canada', 'Quebec', POINT(45.497, -73.579));
+
+INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, latitude, longitude) VALUES
+('H1A 0A1', '123', 'Rue Saint-Jacques', 'Montreal', 'Canada', 'Quebec', 45.514, -73.554),
+('H2B 2C3', '456', 'Avenue Laurier Ouest', 'Montreal', 'Canada', 'Quebec', 45.523, -73.594),
+('H3C 3D5', '789', 'Rue Sainte-Catherine', 'Montreal', 'Canada', 'Quebec', 45.505, -73.562),
+('H4E 4F7', '1011', 'Boulevard René-Lévesque Ouest', 'Montreal', 'Canada', 'Quebec', 45.498, -73.572),
+('H5G 5H9', '1213', 'Rue Sherbrooke Ouest', 'Montreal', 'Canada', 'Quebec', 45.507, -73.580),
+('H1H 6I2', '1415', 'Avenue Mont-Royal Est', 'Montreal', 'Canada', 'Quebec', 45.532, -73.579),
+('H2J 7K4', '1617', 'Rue Saint-Denis', 'Montreal', 'Canada', 'Quebec', 45.516, -73.562),
+('H3K 8L6', '1819', 'Avenue du Parc', 'Montreal', 'Canada', 'Quebec', 45.507, -73.572),
+('H4L 9M8', '2021', 'Rue Peel', 'Montreal', 'Canada', 'Quebec', 45.501, -73.575),
+('H5N 0P3', '2223', 'Rue Crescent', 'Montreal', 'Canada', 'Quebec', 45.497, -73.579);
+
 
 CREATE TABLE Utilisateur (
     id_utilisateur INT AUTO_INCREMENT PRIMARY KEY,

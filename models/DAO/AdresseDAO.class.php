@@ -32,7 +32,8 @@ class AdresseDAO implements DAO
                 $enr['ville'],
                 $enr['pays'],
                 $enr['province'],
-                $enr['coordonnees']
+                $enr['latitude'],
+                $enr['longitude']
             );
         }
 
@@ -69,7 +70,8 @@ class AdresseDAO implements DAO
                 $enr['ville'],
                 $enr['pays'],
                 $enr['province'],
-                $enr['coordonnees']
+                $enr['latitude'],
+                $enr['longitude']
             );
             array_push($tableau, $uneAdresse);
         }
@@ -88,7 +90,7 @@ class AdresseDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, coordonnees) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
         $tableauInfos = [
             $uneAdresse->getCodePostal(),
@@ -97,7 +99,8 @@ class AdresseDAO implements DAO
             $uneAdresse->getVille(),
             $uneAdresse->getPays(),
             $uneAdresse->getProvince(),
-            $uneAdresse->getCoordonnees()
+            $uneAdresse->getLatitude(),
+            $uneAdresse->getLongitude()
         ];
 
         return $requete->execute($tableauInfos);
@@ -111,7 +114,7 @@ class AdresseDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Adresse SET code_postal=?, numero_civique=?, nom_rue=?, ville=?, pays=?, province=?, coordonnees=? WHERE id_adresse=?");
+        $requete = $connexion->prepare("UPDATE Adresse SET code_postal=?, numero_civique=?, nom_rue=?, ville=?, pays=?, province=?, latitude=?, longitude=? WHERE id_adresse=?");
 
         $tableauInfos = [
             $uneAdresse->getCodePostal(),
@@ -120,7 +123,8 @@ class AdresseDAO implements DAO
             $uneAdresse->getVille(),
             $uneAdresse->getPays(),
             $uneAdresse->getProvince(),
-            $uneAdresse->getCoordonnees(),
+            $uneAdresse->getLatitude(),
+            $uneAdresse->getLongitude(),
             $uneAdresse->getIdAdresse()
         ];
 
@@ -139,5 +143,36 @@ class AdresseDAO implements DAO
 
         $tableauInfos = [$uneAdresse->getIdAdresse()];
         return $requete->execute($tableauInfos);
+    }
+
+    public static function geocodeAddress($address)
+    {
+        $env = parse_ini_file('.env');
+        $GEO_API_KEY = $env["GEO_API_KEY"];
+
+        if (!$GEO_API_KEY) {
+            throw new Exception('GEO_API_KEY n\'est pas une variable d\' environment.');
+        }
+
+        $apiKey = $GEO_API_KEY;
+
+        $address = urlencode($address);
+
+        $url = "https://api.geoapify.com/v1/geocode/search?text=$address&apiKey=$apiKey";
+
+        $response = file_get_contents($url);
+
+        $data = json_decode($response);
+
+        if (isset($data->features) && !empty($data->features)) {
+
+            $latitude = $data->features[0]->properties->lat;
+            $longitude = $data->features[0]->properties->lon;
+
+            return array($latitude, $longitude);
+        } else {
+            return null;
+        }
+        return null;
     }
 }

@@ -77,7 +77,18 @@ class AfficherProfile extends  Controleur
                     flash('Mise à jour de vos adresses', 'Modification effectuée avec succès.', FLASH_SUCCESS);
                 }
             } else if (isset($_POST['nouvelleAdresse'])) {
-                $nouvelleAdresse = new Adresse("", $_POST['newPostalCode'], $_POST['newNumero'], $_POST['newRue'], $_POST['newVille'], $_POST['newPays'], $_POST['newProvince'], "");
+
+
+                $stringifyAdress = $_POST['newPostalCode'] . ', ' . $_POST['newNumero'] . ', ' . $_POST['newRue'] . ', ' . $_POST['newVille'] . ', ' . $_POST['newPays'] . ', ' . $_POST['newProvince'];
+                $coordinates = AdresseDAO::geocodeAddress($stringifyAdress);
+                echo "Latitude : " . $coordinates[0] . " Longitude : " . $coordinates[1];
+                if ($coordinates == null) {
+                    flash('Erreur', 'Impossible de trouver cette adresse. Veuillez vérifier vos saisies.', FLASH_ERROR);
+                    return "profilePage";
+                }
+
+                $nouvelleAdresse = new Adresse("", $_POST['newPostalCode'], $_POST['newNumero'], $_POST['newRue'], $_POST['newVille'], $_POST['newPays'], $_POST['newProvince'], $coordinates[0], $coordinates[1]);
+
                 try {
                     PersonneDAO::insererAdresse($_SESSION['utilisateurConnecte'], $nouvelleAdresse, $_SESSION['infoUtilisateur']->getEmail());
                 } catch (Exception $e) {
@@ -95,14 +106,19 @@ class AfficherProfile extends  Controleur
             if ($this->liste_adresses != null && count($this->liste_adresses) > 0) {
                 foreach ($this->liste_adresses as $addresse) {
                     if (isset($_POST["deleteAdresse" . $addresse->getIdAdresse()])) {
-                        PersonneDAO::supprimerAdresse($_SESSION['utilisateurConnecte'], $_SESSION['infoUtilisateur']->getEmail(), $addresse);
-                        flash('Suppression', 'Adresse supprimée avec succès.', FLASH_SUCCESS);
-                        echo '<script>
+                        try {
+                            PersonneDAO::supprimerAdresse($_SESSION['utilisateurConnecte'], $_SESSION['infoUtilisateur']->getEmail(), $addresse);
+                            flash('Suppression', 'Adresse supprimée avec succès.', FLASH_SUCCESS);
+                            echo '<script>
                             setTimeout(function(){
                                 window.location.reload();
                             }, 2000); // 2000 milliseconds = 2 seconds
                           </script>';
-                        return "profilePage";
+                            return "profilePage";
+                        } catch (Exception $e) {
+                            flash('Erreur', 'Impossible de supprimer cette adresse du système. Veuillez contacter un administrateur.', FLASH_ERROR);
+                            return "profilePage";
+                        }
                     }
                 }
             }
