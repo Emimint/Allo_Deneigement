@@ -9,10 +9,10 @@ class Adresse
     private $ville;
     private $pays;
     private $province;
-    private $longitude;
     private $latitude;
+    private $longitude;
 
-    public function __construct($id_adresse, $code_postal, $numero_civique, $nom_rue, $ville, $pays, $province, $longitude, $latitude)
+    public function __construct($id_adresse, $code_postal, $numero_civique, $nom_rue, $ville, $pays, $province, $latitude, $longitude)
     {
         $this->id_adresse = $id_adresse;
         $this->code_postal = $code_postal;
@@ -21,8 +21,8 @@ class Adresse
         $this->ville = $ville;
         $this->pays = $pays;
         $this->province = $province;
-        $this->longitude = $longitude;
         $this->latitude = $latitude;
+        $this->longitude = $longitude;
     }
 
     public function getIdAdresse()
@@ -95,16 +95,6 @@ class Adresse
         $this->province = $province;
     }
 
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    }
-
     public function getLatitude()
     {
         return $this->latitude;
@@ -115,8 +105,18 @@ class Adresse
         $this->latitude = $latitude;
     }
 
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+    }
+
     public function __toString()
     {
-        return "Adresse [id_adresse=" . $this->id_adresse . ", code_postal=" . $this->code_postal . ", numero_civique=" . $this->numero_civique . ", nom_rue=" . $this->nom_rue . ", ville=" . $this->ville . ", pays=" . $this->pays . ", province=" . $this->province . ", longitude=" . $this->longitude . ", latitude=" . $this->latitude . "]";
+        return "Adresse [id_adresse=" . $this->id_adresse . ", code_postal=" . $this->code_postal . ", numero_civique=" . $this->numero_civique . ", nom_rue=" . $this->nom_rue . ", ville=" . $this->ville . ", pays=" . $this->pays . ", province=" . $this->province . ", latitude=" . $this->latitude . ", longitude=" . $this->longitude  . "]";
     }
 }

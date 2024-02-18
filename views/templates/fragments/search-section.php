@@ -126,6 +126,8 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
                       echo "Aucun fournisseur trouvé";
                     } ?>
                   </div>
+                  <!--    1.1) Get user location: -->
+                  <p id="info-location"></p>
 
                   <!--    2) Suppliers addresses-->
                   <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary mb-4" style="max-height: 500px; overflow-y: auto;">

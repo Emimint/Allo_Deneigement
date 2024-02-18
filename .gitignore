@@ -1,6 +1,7 @@
-# Configuration file
+# Configuration files
 
 models/DAO/configs/configBD.interface.php
+.env
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode

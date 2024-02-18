@@ -10,12 +10,12 @@ CREATE TABLE Adresse (
     ville VARCHAR(255) NOT NULL,
     pays VARCHAR(255) NOT NULL,
     province VARCHAR(255) NOT NULL,
-    longitude DECIMAL(9,6),
-    latitude DECIMAL(8,6)
+    latitude DECIMAL(8,6),
+    longitude DECIMAL(9,6)
 );
 
 
-INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, longitude, latitude) VALUES
+INSERT INTO Adresse (code_postal, numero_civique, nom_rue, ville, pays, province, latitude, longitude) VALUES
 ('H1A 0A1', '123', 'Rue Saint-Jacques', 'Montreal', 'Canada', 'Quebec', 45.514, -73.554),
 ('H2B 2C3', '456', 'Avenue Laurier Ouest', 'Montreal', 'Canada', 'Quebec', 45.523, -73.594),
 ('H3C 3D5', '789', 'Rue Sainte-Catherine', 'Montreal', 'Canada', 'Quebec', 45.505, -73.562),

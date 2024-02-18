@@ -107,7 +107,11 @@ class PersonneDAO
 
         ConnexionBD::close();
 
-        AdresseDAO::supprimer($adresse);
+        try {
+            AdresseDAO::supprimer($adresse);
+        } catch (Exception $e) {
+            throw new Exception("Impossible de supprimer cette adresse.");
+        }
     }
 
     public static function getId($user_type, $email)
