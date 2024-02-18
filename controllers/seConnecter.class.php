@@ -8,14 +8,25 @@ include_once(DOSSIER_BASE_INCLUDE . "views/templates/commons/flash.php");
 
 class SeConnecter extends Controleur
 {
+	private $liste_fournisseurs;
 
 	public function __construct()
 	{
 		parent::__construct();
 	}
 
+	public function getListeFournisseurs()
+	{
+		return $this->liste_fournisseurs;
+	}
+
 	public function executerAction()
 	{
+
+		$this->liste_fournisseurs = FournisseurDAO::chercherTous();
+		$_SESSION["liste_fournisseurs"] = $this->liste_fournisseurs;
+		return "landing-page";
+
 		if ($this->acteur != "visiteur") {
 			array_push($this->messagesErreur, "Vous êtes déjà connécté.");
 			flash('Info', 'Vous êtes déjà connécté.', FLASH_WARNING);
