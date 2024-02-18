@@ -52,3 +52,39 @@
         element.classList.add('active');
     }
 </script>
+<script>
+    $(document).ready(function() {
+        var map = L.map('map').setView([73.5674, 45.5019], 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        var markers = [];
+
+        function addMarker(lng, lat, name) {
+            var marker = L.marker([lng, lat]).addTo(map);
+            marker.bindPopup(name).openPopup();
+            markers.push(marker);
+        }
+
+        <?php
+        foreach ($_SESSION["liste_fournisseurs"] as $fournisseur) {
+            $liste_adresses = PersonneDAO::chercherAdresses('fournisseur', $fournisseur->getEmail());
+            if ($liste_adresses != null) {
+                $latitude = $liste_adresses[0]->getLatitude();
+                $longitude = $liste_adresses[0]->getLongitude();
+                $nomDeLaCompagnie = $fournisseur->getNomDeLaCompagnie();
+                echo "addMarker($longitude, $latitude, '$nomDeLaCompagnie');";
+            }
+        }
+        ?>
+
+        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+            if (e.target.hash === '#carte') {
+                map.invalidateSize();
+            }
+        });
+    });
+</script>
