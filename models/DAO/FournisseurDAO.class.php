@@ -7,8 +7,10 @@ if (defined("DOSSIER_BASE_INCLUDE") == false) {
 include_once(DOSSIER_BASE_INCLUDE . "models/DAO/DAO.interface.php");
 include_once(DOSSIER_BASE_INCLUDE . "models/Fournisseur.class.php");
 
-class FournisseurDAO  implements DAO{
-    public static function chercher($id_fournisseur) {
+class FournisseurDAO  implements DAO
+{
+    public static function chercher($id_fournisseur)
+    {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -22,17 +24,19 @@ class FournisseurDAO  implements DAO{
 
         if ($requete->rowCount() != 0) {
             $enr = $requete->fetch();
-            $fournisseur = new Fournisseur();
-            $fournisseur->setIdFournisseur($enr['id_fournisseur']);
-            $fournisseur->setEmail($enr['email']);
-            $fournisseur->setNomDeLaCompagnie($enr['nom_de_la_compagnie']);
-            $fournisseur->setNomContact($enr['nom_contact']);
-            $fournisseur->setPrenomContact($enr['prenom_contact']);
-            $fournisseur->setTelephone($enr['telephone']);
-            $fournisseur->setUsername($enr['username']);
-            $fournisseur->setPassword($enr['password']);
-            $fournisseur->setPhotoUrl($enr['photo_url']);
-            $fournisseur->setNoteGlobale($enr['note_globale']);
+            $fournisseur = new Fournisseur(
+                $enr['id_fournisseur'],
+                $enr['email'],
+                $enr['nom_de_la_compagnie'],
+                $enr['nom_contact'],
+                $enr['prenom_contact'],
+                $enr['description'],
+                $enr['telephone'],
+                $enr['username'],
+                $enr['password'],
+                $enr['url_photo'],
+                $enr['note_globale'],
+            );
         }
 
         $requete->closeCursor();
@@ -41,11 +45,13 @@ class FournisseurDAO  implements DAO{
         return $fournisseur;
     }
 
-    public static function chercherTous() {
+    public static function chercherTous()
+    {
         return self::chercherAvecFiltre("");
     }
 
-    public static function chercherAvecFiltre($filtre) {
+    public static function chercherAvecFiltre($filtre)
+    {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -58,17 +64,19 @@ class FournisseurDAO  implements DAO{
         $requete->execute();
 
         foreach ($requete as $enr) {
-            $fournisseur = new Fournisseur();
-            $fournisseur->setIdFournisseur($enr['id_fournisseur']);
-            $fournisseur->setEmail($enr['email']);
-            $fournisseur->setNomDeLaCompagnie($enr['nom_de_la_compagnie']);
-            $fournisseur->setNomContact($enr['nom_contact']);
-            $fournisseur->setPrenomContact($enr['prenom_contact']);
-            $fournisseur->setTelephone($enr['telephone']);
-            $fournisseur->setUsername($enr['username']);
-            $fournisseur->setPassword($enr['password']);
-            $fournisseur->setPhotoUrl($enr['photo_url']);
-            $fournisseur->setNoteGlobale($enr['note_globale']);
+            $fournisseur = new Fournisseur(
+                $enr['id_fournisseur'],
+                $enr['email'],
+                $enr['nom_de_la_compagnie'],
+                $enr['nom_contact'],
+                $enr['prenom_contact'],
+                $enr['description'],
+                $enr['telephone'],
+                $enr['username'],
+                $enr['password'],
+                $enr['url_photo'],
+                $enr['note_globale'],
+            );
             array_push($tableau, $fournisseur);
         }
 
@@ -78,48 +86,52 @@ class FournisseurDAO  implements DAO{
         return $tableau;
     }
 
-    public static function inserer($fournisseur) {
+    public static function inserer($fournisseur)
+    {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, telephone, username, password, photo_url, note_globale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Fournisseur (email, nom_de_la_compagnie, nom_contact, prenom_contact, description, telephone, username, password, url_photo, note_globale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $tableauInfos = [
             $fournisseur->getEmail(),
             $fournisseur->getNomDeLaCompagnie(),
             $fournisseur->getNomContact(),
             $fournisseur->getPrenomContact(),
+            $fournisseur->getDescription(),
             $fournisseur->getTelephone(),
             $fournisseur->getUsername(),
             $fournisseur->getPassword(),
-            $fournisseur->getPhotoUrl(),
+            $fournisseur->getUrlPhoto(),
             $fournisseur->getNoteGlobale()
         ];
 
         return $requete->execute($tableauInfos);
     }
 
-    public static function modifier($fournisseur) {
+    public static function modifier($fournisseur)
+    {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Fournisseur SET email=?, nom_de_la_compagnie=?, nom_contact=?, prenom_contact=?, telephone=?, username=?, password=?, photo_url=?, note_globale=? WHERE id_fournisseur=?");
+        $requete = $connexion->prepare("UPDATE Fournisseur SET email=?, nom_de_la_compagnie=?, nom_contact=?, prenom_contact=?, description=?, telephone=?, username=?, password=?, url_photo=?, note_globale=? WHERE id_fournisseur=?");
 
         $tableauInfos = [
             $fournisseur->getEmail(),
             $fournisseur->getNomDeLaCompagnie(),
             $fournisseur->getNomContact(),
             $fournisseur->getPrenomContact(),
+            $fournisseur->getDescription(),
             $fournisseur->getTelephone(),
             $fournisseur->getUsername(),
             $fournisseur->getPassword(),
-            $fournisseur->getPhotoUrl(),
+            $fournisseur->getUrlPhoto(),
             $fournisseur->getNoteGlobale(),
             $fournisseur->getIdFournisseur()
         ];
@@ -127,7 +139,8 @@ class FournisseurDAO  implements DAO{
         return $requete->execute($tableauInfos);
     }
 
-    public static function supprimer($fournisseur) {
+    public static function supprimer($fournisseur)
+    {
         try {
             $connexion = ConnexionBD::getInstance();
         } catch (Exception $e) {
@@ -140,4 +153,3 @@ class FournisseurDAO  implements DAO{
         return $requete->execute($tableauInfos);
     }
 }
-

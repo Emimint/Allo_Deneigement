@@ -32,7 +32,7 @@ class AdministrateurDAO implements DAO
                 $enr['email'],
                 $enr['username'],
                 $enr['password'],
-                $enr['photo_url']
+                $enr['url_photo']
             );
         }
 
@@ -70,7 +70,7 @@ class AdministrateurDAO implements DAO
                 $enr['email'],
                 $enr['username'],
                 $enr['password'],
-                $enr['photo_url']
+                $enr['url_photo']
             );
             array_push($tableau, $unAdministrateur);
         }
@@ -90,7 +90,7 @@ class AdministrateurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("INSERT INTO Administrateur (nom, prenom, telephone, email, username, password, photo_url) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $requete = $connexion->prepare("INSERT INTO Administrateur (nom, prenom, telephone, email, username, password, url_photo) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         $tableauInfos = [
             $unAdministrateur->getNom(),
@@ -99,7 +99,7 @@ class AdministrateurDAO implements DAO
             $unAdministrateur->getEmail(),
             $unAdministrateur->getUsername(),
             $unAdministrateur->getPassword(),
-            $unAdministrateur->getPhotoUrl()
+            $unAdministrateur->getUrlPhoto()
         ];
 
         return $requete->execute($tableauInfos);
@@ -114,7 +114,7 @@ class AdministrateurDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
-        $requete = $connexion->prepare("UPDATE Administrateur SET nom=?, prenom=?, telephone=?, email=?, username=?, password=?, photo_url=? WHERE id_administrateur=?");
+        $requete = $connexion->prepare("UPDATE Administrateur SET nom=?, prenom=?, telephone=?, email=?, username=?, password=?, url_photo=? WHERE id_administrateur=?");
 
         $tableauInfos = [
             $unAdministrateur->getNom(),
@@ -123,7 +123,7 @@ class AdministrateurDAO implements DAO
             $unAdministrateur->getEmail(),
             $unAdministrateur->getUsername(),
             $unAdministrateur->getPassword(),
-            $unAdministrateur->getPhotoUrl(),
+            $unAdministrateur->getUrlPhoto(),
             $unAdministrateur->getIdAdministrateur()
         ];
 
