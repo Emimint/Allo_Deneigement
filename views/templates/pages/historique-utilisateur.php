@@ -19,7 +19,10 @@ if (count($controleur->getlisteDemandesUtilisateurs()) == 0) { ?>
                     <th>Debut</th>
                     <th>Fin</th>
                     <th>Status</th>
-                    <th>Fournisseur</th>
+                    <?php  if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] != "fournisseur") 
+                    {echo '<th>Fournisseur</th>';}
+                    ?>
+                  
                     <th>Details</th>
                     <th>Supprimer</th>
                 </tr>
@@ -29,8 +32,8 @@ if (count($controleur->getlisteDemandesUtilisateurs()) == 0) { ?>
                 require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/create-table-body.php");
                 require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/flash.php");
                 try {
-                    if($this->actor=="utilisateur")
-                   { afficherTableau($controleur->getlisteDemandesUtilisateurs(), $controleur->getlisteFournisseursAssocies(), $controleur->getlisteServicesAssocies());}else {afficherTableauFournisseur($controleur->getlisteDemandesUtilisateurs(), $controleur->getlisteFournisseursAssocies(), $controleur->getlisteServicesAssocies());}
+                   
+                    afficherTableau($controleur->getlisteDemandesUtilisateurs(), $controleur->getlisteFournisseursAssocies(), $controleur->getlisteServicesAssocies());
                 } catch (Exception $e) {
                     format_flash_message(["Erreur", "Impossible d'afficher les demandes de services", FLASH_ERROR]);
                 }
