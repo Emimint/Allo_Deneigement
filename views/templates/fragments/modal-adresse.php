@@ -7,7 +7,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form class="row g-3" action="?actionModal=nouvelleAdresse" method="POST">
+                  <form class="row g-3" method="POST">
                       <div class="col-md-8">
                           <label for="inputAddress" class="form-label">Rue/avenue</label>
                           <input type="text" class="form-control" name="newRue" id="inputAddress" placeholder="rue Principale, Appartement">

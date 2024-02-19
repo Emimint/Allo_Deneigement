@@ -32,7 +32,7 @@
                 } else { ?>
                     <div class="d-flex align-items-center justify-content-between p-2">
                         <p class="m-0">Pas d'adresse pour <?php echo $fournisseur->getNomDeLaCompagnie(); ?>.</p>
-                        <a href="?action=faireDemandeSoumission" class="btn btn-light">Contacter</a>
+                        <a href="?action=faireDemandeSoumission&id_fournisseur=<?php echo $fournisseur->getIdFournisseur(); ?>" class="btn btn-light">Contacter</a>
                     </div>
                 <?php
                 }
