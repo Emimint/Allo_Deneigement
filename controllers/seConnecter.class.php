@@ -22,10 +22,8 @@ class SeConnecter extends Controleur
 
 	public function executerAction()
 	{
-
 		$this->liste_fournisseurs = FournisseurDAO::chercherTous();
 		$_SESSION["liste_fournisseurs"] = $this->liste_fournisseurs;
-		return "landing-page";
 
 		if ($this->acteur != "visiteur") {
 			array_push($this->messagesErreur, "Vous êtes déjà connécté.");
