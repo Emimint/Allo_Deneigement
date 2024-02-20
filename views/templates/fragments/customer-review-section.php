@@ -7,16 +7,18 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
     <div class="row">
       <div id="recipeCarousel" class="carousel slide w-100">
         <div class="carousel-inner w-100 mt-5" role="listbox">
+          <?php foreach( $controleur->getReviews() as $review):?>
           <div class="carousel-item active">
             <div class="col-md-4">
               <div class="card" style="width: 18rem;">
                 <img src="<?php echo BASE_URL_VIEWS; ?>static/image/avatar.svg" style="width: 70px;height: 70px;" class="img-fluid img-thumbnail mx-auto rounded-circle mt-5 border border-2 border-dark" alt="avatar">
                 <div class="card-body">
-                  <h5 class="card-title">"Service impeccable"</h5>
+                 
+                 <h5 class="card-title"><?php echo   $controleur->getUserName($review->getIdUtilisateur()) ?></h5> 
                   <div class="d-flex justify-content-center mb-3">
                     <div class="content text-center">
                       <div class="ratings">
-                        <span class="product-rating">4.6</span><span>/5</span>
+                        <span class="product-rating"><?php echo $review->getScore()?></span><span>/5</span>
                         <div class="stars d-flex flex-nowrap">
                           <i class="fa fa-star"></i>
                           <i class="fa fa-star"></i>
@@ -26,12 +28,13 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
                       </div>
                     </div>
                   </div>
-                  <p class="card-text">Super travail pour mon parking, rapide et efficace.</p>
+                  <p class="card-text"><?php echo $review->getCommentaire()?></p>
                   <a href="#" class="btn">Savoir plus <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
               </div>
             </div>
           </div>
+          <!--
           <div class="carousel-item">
             <div class="col-md-4">
               <div class="card" style="width: 18rem;">
@@ -155,7 +158,8 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
                 </div>
               </div>
             </div>
-          </div>
+          </div>-->
+          <?php endforeach?>
         </div>
         <button class="carousel-control-prev w-auto" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
           <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
