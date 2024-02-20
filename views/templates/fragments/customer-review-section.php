@@ -17,15 +17,22 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
                  <h5 class="card-title"><?php echo   $controleur->getUserName($review->getIdUtilisateur()) ?></h5> 
                   <div class="d-flex justify-content-center mb-3">
                     <div class="content text-center">
-                      <div class="ratings">
-                        <span class="product-rating"><?php echo $review->getScore()?></span><span>/5</span>
-                        <div class="stars d-flex flex-nowrap">
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i>
-                        </div>
-                      </div>
+                    <div class="ratings">
+    <span class="product-rating"><?php echo $review->getScore()?></span><span>/5</span>
+    <div class="stars d-flex flex-nowrap">
+        <?php
+        $rating = $review->getScore();
+        for ($i = 1; $i <= 5; $i++) {
+            if ($i <= $rating) {
+                echo '<i class="fa fa-star"></i>';
+            } else {
+                echo '<i class="fa fa-star-o"></i>'; // Assuming you have an "empty" star icon
+            }
+        }
+        ?>
+    </div>
+</div>
+
                     </div>
                   </div>
                   <p class="card-text"><?php echo $review->getCommentaire()?></p>
