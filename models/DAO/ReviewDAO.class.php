@@ -132,4 +132,26 @@ class ReviewDAO implements DAO
         $tableauInfos = [$uneReview->getIdReview()];
         return $requete->execute($tableauInfos);
     }
+
+    public static function insererNouvelAvis($score, $commentaire, $idUtilisateur, $idService, $dateCommentaire)
+{
+    try {
+        $connexion = ConnexionBD::getInstance();
+    } catch (Exception $e) {
+        throw new Exception("Impossible d’obtenir la connexion à la BD.");
+    }
+
+    $requete = $connexion->prepare("INSERT INTO Review (score, commentaire, id_utilisateur, id_service, date_commentaire) VALUES (?, ?, ?, ?, ?)");
+
+    $tableauInfos = [
+        $score,
+        $commentaire,
+        $idUtilisateur,
+        $idService,
+        $dateCommentaire
+    ];
+
+    return $requete->execute($tableauInfos);
+}
+
 }

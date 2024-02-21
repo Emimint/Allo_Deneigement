@@ -2,7 +2,8 @@
 
 include_once(DOSSIER_BASE_INCLUDE . "controllers/controleur.abstract.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "models/DAO/DemandeDeServiceDAO.class.php");
-include_once(DOSSIER_BASE_INCLUDE . "models/DAO/FournisseurDAO.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/DAO/ReviewDAO.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/DAO/OffreDeServiceDAO.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "models/DAO/OffreDeServiceDAO.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "models/DAO/UtilisateurDAO.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "models/DAO/PersonneDAO.class.php");
@@ -61,8 +62,18 @@ class DetailDemande extends Controleur {
     {
         return $this->offreAssocies;
     }
+
+    public function handleStatusUpdate($demande, $newStatus, $messageSuccess) {
+   
+
+        // Modifier status
+        $currentDemande = $demande;
+        $currentDemande->setStatus($newStatus);
+        DemandeDeServiceDAO::modifier($demande);
     
-    public function executerAction()
+        flash("Mise a jour", $messageSuccess, FLASH_SUCCESS);
+    }    
+public function executerAction()
     {
         if ($this->acteur != "utilisateur" && $this->acteur != "fournisseur") {
             array_push($this->messagesErreur, "Vous êtes déjà connecté.");
@@ -102,21 +113,65 @@ class DetailDemande extends Controleur {
         $utilisateur = UtilisateurDAO::chercher($demande->getIdUtilisateur());
         $this->utilisateurAssocies = $utilisateur;
    
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["updateComment"])) {
-          
-            $newCommentaire = isset($_POST['commentaire']) ? $_POST['commentaire'] : '';
-            $this->demande->setCommentaire($newCommentaire);
-           
         
-          
-            return "detail-offre";
-        }
+
+       
+if (isset($_POST['updateComment'])) {
+   
+  
+
+    // Set the new comment
+    $demande->setCommentaire($_POST['commentaire']);
+    DemandeDeServiceDAO::modifier($demande);
+
+   
+   flash("Mise a jour", " Mise a jour effectue", FLASH_SUCCESS);
+}
+if (isset($_POST['AddReview'])) {
+   
+   // Add a review
+   $score = (isset($_POST['score'])) ? intval($_POST['score']) : 0;
+   $reviewComment = isset($_POST['review-comment']) ? $_POST['review-comment'] : "";
+
+
+ 
+   //ajouter avec dao
+    ReviewDAO::insererNouvelAvis($score ,$reviewComment, $this->utilisateurAssocies->getIdUtilisateur(), $this->offreAssocies->getIdOffre(), date("Y-m-d")) ;
+
+  
+   flash("Avis", " Votre avis a ete bien ajoute", FLASH_SUCCESS);
+}
+if (isset($_POST['deleteRequest'])) {
+   
+    DemandeDeServiceDAO::supprimer($demande);
+  
+
+    header("Location: http://localhost/Allo_Deneigement/?action=afficherDemandeDeServices");
+    flash("Suppression", " Votre demande a ete bien supprimee", FLASH_SUCCESS);
+    exit;
+    
+    
+  
+ }
+
+
+if (isset($_POST['cancelRequest'])) {
+    $this->handleStatusUpdate($demande,'Refusée', 'La demande a été refusée avec succès.');
+}
+
+if (isset($_POST['completeRequest'])) {
+    $this->handleStatusUpdate($demande,'Completée', 'La demande a été complétée avec succès.');
+}
+if (isset($_POST['acceptRequest'])) {
+    $this->handleStatusUpdate($demande,'Acceptée', 'La demande a été acceptée avec succès.');
+
+}
         return "detail-offre";}
     
 
-
-    }
-    
+}
+ 
+ 
     
     
 }

@@ -43,6 +43,7 @@ if (count($controleur->getlisteDemandesUtilisateurs()) == 0) { ?>
     </div>
 <?php }  ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>
+
 </body>
 
 </html>

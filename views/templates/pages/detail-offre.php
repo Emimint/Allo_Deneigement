@@ -6,6 +6,66 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
+
+<!--review Modal-->
+<div id="review_modal" class="modal" tabindex="-1" role="dialog">
+  	<div class="modal-dialog" role="document">
+    	<div class="modal-content">
+	      	<div class="modal-header">
+	        	<h5 class="modal-title">Submit Review</h5>
+	        	<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+	          		<span aria-hidden="true">&times;</span>
+	        	</button>
+	      	</div>
+	      	<div class="modal-body">
+              <form action="" method="POST">
+	      		<h4 class="text-center mt-2 mb-4">
+	        		<i class="fas fa-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
+                    <i class="fas fa-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+	        	</h4>
+
+                    <!-- Hidden input to store the rating value -->
+                     <input type="hidden" name="score" id="score" value="0">
+	        	
+                <div class="form-group">
+	        		<input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" />
+	        	</div>
+	        	<div class="form-group">
+	        		<textarea name="review-comment" id="user_review" class="form-control" placeholder="Type Review Here"></textarea>
+	        	</div>
+	        	<div class="form-group text-center mt-4">
+	        		<button type="submit" name="AddReview" class="btn btn-primary" id="save_review">Submit</button>
+	        	</div>
+                </form>
+	      	</div>
+    	</div>
+  	</div>
+</div>
+
+    <!-- Warning Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="warningModalLabel">Warning!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment supprimer la demande?</p>
+                </div>
+                <div class="modal-footer">
+                   <form method="POST">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="deleteRequest" class="btn btn-warning">Supprimer</button>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--end review Modal-->
 <div class="step step-4 m-2">
     <form action="" method="POST">
 
@@ -32,7 +92,7 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
                 <h2>Adresse de livraison</h2>
                 <ul class="list-group">
                 <?php
-        // Assuming $controleur->getlisteAddresseUtilisateur() returns a list of addresses
+        
         $addresses = $controleur->getlisteAddresseUtilisateur();
 
         foreach ($addresses as $adresse) {
@@ -110,34 +170,57 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
 
             <?php
             $status = $controleur->getStatus();
+            $user =  $_SESSION['utilisateurConnecte'];
 
+
+            
+            if($user=="utilisateur"){ 
             switch ($status) {
                 case 'En attente':
                     // Handle pending status
                     echo '<button type="submit" id="UpdateBtn" name="updateComment" class="btn btn-danger m-2 prev-step">modifer</button>';
+                    echo '<button type="button" id="DeleteBtn" name="deleteRequest" data-bs-toggle="modal" data-bs-target="#warningModal"  class="btn btn-danger m-2 prev-step">Supprimer</button>';
                     break;
             
-                case 'Acceptée':
+                case 'Acceptée' || 'Refusée':
                     // Handle accepted status
                     echo '   <button type="button" class="btn btn-danger m-2 prev-step">Contacter fournisseur</button>
                     <button type="submit" class="btn btn-danger m-2">Concater administreur</button>';
                     break;
-            
-                case 'Refusée':
-                    // Handle completed status
-                    echo '   <button type="button" class="btn btn-danger m-2 prev-step">Contacter fournisseur</button>
-                    <button type="submit" class="btn btn-danger m-2">Concater administreur</button>';
-                    break;
+           
                  case 'Complétée':
                         // Handle completed status
-                    echo ' <button type="button" class="btn btn-danger m-2 prev-step" >ajouter un avis</button>';
+                    echo ' <button type="button"  data-bs-toggle="modal" data-bs-target="#review_modal"  class="btn btn-danger m-2 prev-step" >ajouter un avis</button>';
                     break;
             
                 default:
-                    // Handle any other status that may occur
+                   
                     echo '';
                     break;
+            }}else{
+
+                switch ($status) {
+                    case 'En attente':
+                        echo '<button type="submit" name="acceptRequest" class="btn btn-success m-2">Accepter</button>';
+                        echo '<button type="submit" name="cancelRequest" class="btn btn-danger m-2">Refuser</button>';
+                       
+                        break;
+                     
+                    case 'Acceptée':
+                        echo '<button type="submit" name="completeRequest" class="btn btn-success m-2">Completer</button>';
+                        break;
+
+                    case 'Refusée':
+                        echo '<button type="button" id="DeleteBtn" name="deleteRequest" data-bs-toggle="modal" data-bs-target="#warningModal"  class="btn btn-danger m-2 prev-step">Supprimer</button>';
+                        break;
+   
+                    default:
+                       
+                      
+                        break;
+                }
             }
+           
             
             ?>
            
@@ -147,31 +230,18 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
     </form>
 </div>
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>
-    <script>
-$(document).ready(function () {
-    $("#UpdateBtn").click(function (e) {
-        e.preventDefault();
-
-        // Perform an AJAX request to update the comment
-        $.ajax({
-            type: "POST",
-            url: "", 
-            data: {
-                updateComment: true,
-                commentaire: $("#commentaire-soumission").val(),
-            },
-            success: function (response) {
-                // Handle the response if needed
-                console.log(response);
-            },
-            error: function (error) {
-                // Handle the error if needed
-                console.error(error);
-            },
-        });
-    });
-});
-</script>
+    <script src="<?php echo DOSSIER_VIEWS; ?>\static\scripts\review-system-script.js"></script>
+    
     </body>
 
     </html>
+    
+   
+
+
+
+  
+   
+
+
+

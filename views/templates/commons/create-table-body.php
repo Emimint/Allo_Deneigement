@@ -32,14 +32,20 @@ function afficherTableau($liste_demande, $liste_fournisseur, $liste_service)
             </div>
         </td>";
         echo "<td>
-            <div style='width:100%; display:flex; justify-content: space-around;'>
-                <a href='?=action=ToBeDeterminated'>
-                    <i class='fa-solid fa-trash' style='color: #b50303;'>
-                    </i>
-                </a>
-            </div>
-        </td>";
+        <div style='width:100%; display:flex; justify-content: space-around;'>";
+
+if ($demande->getStatus() == "En attente" || $demande->getStatus() == "Refusée") {
+    echo '<a href="?action=details-demande&id=' . $demande->getIdDemande() . '">
+    <i class="fa-solid fa-trash" style="color: #b50303;"></i>
+  </a>';
+
+} else {
+    echo '<i class="fa-solid fa-trash" style="color:gray"></i>';
+}
+
+echo "</div>
+    </td>";
+
         echo "</tr>";
     }
 }
-
