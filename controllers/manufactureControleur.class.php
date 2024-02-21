@@ -5,6 +5,7 @@ include_once(DOSSIER_BASE_INCLUDE . "controllers/seConnecter.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherDemandeDeServices.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/seDeconnecter.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherProfile.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "controllers/creerUnCompte.class.php");
 
 class ManufactureControleur
 {
@@ -16,7 +17,9 @@ class ManufactureControleur
         } elseif ($action == "afficherDemandeDeServices") {
             $controleur = new AfficherDemandeDeServices();
         } elseif ($action == "afficherProfile") {
-            $controleur = new afficherProfile();
+            $controleur = new AfficherProfile();
+        } elseif ($action == "creerUnCompte") {
+            $controleur = new CreerUnCompte();
         } elseif ($action == "seDeconnecter") {
             $controleur = new SeDeconnecter();
         } elseif ($action == "voirPageAccueil") {
