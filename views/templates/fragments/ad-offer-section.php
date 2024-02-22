@@ -33,6 +33,8 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
     </div>
   </section>
    <!-- Modal pour l'envoi d'email -->
+   <form novalidate class="needs-validation" action="?action=emailController" method="POST">
+
    <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -47,29 +49,44 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
           <form>
             <div class="form-group">
               <label for="recipient-email" class="col-form-label">Adresse email du destinataire:</label>
-              <input type="email" class="form-control" id="recipient-email">
+              <input type="email" name="email" class="form-control" id="recipient-email" required>
+              <div class="invalid-feedback">
+                    Saississez une adresse courriel valide.
+                </div>
             </div>
             <div class="form-group">
               <label for="email-message" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="email-message"></textarea>
+              <textarea class="form-control" name="testArea" id="email-message" required></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" style="background-color: #b50303; color: white;" data-dismiss="modal">Fermer</button>
-          <button type="button" style="background-color: #b50303; color: white;" >Envoyer</button>
+        <button id="btnFermer" style="background-color: #b50303; color: white;" data-dismiss="modal">Fermer</button>
+          <button type="submit" name="btnEnvoyer" style="background-color: #b50303; color: white;" >Envoyer</button>
         </div>
       </div>
     </div>
   </div>
+  </form>
   <script>
     // Attacher un gestionnaire d'événement au bouton "Envoyer un email"
 document.querySelector('.masthead button[data-target="#emailModal"]').addEventListener('click', function() {
     // Ouvrir le modal "Envoyer un email"
     $('#emailModal').modal('show');
 });
+document.getElementById('btnFermer').addEventListener('click', function() {
+        $('#emailModal').modal('hide');
+    });
 
   </script>
+  <script src="<?php echo BASE_URL_VIEWS; ?>static/scripts/css-validation.js"></script>
+  <!-- Alertes pour l'e-mail envoyé avec succès -->
+<?php if (isset($_SESSION['FLASH_SUCCESS'])) : ?>
+<div class="alert alert-success" role="alert">
+    <?php echo $_SESSION['FLASH_SUCCESS']; ?>
+</div>
+<?php unset($_SESSION['FLASH_SUCCESS']); ?>
+<?php endif; ?>
   <div class="ad-service container-fluid">
     <div class="container p-5">
       <!--      Principaux services du fournisseur:-->
@@ -152,4 +169,4 @@ document.querySelector('.masthead button[data-target="#emailModal"]').addEventLi
 
     </div>
 
-    <div>
+  <div>
