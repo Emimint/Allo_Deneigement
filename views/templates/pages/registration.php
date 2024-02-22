@@ -4,7 +4,9 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php"); ?>
 <style>
-
+  .error {
+    color: red;
+  }
 </style>
 <div class="container-fluid w-100" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('<?php echo BASE_URL; ?>/static/image/snow-plow.jpg'); background-size: cover; background-position: center; width: 70%;">
   <div class="row m-auto" style="width: 70%">
@@ -15,37 +17,37 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
 
         <form id="myForm" action="?action=creerUnCompte" class="needs-validation" novalidate method="POST">
 
-          <div id="admin-input" class="input-group mb-3 mt-5">
+          <div id="admin-input" class="form-group mb-3 mt-5">
             <span class="input-group-text"><i class="fa fa-building"></i></span>
             <input name="companyName" type="text" class="form-control" placeholder="nom de la compagnie" id="companyName" required>
             <div class="invalid-feedback" id="companyNameError"></div>
           </div>
 
-          <div class="input-group mb-3 ">
+          <div class="form-group mb-3 ">
             <span class="input-group-text"><i class="fa fa-user"></i></span>
             <input name="firstName" type="text" class="form-control" placeholder="Prenom" id="firstName" required>
             <div class="invalid-feedback" id="firstNameError"></div>
           </div>
 
-          <div class="input-group mb-3">
+          <div class="form-group mb-3">
             <span class="input-group-text"><i class="fa fa-user"></i></span>
             <input name="lastName" type="text" class="form-control" placeholder="Nom" id="lastName" required>
             <div class="invalid-feedback" id="lastNameError"></div>
           </div>
 
-          <div class="input-group mb-3">
+          <div class="form-group mb-3">
             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
             <input name="email" type="email" class="form-control" placeholder="Courriel" id="email" required>
             <div class="invalid-feedback" id="emailError"></div>
           </div>
 
-          <div class="input-group mb-3">
+          <div class="form-group mb-3">
             <span class="input-group-text"><i class="fa fa-lock"></i></span>
             <input name="password" type="password" class="form-control" placeholder="Mot de passe" id="password" required>
             <div class="invalid-feedback" id="passwordError"></div>
           </div>
 
-          <div class="input-group mb-3">
+          <div class="form-group mb-3">
             <span class="input-group-text"><i class="fa fa-lock"></i></span>
             <input name="confirmPassword" type="password" class="form-control" placeholder="Confirmer mot de passe" id="confirmPassword" required>
             <div class="invalid-feedback" id="confirmPasswordError"></div>
