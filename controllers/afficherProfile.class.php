@@ -78,16 +78,21 @@ class AfficherProfile extends  Controleur
                 }
             } else if (isset($_POST['nouvelleAdresse'])) {
 
+                try {
+                    $stringifyAdress = $_POST['newPostalCode'] . ', ' . $_POST['newNumero'] . ', ' . $_POST['newRue'] . ', ' . $_POST['newVille'] . ', ' . $_POST['newPays'] . ', ' . $_POST['newProvince'];
+                    $coordinates = AdresseDAO::geocodeAddress($stringifyAdress);
+                    // echo "Latitude : " . $coordinates[0] . " Longitude : " . $coordinates[1];
+                    if ($coordinates == null) {
+                        flash('Erreur', 'Impossible de trouver cette adresse. Veuillez vérifier vos saisies.', FLASH_ERROR);
+                        return "profilePage";
+                    }
 
-                $stringifyAdress = $_POST['newPostalCode'] . ', ' . $_POST['newNumero'] . ', ' . $_POST['newRue'] . ', ' . $_POST['newVille'] . ', ' . $_POST['newPays'] . ', ' . $_POST['newProvince'];
-                $coordinates = AdresseDAO::geocodeAddress($stringifyAdress);
-                echo "Latitude : " . $coordinates[0] . " Longitude : " . $coordinates[1];
-                if ($coordinates == null) {
-                    flash('Erreur', 'Impossible de trouver cette adresse. Veuillez vérifier vos saisies.', FLASH_ERROR);
-                    return "profilePage";
+                    $nouvelleAdresse = new Adresse("", $_POST['newPostalCode'], $_POST['newNumero'], $_POST['newRue'], $_POST['newVille'], $_POST['newPays'], $_POST['newProvince'], $coordinates[0], $coordinates[1]);
+                } catch (Exception $e) {
+                    // echo $e->getMessage();
+                    flash('Erreur', 'Une erreur s\'est produite côté serveur.', FLASH_ERROR);
+                    return "registration";
                 }
-
-                $nouvelleAdresse = new Adresse("", $_POST['newPostalCode'], $_POST['newNumero'], $_POST['newRue'], $_POST['newVille'], $_POST['newPays'], $_POST['newProvince'], $coordinates[0], $coordinates[1]);
 
                 try {
                     PersonneDAO::insererAdresse($_SESSION['utilisateurConnecte'], $nouvelleAdresse, $_SESSION['infoUtilisateur']->getEmail());

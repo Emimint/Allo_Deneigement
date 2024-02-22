@@ -14,7 +14,6 @@ class CreerUnCompte extends  Controleur
 
     public function executerAction()
     {
-        // echo $_POST['email'];
         // echo $this->acteur;
         if ($this->acteur != "visiteur") {
             array_push($this->messagesErreur, "Votre compte est deja cree.");
@@ -24,25 +23,31 @@ class CreerUnCompte extends  Controleur
 
 
         if (($_SERVER['REQUEST_METHOD'] === 'POST')) {
-            echo $this->acteur;
-
-            echo $_POST['email'];
 
             if (PersonneDAO::chercherPersonne($_POST['email']) != null) {
                 flash('Erreur', 'Cette adresse courriel est déjà utilisée.', FLASH_ERROR);
                 return "registration";
             }
+
             try {
-                if (isset($_POST['companyName']))
-                    FournisseurDAO::inserer(new Fournisseur("", $_POST['email'], $_POST['companyName'], $_POST['lastName'], $_POST['firstName'], "", "", (($_POST['lastName'])[0]) . strtolower($_POST['firstName']), $_POST['password'], "", ""));
-                else
-                    UtilisateurDAO::inserer(new Utilisateur("", $_POST['email'], $_POST['lastName'], $_POST['firstName'], "", (($_POST['lastName'])[0]) . strtolower($_POST['firstName']), $_POST['password'], ""));
+                if (isset($_POST['companyName']) && strlen($_POST['companyName']) > 0) {
+                    $unUtilisateur = new Fournisseur("", $_POST['email'], $_POST['companyName'], $_POST['lastName'], $_POST['firstName'], "", "", strtolower(($_POST['lastName'])[0] . $_POST['firstName']), $_POST['password'], "", "");
+                    FournisseurDAO::inserer($unUtilisateur);
+                } else {
+                    $unUtilisateur = new Utilisateur("", $_POST['email'], $_POST['lastName'], $_POST['firstName'], "", strtolower(($_POST['lastName'])[0] . $_POST['firstName']), $_POST['password'], "");
+                    UtilisateurDAO::inserer($unUtilisateur);
+                }
+                $this->acteur = strtolower(get_class($unUtilisateur));
+                $_SESSION['utilisateurConnecte'] = strtolower($this->acteur);
+                // pour avoir les infos de l'utilisateur connecté au complet, incluant son id! :
+                $_SESSION['infoUtilisateur'] = PersonneDAO::chercherPersonne($_POST['email']);
+                flash('Profil crée', 'Votre profil a été crée avec succès.', FLASH_SUCCESS);
+                return "landing-page";
             } catch (Exception $e) {
-                flash('Erreur', 'Impossible de creer le profil. Veuillez vérifier vos saisies.', FLASH_ERROR);
-                return "profilePage";
+                // echo $e->getMessage();
+                flash('Erreur', 'Une erreur s\'est produite côté serveur.', FLASH_ERROR);
+                return "registration";
             }
-            flash('Profil cree', 'Votre profil a ete cree avec succès.', FLASH_SUCCESS);
-            return "profilePage";
         } else {
             return "registration";
         }
