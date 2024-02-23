@@ -46,7 +46,7 @@ class FaireDemandeSoumission extends  Controleur
 
         $id_service = 2; // normally from the URL
 
-        if ($_SESSION['utilisateurConnecte'] != "utilisateur") {
+        if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] != "utilisateur") {
             flash('Info', 'Vous devez vous connecter pour accéder à cette page.', FLASH_INFO);
             return "login";
         }
