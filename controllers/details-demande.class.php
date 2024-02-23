@@ -119,10 +119,13 @@ class DetailDemande extends Controleur {
                 $utilisateur = UtilisateurDAO::chercher($demande->getIdUtilisateur());
                 $this->utilisateurAssocies = $utilisateur;
     
-                if (isset($_POST['updateComment'])) {
+                if (isset($_POST['updateComment']) ) {
                     // Set the new comment
-                    $demande->setCommentaire($_POST['commentaire']);
+                    $newComment = $_POST['commentaire'];
+                    $demande->setCommentaire($newComment);
                     DemandeDeServiceDAO::modifier($demande);
+                    $this->commentaire=$newComment;
+                   
                     flash("Mise a jour", " Mise a jour effectue", FLASH_SUCCESS);
                 }
     
