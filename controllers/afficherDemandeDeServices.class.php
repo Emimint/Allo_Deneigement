@@ -53,7 +53,12 @@ class AfficherDemandeDeServices extends Controleur
                 array_push($this->listeServicesAssocies, $nomService);
             }
             return "historique-utilisateur";
-        } else {
+        } elseif($this->acteur == "administrateur"){
+                //$controleur->getlisteDemandesUtilisateurs(), $controleur->getlisteFournisseursAssocies(), $controleur->getlisteServicesAssocies());
+                echo 'hi';
+        }
+        
+        else {
             array_push($this->messagesErreur, "Vous êtes déjà connécté.");
             flash('Info', 'Vous devez vous connecter pour accéder à cette page.', FLASH_INFO);
             return "login";
