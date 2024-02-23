@@ -1,37 +1,26 @@
 <?php
 
-class Utilisateur
+include_once(DOSSIER_BASE_INCLUDE . "models/personne.class.php");
+
+class Utilisateur extends Personne
 {
     private $id_utilisateur;
-    private $email;
     private $nom;
     private $prenom;
-    private $telephone;
-    private $username;
-    private $mot_de_passe;
-    private $url_photo;
 
-    public function __construct($id_utilisateur, $email, $nom, $prenom, $telephone, $username, $mot_de_passe, $url_photo)
+    public function __construct($id_utilisateur, $email, $nom, $prenom, $telephone, $username, $password, $url_photo)
     {
+        parent::__construct($email, $telephone, $username, $password, $url_photo);
         $this->id_utilisateur = $id_utilisateur;
-        $this->email = $email;
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->telephone = $telephone;
-        $this->username = $username;
-        $this->mot_de_passe = $mot_de_passe;
-        $this->url_photo = $url_photo;
+        $this->id = $id_utilisateur;
     }
 
-    // Getters
+    // Additional getters for Utilisateur
     public function getIdUtilisateur()
     {
         return $this->id_utilisateur;
-    }
-
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     public function getNom()
@@ -44,28 +33,18 @@ class Utilisateur
         return $this->prenom;
     }
 
-    public function getTelephone()
+    public function setNom($nom)
     {
-        return $this->telephone;
+        $this->nom = $nom;
     }
 
-    public function getUsername()
+    public function setPrenom($prenom)
     {
-        return $this->username;
-    }
-
-    public function getMotDePasse()
-    {
-        return $this->mot_de_passe;
-    }
-
-    public function getUrlPhoto()
-    {
-        return $this->url_photo;
+        $this->prenom = $prenom;
     }
 
     public function __toString()
     {
-        return "Utilisateur [id_utilisateur=" . $this->id_utilisateur . ", email=" . $this->email . ", nom=" . $this->nom . ", prenom=" . $this->prenom . ", telephone=" . $this->telephone . ", username=" . $this->username . ", mot_de_passe=" . $this->mot_de_passe . ", url_photo=" . $this->url_photo . "]";
+        return "Utilisateur [id_utilisateur=" . $this->id_utilisateur . ", " . parent::__toString() . ", nom=" . $this->nom . ", prenom=" . $this->prenom . "]";
     }
 }

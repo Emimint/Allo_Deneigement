@@ -1,21 +1,21 @@
-<?php if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigement/views/'); ?>
+<?php if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Allo_Deneigement/views/'); ?>
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="UTF-8" />
   <title>Allo Déneigement</title>
-  <link rel="icon" href="<?php echo BASE_URL; ?>/static/image/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="<?php echo BASE_URL_VIEWS; ?>static/image/favicon.ico" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CSS LIBRAIRIES -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="<?php echo BASE_URL; ?>/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
-  <link href="<?php echo BASE_URL; ?>/assets/fontawesome/css/brands.css" rel="stylesheet">
-  <link href="<?php echo BASE_URL; ?>/assets/fontawesome/css/solid.css" rel="stylesheet">
+  <link href="<?php echo BASE_URL_VIEWS; ?>assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="<?php echo BASE_URL_VIEWS; ?>assets/fontawesome/css/brands.css" rel="stylesheet">
+  <link href="<?php echo BASE_URL_VIEWS; ?>assets/fontawesome/css/solid.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
-  <link href="<?php echo BASE_URL; ?>/static/style/main.css" rel="stylesheet" />
-  <link href="<?php echo BASE_URL; ?>/static/style/landing-page-style.css" rel="stylesheet" />
+  <link href="<?php echo BASE_URL_VIEWS; ?>static/style/main.css" rel="stylesheet" />
+  <link href="<?php echo BASE_URL_VIEWS; ?>static/style/landing-page-style.css" rel="stylesheet" />
   <!-- JS LIBRAIRIES -->
   <!-- Jquery validate plugin -->
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.3/jquery.validate.js"></script>
