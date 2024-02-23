@@ -6,6 +6,7 @@ include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherDemandeDeServices.class
 include_once(DOSSIER_BASE_INCLUDE . "controllers/seDeconnecter.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherProfile.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/faireDemandeSoumission.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherOffreDeServices.class.php");
 
 class ManufactureControleur
 {
@@ -24,6 +25,8 @@ class ManufactureControleur
             $controleur = new FaireDemandeSoumission();
         } elseif ($action == "voirPageAccueil") {
             $controleur = new Defaut();
+        } elseif ($action == "afficherOffreDeServices") {
+            $controleur = new AfficherOffreDeServices();
         } else {
             $controleur = new Defaut();
         }
