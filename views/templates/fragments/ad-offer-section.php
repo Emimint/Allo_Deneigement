@@ -23,7 +23,7 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
   </section>
 
   <div class="ad-service container-fluid">
-    <div class="d-flex flex-row bd-highlight mb-3 container p-5 justify-content-between">
+    <div class="d-flex flex-row bd-highlight mb-3 container p-5 justify-content-around">
       <!--      Principaux services du fournisseur:-->
       <?php
       $offre_list_principaux = array_slice($controleur->getOffre(),0,3);
