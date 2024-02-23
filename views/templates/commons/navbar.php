@@ -14,12 +14,13 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
                     </div>
                 </a>
                 <ul class="d-flex align-items-center nav col-12 col-lg-auto mb-2 mb-md-0">
-                    <li class="nav-link"><a href="<?php echo DOSSIER_BASE_INCLUDE; ?>" class="nav-link px-2 text-white">A propos</a></li>
+                    <li class="nav-link"><a href="?action=defaut" class="nav-link px-2 text-white">A propos</a></li>
                     <li class="nav-link">
-                        <a href="?action=afficherDemandeDeServices" class="nav-link px-2 text-white">Mes demandes de service</a>
+                        <a id="demandesDeServices" href="?action=afficherDemandeDeServices" class="nav-link px-2 text-white" hidden>Mes demandes de service</a>
                     </li>
                     <li class="nav-link"><a href="<?php echo BASE_URL_VIEWS; ?>templates/pages/fournisseur.php" class="nav-link px-2 text-white">Liste de fournisseurs</a></li>
-                    <li class="nav-link"><a href="<?php echo BASE_URL_VIEWS; ?>templates/pages/contactPage.php" class="nav-link px-2 text-white">Nous joindre</a></li>
+                   
+                    <li class="nav-link"><a href="?action=defaut" class="nav-link px-2 text-white">Nous joindre</a></li>
                     <li class="nav-link"><a href="#" class="nav-link px-2"><i class="fa-regular fa-bell" style="color: #ffffff;"></i></a></li>
                     <li class="nav-link dropdown">
                         <a href="#" class="nav-link px-2 dropdown-toggle" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,7 +35,10 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
                         <?php
                         // Check if the user is logged in
                         if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] != "visiteur") {
+                            
                         ?>
+                        <!--si utilisateur est connecte afficher lien -->
+                           <script> document.getElementById('demandesDeServices').hidden = false;</script>
                             <div class="btn btn-outline-light dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent;border-color: transparent;">
                                     Bienvenue, <?php

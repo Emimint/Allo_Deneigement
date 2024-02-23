@@ -5,7 +5,10 @@
         if (isset($_SESSION["liste_fournisseurs"])) {
             foreach ($_SESSION["liste_fournisseurs"] as $fournisseur) {
                 $liste_adresses = PersonneDAO::chercherAdresses('fournisseur', $fournisseur->getEmail());
-                if ($liste_adresses != null) {
+                $offreAssocie = OffreDeServiceDAO::chercherAvecFiltre("WHERE id_fournisseur=" . $fournisseur->getIdFournisseur());
+
+                //ne pas afficher si fournisseur na pas doffre
+                if ($liste_adresses != null &&  $offreAssocie!=null) {
                     $numeroCivique = $liste_adresses[0]->getNumeroCivique();
                     $codePostal = $liste_adresses[0]->getCodePostal();
                     $nomRue = $liste_adresses[0]->getNomRue();
@@ -30,10 +33,10 @@
                     </div>
                 <?php
                 } else { ?>
-                    <div class="d-flex align-items-center justify-content-between p-2">
+                    <!-- <div class="d-flex align-items-center justify-content-between p-2">
                         <p class="m-0">Pas d'adresse pour <?php echo $fournisseur->getNomDeLaCompagnie(); ?>.</p>
                         <a href="?action=afficherOffreDeServices&id=<?php echo $fournisseur->getIdFournisseur(); ?>" class="btn btn-light">Contacter</a>
-                    </div>
+                    </div> -->
                 <?php
                 }
                 ?>
