@@ -182,17 +182,18 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
                     echo '<button type="button" id="DeleteBtn" name="deleteRequest" data-bs-toggle="modal" data-bs-target="#warningModal"  class="btn btn-danger m-2 prev-step">Supprimer</button>';
                     break;
             
-                case 'Acceptée' || 'Refusée':
+                case 'Acceptée':
                     // Handle accepted status
                     echo '   <button type="button" class="btn btn-danger m-2 prev-step">Contacter fournisseur</button>
-                    <button type="submit" class="btn btn-danger m-2">Concater administreur</button>';
+                    <button type="submit" class="btn btn-danger m-2">Contacter administreur</button>';
                     break;
            
                  case 'Complétée':
                         // Handle completed status
                     echo ' <button type="button"  data-bs-toggle="modal" data-bs-target="#review_modal"  class="btn btn-danger m-2 prev-step" >ajouter un avis</button>';
                     break;
-            
+                case 'Refusée':
+                    echo '<button type="button" id="DeleteBtn" name="deleteRequest" data-bs-toggle="modal" data-bs-target="#warningModal"  class="btn btn-danger m-2 prev-step">Supprimer</button>';
                 default:
                    
                     echo '';

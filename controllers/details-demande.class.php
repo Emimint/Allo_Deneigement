@@ -24,7 +24,7 @@ class DetailDemande extends Controleur {
     {
         parent::__construct();
         $this->listeAddresseUtilisateur= array();
-       $this->listeAddresseUtilisateur = array();
+       
       
     }
 
@@ -64,116 +64,115 @@ class DetailDemande extends Controleur {
     }
 
     public function handleStatusUpdate($demande, $newStatus, $messageSuccess) {
-   
-
-        // Modifier status
-        $currentDemande = $demande;
-        $currentDemande->setStatus($newStatus);
-        DemandeDeServiceDAO::modifier($demande);
+        try {
+            // Modifier status
+            $currentDemande = $demande;
+            $currentDemande->setStatus($newStatus);
+            DemandeDeServiceDAO::modifier($demande);
+            header("Location: http://localhost/Allo_Deneigement/?action=afficherDemandeDeServices");
+            flash("Mise a jour", $messageSuccess, FLASH_SUCCESS);
+            exit;
+        } catch (Exception $e) {
+            flash("Error", "An error occurred while updating status: " . $e->getMessage(), FLASH_ERROR);
+          
+        }
+    }  
     
-        flash("Mise a jour", $messageSuccess, FLASH_SUCCESS);
-    }    
-public function executerAction()
+    
+    public function executerAction()
     {
-        if ($this->acteur != "utilisateur" && $this->acteur != "fournisseur") {
-            array_push($this->messagesErreur, "Vous êtes déjà connecté.");
-            flash('Info', 'Vous devez vous connecter pour accéder à cette page.', FLASH_INFO);
-            return "login";
+        try {
+            if ($this->acteur != "utilisateur" && $this->acteur != "fournisseur") {
+                array_push($this->messagesErreur, "Vous êtes déjà connecté.");
+                flash('Info', 'Vous devez vous connecter pour accéder à cette page.', FLASH_INFO);
+                return "login";
+            }
+    
+            if (!isset($_GET['id'])) {
+                throw new Exception("ID non trouvé");
+            }
+    
+            $demandeId = $_GET['id'];
+            $demande = DemandeDeServiceDAO::chercher($demandeId);
+            $this->demande = $demande;
+    
+            // Check if the demand is not found
+            if (!$demande) {
+                throw new Exception("Demande non trouvée");
+            } else {
+                // Load the specific demand based on the ID
+                $this->status = $demande->getStatus();
+    
+                // Process the demand and related information
+                $fournisseur = FournisseurDAO::chercher($demande->getIdFournisseur());
+                $this->FournisseursAssocies = $fournisseur->getNomDeLaCompagnie();
+    
+                $service = OffreDeServiceDAO::chercher($demande->getIdOffre());
+                $this->offreAssocies = $service;
+    
+                $addresses = PersonneDAO::chercherAdresses($this->acteur, $_SESSION['infoUtilisateur']->getEmail());
+                $this->listeAddresseUtilisateur = $addresses;
+    
+                $commentaire = $demande->getCommentaire();
+                $this->commentaire = $commentaire;
+    
+                $utilisateur = UtilisateurDAO::chercher($demande->getIdUtilisateur());
+                $this->utilisateurAssocies = $utilisateur;
+    
+                if (isset($_POST['updateComment'])) {
+                    // Set the new comment
+                    $demande->setCommentaire($_POST['commentaire']);
+                    DemandeDeServiceDAO::modifier($demande);
+                    flash("Mise a jour", " Mise a jour effectue", FLASH_SUCCESS);
+                }
+    
+                if (isset($_POST['AddReview'])) {
+                    // Add a review
+                    $score = (isset($_POST['score'])) ? intval($_POST['score']) : 0;
+                    $reviewComment = isset($_POST['review-comment']) ? $_POST['review-comment'] : "";
+    
+                    // ajouter avec dao
+                    ReviewDAO::insererNouvelAvis($score, $reviewComment, $this->utilisateurAssocies->getIdUtilisateur(), $this->offreAssocies->getIdOffre(), date("Y-m-d"));
+                    flash("Avis", " Votre avis a ete bien ajoute", FLASH_SUCCESS);
+                }
+    
+                if (isset($_POST['deleteRequest'])) {
+                    DemandeDeServiceDAO::supprimer($demande);
+                    header("Location: http://localhost/Allo_Deneigement/?action=afficherDemandeDeServices");
+                    flash("Suppression", " Votre demande a ete bien supprimee", FLASH_SUCCESS);
+                    exit;
+                }
+    
+                if (isset($_POST['cancelRequest'])) {
+                    $this->handleStatusUpdate($demande, 'Refusée', 'La demande a été refusée avec succès.');
+                }
+    
+                if (isset($_POST['completeRequest'])) {
+                    $this->handleStatusUpdate($demande, 'Completée', 'La demande a été complétée avec succès.');
+                }
+    
+                if (isset($_POST['acceptRequest'])) {
+                    $this->handleStatusUpdate($demande, 'Acceptée', 'La demande a été acceptée avec succès.');
+                }
+    
+                return "detail-offre";
+            }
+        } catch (Exception $e) {
+            flash("Erreur", "Une erreur s'est produite: " . $e->getMessage(), FLASH_ERROR);
+            return "detail-offre";
         }
+    }
     
-        if (!isset($_GET['id'])) {
-            // Handle case when 'id' is not set in $_GET
-            return "id non trouvee";
-        }
-    
-        $demandeId = $_GET['id'];
-        $demande = DemandeDeServiceDAO::chercher($demandeId);
-        $this->demande=$demande;
-    
-        // Check if the demand is not found
-        if (!$demande) {
-            return "demande non trouvee";
-        }else{
-        // Load the specific demand based on the ID
-        $this->status = $demande->getStatus();
-    
-        // Process the demand and related information
-        $fournisseur = FournisseurDAO::chercher($demande->getIdFournisseur());
-        $this->FournisseursAssocies = $fournisseur->getNomDeLaCompagnie();
-    
-        $service = OffreDeServiceDAO::chercher($demande->getIdOffre());
-        $this->offreAssocies = $service;
-    
-        $addresses = PersonneDAO::chercherAdresses($this->acteur, $_SESSION['infoUtilisateur']->getEmail());
-        $this->listeAddresseUtilisateur = $addresses;
-    
-        $commentaire = $demande->getCommentaire();
-        $this->commentaire = $commentaire;
-    
-        $utilisateur = UtilisateurDAO::chercher($demande->getIdUtilisateur());
-        $this->utilisateurAssocies = $utilisateur;
-   
-        
-
        
-if (isset($_POST['updateComment'])) {
    
-  
-
-    // Set the new comment
-    $demande->setCommentaire($_POST['commentaire']);
-    DemandeDeServiceDAO::modifier($demande);
-
-   
-   flash("Mise a jour", " Mise a jour effectue", FLASH_SUCCESS);
-}
-if (isset($_POST['AddReview'])) {
-   
-   // Add a review
-   $score = (isset($_POST['score'])) ? intval($_POST['score']) : 0;
-   $reviewComment = isset($_POST['review-comment']) ? $_POST['review-comment'] : "";
+    
 
 
  
-   //ajouter avec dao
-    ReviewDAO::insererNouvelAvis($score ,$reviewComment, $this->utilisateurAssocies->getIdUtilisateur(), $this->offreAssocies->getIdOffre(), date("Y-m-d")) ;
-
-  
-   flash("Avis", " Votre avis a ete bien ajoute", FLASH_SUCCESS);
 }
-if (isset($_POST['deleteRequest'])) {
-   
-    DemandeDeServiceDAO::supprimer($demande);
-  
 
-    header("Location: http://localhost/Allo_Deneigement/?action=afficherDemandeDeServices");
-    flash("Suppression", " Votre demande a ete bien supprimee", FLASH_SUCCESS);
-    exit;
     
     
-  
- }
 
-
-if (isset($_POST['cancelRequest'])) {
-    $this->handleStatusUpdate($demande,'Refusée', 'La demande a été refusée avec succès.');
-}
-
-if (isset($_POST['completeRequest'])) {
-    $this->handleStatusUpdate($demande,'Completée', 'La demande a été complétée avec succès.');
-}
-if (isset($_POST['acceptRequest'])) {
-    $this->handleStatusUpdate($demande,'Acceptée', 'La demande a été acceptée avec succès.');
-
-}
-        return "detail-offre";}
-    
-
-}
- 
- 
-    
-    
-}
 
 
