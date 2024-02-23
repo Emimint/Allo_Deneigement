@@ -13,23 +13,25 @@ class EmailController extends Controleur
     public function executerAction()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btnEnvoyer'])) {
-            $to = $_POST['email'];
-            $subject = "Sujet de l'e-mail";
-            $message = $_POST['testArea'];
+           // The message
+// $message = "Line 1\r\nLine 2\r\nLine 3";
 
-            $headers = "From: votre@email.com\r\n";
-            $headers .= "Reply-To: votre@email.com\r\n";
-            $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+// In case any of our lines are larger than 70 characters, we should use wordwrap()
+// $message = wordwrap($message, 70, "\r\n");
 
+// Send
+              if(mail($_POST['email'], 'My Subject', $_POST['message'])){
+                  flash('Succès', 'L\'e-mail a été envoyé avec succès.', FLASH_SUCCESS);
+              }
            
-            $success = mail($to, $subject, $message, $headers);
-
+            // $success = mail($to, $subject, $message, $headers);
+            return "fournisseur";
             
-            if ($success) {
-                flash('Succès', 'L\'e-mail a été envoyé avec succès.', FLASH_SUCCESS);
-            } else {
-                flash('Erreur', 'Une erreur s\'est produite lors de l\'envoi de l\'e-mail.', FLASH_ERROR);
-            }
+            // if ($success) {
+            //     flash('Succès', 'L\'e-mail a été envoyé avec succès.', FLASH_SUCCESS);
+            // } else {
+            //     flash('Erreur', 'Une erreur s\'est produite lors de l\'envoi de l\'e-mail.', FLASH_ERROR);
+            // }
         }
         return "landing-page"; 
     }

@@ -26,7 +26,7 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
       <p><?php echo $controleur->getFournisseur()->getDescription()?></p>
        <!-- Ajout du bouton pour envoyer un email -->
        <div class="text-center mb-4">
-       <button type="button" data-toggle="modal" style="background-color: #b50303; color: white;" data-target="#emailModal">Contacter Fournisseur</button>
+       <button type="button" data-bs-toggle="modal" style="background-color: #b50303; color: white;" data-bs-target="#emailModal">Contacter Fournisseur</button>
 
       </div>
       
@@ -35,58 +35,35 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
    <!-- Modal pour l'envoi d'email -->
    <form novalidate class="needs-validation" action="?action=emailController" method="POST">
 
-   <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="emailModalLabel">Envoyer un email</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-email" class="col-form-label">Adresse email du destinataire:</label>
-              <input type="email" name="email" class="form-control" id="recipient-email" required>
-              <div class="invalid-feedback">
-                    Saississez une adresse courriel valide.
-                </div>
-            </div>
-            <div class="form-group">
-              <label for="email-message" class="col-form-label">Message:</label>
-              <textarea class="form-control" name="testArea" id="email-message" required></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-        <button id="btnFermer" style="background-color: #b50303; color: white;" data-dismiss="modal">Fermer</button>
-          <button type="submit" name="btnEnvoyer" style="background-color: #b50303; color: white;" >Envoyer</button>
-        </div>
+   <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input name="email" type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea name="message" class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" name="btnEnvoyer" class="btn btn-primary">Send message</button>
       </div>
     </div>
   </div>
-  </form>
-  <script>
-    // Attacher un gestionnaire d'événement au bouton "Envoyer un email"
-document.querySelector('.masthead button[data-target="#emailModal"]').addEventListener('click', function() {
-    // Ouvrir le modal "Envoyer un email"
-    $('#emailModal').modal('show');
-});
-document.getElementById('btnFermer').addEventListener('click', function() {
-        $('#emailModal').modal('hide');
-    });
-
-  </script>
-  <script src="<?php echo BASE_URL_VIEWS; ?>static/scripts/css-validation.js"></script>
-  <!-- Alertes pour l'e-mail envoyé avec succès -->
-<?php if (isset($_SESSION['FLASH_SUCCESS'])) : ?>
-<div class="alert alert-success" role="alert">
-    <?php echo $_SESSION['FLASH_SUCCESS']; ?>
 </div>
-<?php unset($_SESSION['FLASH_SUCCESS']); ?>
-<?php endif; ?>
+  </form>
+  <script src="<?php echo BASE_URL_VIEWS; ?>static/scripts/css-validation.js"></script>
+
   <div class="ad-service container-fluid">
     <div class="container p-5">
       <!--      Principaux services du fournisseur:-->
