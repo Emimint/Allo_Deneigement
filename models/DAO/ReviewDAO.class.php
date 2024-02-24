@@ -84,9 +84,12 @@ class ReviewDAO implements DAO
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
 
+
         $requete = $connexion->prepare("INSERT INTO Review (score, commentaire, id_utilisateur, id_service, date_commentaire) VALUES (?, ?, ?, ?, ?)");
 
-        $tableauInfos = [
+        
+
+        $uneReview = [
             $uneReview->getScore(),
             $uneReview->getCommentaire(),
             $uneReview->getIdUtilisateur(),
@@ -94,7 +97,11 @@ class ReviewDAO implements DAO
             $uneReview->getDateCommentaire()
         ];
 
-        return $requete->execute($tableauInfos);
+        
+         $requete->execute($uneReview);
+         $newReviewId = $connexion->lastInsertId();
+         return  $newReviewId;
+        
     }
 
     public static function modifier($uneReview)
@@ -133,25 +140,16 @@ class ReviewDAO implements DAO
         return $requete->execute($tableauInfos);
     }
 
-    public static function insererNouvelAvis($score, $commentaire, $idUtilisateur, $idService, $dateCommentaire)
+    public static function insererNouvelAvis($score, $reviewComment,$userId,$OfferId, $date)
 {
-    try {
-        $connexion = ConnexionBD::getInstance();
-    } catch (Exception $e) {
-        throw new Exception("Impossible d’obtenir la connexion à la BD.");
-    }
 
-    $requete = $connexion->prepare("INSERT INTO Review (score, commentaire, id_utilisateur, id_service, date_commentaire) VALUES (?, ?, ?, ?, ?)");
+   $review = new Review('',$score, $reviewComment,$userId,$OfferId, $date);
+   $review_id = ReviewDAO::inserer($review);
+  
+    return $review_id ;
 
-    $tableauInfos = [
-        $score,
-        $commentaire,
-        $idUtilisateur,
-        $idService,
-        $dateCommentaire
-    ];
-
-    return $requete->execute($tableauInfos);
+ 
+  
 }
 
 }

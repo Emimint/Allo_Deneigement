@@ -67,6 +67,13 @@ class DemandeDeService
         return $this->idReview;
     }
 
+
+    public function setIdReview($idReview)
+    {
+         $this->idReview = $idReview;
+    }
+
+
     public function getIdOffre()
     {
         return $this->idOffre;
@@ -76,6 +83,8 @@ class DemandeDeService
     {
         return $this->idAdresse;
     }
+    
+    
 
 
     public function setIdDemande($idDemande) {

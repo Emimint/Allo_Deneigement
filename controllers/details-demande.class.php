@@ -19,6 +19,7 @@ class DetailDemande extends Controleur {
     private $utilisateurAssocies;
     private $status;
     private $demande;
+  
 
     public function __construct()
     {
@@ -32,6 +33,8 @@ class DetailDemande extends Controleur {
     {
         return $this->utilisateurAssocies;
     }
+
+  
 
     public function getStatus()
     {
@@ -119,6 +122,7 @@ class DetailDemande extends Controleur {
                 $utilisateur = UtilisateurDAO::chercher($demande->getIdUtilisateur());
                 $this->utilisateurAssocies = $utilisateur;
     
+               //$review = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_review=".$this->demande->getIdReview());
                 if (isset($_POST['updateComment']) ) {
                     // Set the new comment
                     $newComment = $_POST['commentaire'];
@@ -129,15 +133,32 @@ class DetailDemande extends Controleur {
                     flash("Mise a jour", " Mise a jour effectue", FLASH_SUCCESS);
                 }
     
-                if (isset($_POST['AddReview'])) {
-                    // Add a review
+                
+               
+                if (isset($_POST['AddReview'])  ) {
+                 if($this->demande->getIdReview()==null){
                     $score = (isset($_POST['score'])) ? intval($_POST['score']) : 0;
                     $reviewComment = isset($_POST['review-comment']) ? $_POST['review-comment'] : "";
-    
-                    // ajouter avec dao
-                    ReviewDAO::insererNouvelAvis($score, $reviewComment, $this->utilisateurAssocies->getIdUtilisateur(), $this->offreAssocies->getIdOffre(), date("Y-m-d"));
-                    flash("Avis", " Votre avis a ete bien ajoute", FLASH_SUCCESS);
+                  
+
+                  //cette requete retourne id de lavis ajoutee
+                 $review_id = ReviewDAO::insererNouvelAvis ($score, $reviewComment, $this->utilisateurAssocies->getIdUtilisateur(), $this->offreAssocies->getIdOffre(), date("Y-m-d"));
+                 //mettre a jour id de la demande
+                 DemandeDeServiceDAO::updateReview($this->demande->getIdDemande(),$review_id);
+                   
+
+                    flash("SUCCES", "Vous avez soumis votre avec succes" , FLASH_SUCCESS);
+                
+                 }else {
+                    flash("error", "Vous avez deja soumis un avis" , FLASH_WARNING);
+                 }
+                   
+                  
                 }
+                    
+
+                 
+               
     
                 if (isset($_POST['deleteRequest'])) {
                     DemandeDeServiceDAO::supprimer($demande);

@@ -10,6 +10,7 @@ class AfficherDemandeDeServices extends Controleur
     private $listeDemandesUtilisateurs;
     private $listeFournisseursAssocies;
     private $listeServicesAssocies;
+  
 
     public function __construct()
     {
@@ -23,6 +24,8 @@ class AfficherDemandeDeServices extends Controleur
     {
         return $this->listeDemandesUtilisateurs;
     }
+
+  
 
     public function getlisteFournisseursAssocies()
     {

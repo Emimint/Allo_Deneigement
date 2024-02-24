@@ -172,6 +172,23 @@ class DemandeDeServiceDAO implements DAO
         return $requete->execute($tableauInfos);
     }
 
+    public static function updateReview($idDemande, $idReview)
+    {
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD.");
+        }
 
-    
+        $requete = $connexion->prepare("UPDATE Demande_de_service SET id_review=? WHERE id_demande=?");
+
+        $tableauInfos = [
+            $idReview,
+            $idDemande
+        ];
+
+        return $requete->execute($tableauInfos);
+    }
+
+   
 }

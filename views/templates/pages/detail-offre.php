@@ -67,7 +67,7 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
     </div>
 <!--end review Modal-->
 <div class="step step-4 m-2">
-    <form action="" method="POST">
+    <form action="" method="">
 
    
 
@@ -190,7 +190,7 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
            
                  case 'Complétée':
                         // Handle completed status
-                    echo ' <button type="button"  data-bs-toggle="modal" data-bs-target="#review_modal"  class="btn btn-danger m-2 prev-step" >ajouter un avis</button>';
+                    echo ' <button type="button" id="add-review-btn"  data-bs-toggle="modal" data-bs-target="#review_modal"  class="btn btn-danger m-2 prev-step" >ajouter un avis</button>';
                     break;
                 case 'Refusée':
                     echo '<button type="button" id="DeleteBtn" name="deleteRequest" data-bs-toggle="modal" data-bs-target="#warningModal"  class="btn btn-danger m-2 prev-step">Supprimer</button>';
@@ -232,7 +232,31 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
 </div>
     <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>
     <script src="<?php echo DOSSIER_VIEWS; ?>\static\scripts\review-system-script.js"></script>
-    
+    <script>
+document.getElementById('updateBtn').addEventListener('click', function() {
+    // Get the comment value
+    var newComment = document.getElementById('commentaire').value;
+
+    // Make an AJAX request
+    fetch('details-demande.class.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'updateComment=true&commentaire=' + encodeURIComponent(newComment),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response data
+        console.log(data.result);
+        // You can update the UI or perform other actions based on the response
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle errors
+    });
+});
+</script>
     </body>
 
     </html>
