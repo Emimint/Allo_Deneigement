@@ -13,6 +13,9 @@ if (!isset($_GET['action'])) {
         $action = $_GET['action'];
 }
 $controleur = ManufactureControleur::creerControleur($action);
+echo "Contrôleur : ";
+var_dump($controleur);
+
 
 $nomVue = $controleur->executerAction();
 
@@ -24,6 +27,6 @@ include_once(DOSSIER_PAGES . $nomVue . ".php");
 //         echo $nomVue;
 //         var_dump($controleur);
 // }
-if (isset($_SESSION['infoUtilisateur'])) {
-        echo $_SESSION['infoUtilisateur'];
-}
+// if (isset($_SESSION['infoUtilisateur'])) {
+//         echo $_SESSION['infoUtilisateur'];
+// }
