@@ -19,7 +19,7 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
                         <a href="?action=afficherDemandeDeServices" class="nav-link px-2 text-white">Mes demandes de service</a>
                     </li>
                     <li class="nav-link"><a href="<?php echo BASE_URL_VIEWS; ?>templates/pages/fournisseur.php" class="nav-link px-2 text-white">Liste de fournisseurs</a></li>
-                    <li class="nav-link"><a href="<?php echo BASE_URL_VIEWS; ?>templates/pages/contactPage.php" class="nav-link px-2 text-white">Nous joindre</a></li>
+                    <li class="nav-link"><a href="?action=afficherContactPage" class="nav-link px-2 text-white">Nous joindre</a></li>
                     <li class="nav-link"><a href="#" class="nav-link px-2"><i class="fa-regular fa-bell" style="color: #ffffff;"></i></a></li>
                     <li class="nav-link dropdown">
                         <a href="#" class="nav-link px-2 dropdown-toggle" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

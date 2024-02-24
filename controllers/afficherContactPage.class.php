@@ -15,7 +15,8 @@ class AfficherContactPage extends  Controleur
     }
 
     public function executerAction() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      
+         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $motif = $_POST['selectionMenu'] ?? '';
                 $texte = $_POST['info'] ?? '';
@@ -34,9 +35,10 @@ class AfficherContactPage extends  Controleur
                 flash('Erreur', 'Impossible d\'envoyer votre message. Veuillez vérifier vos informations.', FLASH_ERROR);
                 return "contactPage";
             }
-        } else {
+        } else{
             return "contactPage";
         }
+       
     }
     
 }
