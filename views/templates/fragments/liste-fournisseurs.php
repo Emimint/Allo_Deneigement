@@ -25,14 +25,14 @@
                         <div class="d-flex w-100 align-items-center justify-content-between">
                             <div class="col-10 mb-1 small"><?php
                                                             echo $numeroCivique . ' ' . $nomRue . ', ' . $ville . ', ' . $province . ' ' . $codePostal; ?></div>
-                            <a href="href=?=action=ToBeDeterminated" class="btn btn-light">Contacter</a>
+                            <a href="?action=afficherOffreDeServices&id=<?php echo $fournisseur->getIdFournisseur(); ?>" class="btn btn-light">Contacter</a>
                         </div>
                     </div>
                 <?php
                 } else { ?>
                     <div class="d-flex align-items-center justify-content-between p-2">
                         <p class="m-0">Pas d'adresse pour <?php echo $fournisseur->getNomDeLaCompagnie(); ?>.</p>
-                        <a href="href=?=action=ToBeDeterminated" class="btn btn-light">Contacter</a>
+                        <a href="?action=afficherOffreDeServices&id=<?php echo $fournisseur->getIdFournisseur(); ?>" class="btn btn-light">Contacter</a>
                     </div>
                 <?php
                 }
