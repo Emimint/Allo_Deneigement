@@ -19,7 +19,7 @@
                             </strong>
                             <small class="text-body-secondary">
                                 <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
-                                <?php echo $fournisseur->getNoteGlobale(); ?>/5
+                                <?php echo number_format($fournisseur->getNoteGlobale(), 1, '.', ''); ?>/5
                             </small>
                         </div>
                         <div class="d-flex w-100 align-items-center justify-content-between">

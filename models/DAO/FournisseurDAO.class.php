@@ -152,4 +152,28 @@ class FournisseurDAO  implements DAO
         $tableauInfos = [$fournisseur->getIdFournisseur()];
         return $requete->execute($tableauInfos);
     }
+
+    public static function calculerScoreGlobal($fournisseur)
+    {
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD.");
+        }
+
+        try {
+            $scoreQuery = $connexion->prepare("SELECT SUM(R.score)/count(*) AS score FROM review R, offre_de_service O, fournisseur F WHERE R.id_service = O.id_service AND O.id_fournisseur = F.id_fournisseur and F.id_fournisseur=" . $fournisseur->getIdFournisseur() . ";");
+
+            $scoreQuery->execute();
+
+            $score = $scoreQuery->fetch(PDO::FETCH_ASSOC)['score'];
+
+            $fournisseur->setNoteGlobale($score); // mettre le score de l'instance a jour
+
+        } catch (Exception $e) {
+            throw new Exception("Impossible de calculer le score.");
+        }
+
+        FournisseurDAO::modifier($fournisseur); // mettre la base de donnees a jour
+    }
 }
