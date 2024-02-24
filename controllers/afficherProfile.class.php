@@ -134,17 +134,17 @@ class AfficherProfile extends  Controleur
 
                 foreach ($selectedServices as $serviceInfo) {
                     try {
-                        if (isset($serviceInfo['type']) && $_SESSION['utilisateurConnecte'] instanceof Fournisseur) {
-                            var_dump($_SESSION['utilisateurConnecte']);
+                        if (isset($serviceInfo['type']) && $_SESSION['infoUtilisateur'] instanceof Fournisseur) {
+                            var_dump($_SESSION['infoUtilisateur']);
                             if ($serviceInfo['type'] == 1) {
-                                $nouvelleOffre = new OffreDeService("", $_SESSION['utilisateurConnecte']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Résidentiel", $serviceInfo['service']);
+                                $nouvelleOffre = new OffreDeService("", $_SESSION['infoUtilisateur']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Résidentiel", $serviceInfo['service']);
                                 OffreDeServiceDAO::inserer($nouvelleOffre);
                             } elseif ($serviceInfo['type'] == 2) {
-                                $nouvelleOffre = new OffreDeService("", $_SESSION['utilisateurConnecte']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Commercial", $serviceInfo['service']);
+                                $nouvelleOffre = new OffreDeService("", $_SESSION['infoUtilisateur']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Commercial", $serviceInfo['service']);
                                 OffreDeServiceDAO::inserer($nouvelleOffre);
                             } else {
-                                $nouvelleOffre1 = new OffreDeService("", $_SESSION['utilisateurConnecte']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Résidentiel", $serviceInfo['service']);
-                                $nouvelleOffre2 = new OffreDeService("", $_SESSION['utilisateurConnecte']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Commercial", $serviceInfo['service']);
+                                $nouvelleOffre1 = new OffreDeService("", $_SESSION['infoUtilisateur']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Résidentiel", $serviceInfo['service']);
+                                $nouvelleOffre2 = new OffreDeService("", $_SESSION['infoUtilisateur']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Commercial", $serviceInfo['service']);
                                 OffreDeServiceDAO::inserer($nouvelleOffre1);
                                 OffreDeServiceDAO::inserer($nouvelleOffre2);
                             }

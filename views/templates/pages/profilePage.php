@@ -305,7 +305,7 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                                     <h5 class="container my-5 mx-5 p-3 border border-3 rounded rounded-3">Aucune catégorie de service n'a été trouvée.</h5>
                                                 </div>
                                             <?php } ?>
-                                            <button name="submitCategoriesService" class="mt-3" type="submit">Submit</button>
+                                            <button name="submitCategoriesService" class="mt-3" type="submit">Ajouter un service</button>
                                         </form>
                                     </div>
                                 </div>
