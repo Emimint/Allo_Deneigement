@@ -54,7 +54,6 @@ class DemandeDeServiceDAO implements DAO
     {
         try {
             $connexion = ConnexionBD::getInstance();
-            $connexion->exec("SET NAMES utf8");
         } catch (Exception $e) {
             throw new Exception("Impossible d’obtenir la connexion à la BD.");
         }
@@ -189,6 +188,4 @@ class DemandeDeServiceDAO implements DAO
 
         return $requete->execute($tableauInfos);
     }
-
-   
 }
