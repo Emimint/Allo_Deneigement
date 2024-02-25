@@ -134,7 +134,7 @@ class AfficherProfile extends  Controleur
 
                 foreach ($selectedServices as $serviceInfo) {
                     try {
-                        if (isset($serviceInfo['type']) && $_SESSION['utilisateurConnecte'] instanceof Fournisseur) {
+                        if (isset($serviceInfo['type']) && $_SESSION['infoUtilisateur'] instanceof Fournisseur) {
                             var_dump($_SESSION['utilisateurConnecte']);
                             if ($serviceInfo['type'] == 1) {
                                 $nouvelleOffre = new OffreDeService("", $_SESSION['utilisateurConnecte']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Résidentiel", $serviceInfo['service']);
