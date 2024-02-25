@@ -4,7 +4,21 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/head.php"); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/navbar.php");
 ?>
+<style>
+  .tab-pane{
+        overflow-x: auto;
+    }
+.table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
+    .table th, .table td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+</style>
 
 
     <div class="container my-5 mx-5">

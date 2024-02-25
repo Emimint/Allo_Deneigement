@@ -64,6 +64,7 @@ class AdminController extends Controleur
     {
 
         
+        
     $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherTous();
     $this->listeUtilisateur = UtilisateurDAO::chercherTous();
     $this->listeFournisseur = FournisseurDAO::chercherTous();
