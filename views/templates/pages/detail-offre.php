@@ -86,21 +86,15 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
                 <h2>Adresse de livraison</h2>
                 <ul class="list-group">
                     <?php
+                    $addresse = $controleur->getAddresseTrouvee();
 
-                    $addresses = $controleur->getlisteAddresseUtilisateur();
+                    $numeroCivique = $addresse->getNumeroCivique();
+                    $codePostal = $addresse->getCodePostal();
+                    $nomRue = $addresse->getNomRue();
+                    $ville = $addresse->getVille();
+                    $province = $addresse->getProvince();
 
-                    if ($addresses != null && count($addresses) > 0) {
-                        foreach ($addresses as $adresse) {
-                            echo '<li class="list-group-item">';
-                            echo '' . $adresse->getIdAdresse() . ',';
-                            echo ' ' . $adresse->getNomRue() . ',';
-                            echo ' ' . $adresse->getVille() . ',';
-
-                            echo ' ' . $adresse->getPays() . ',';
-                            echo '' . $adresse->getCodePostal();
-                            echo '</li>';
-                        }
-                    }
+                    echo $numeroCivique . ' ' . $nomRue . ', ' . $ville . ', ' . $province . ' ' . $codePostal;
                     ?>
                 </ul>
 
@@ -135,18 +129,23 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
                         <thead>
                             <tr>
                                 <th scope="col">Service</th>
-                                <th scope="col">[Litrage/Tonnage/ect...]</th>
+                                <th scope="col">Duree/Forfait</th>
                                 <th scope="col">Prix unitaire</th>
                                 <th scope="col">Total</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-
-                                <th scope="row"><?php echo $offre->getDescription() ?></th>
-                                <td>[moins dune tonne]</td>
-                                <td><?php echo $offre->getPrixUnitaire() ?></td>
-                                <td><?php echo $offre->getPrixUnitaire() ?></td>
+                                <?php
+                                $description = $offre->getDescription();
+                                $duration = $controleur->calculateDuration($controleur->getDemande()->getDateDebut(), $controleur->getDemande()->getDateFin());
+                                $prixUnitaire = $offre->getPrixUnitaire();
+                                $total = $controleur->calculateTotalPrice($duration, $prixUnitaire);
+                                ?>
+                                <td scope="row"><?php echo $description; ?></td>
+                                <td><?php echo  $duration; ?></td>
+                                <td><?php echo $prixUnitaire; ?>$</td>
+                                <td><?php echo $total; ?>$</td>
                             </tr>
                         </tbody>
                     </table>
