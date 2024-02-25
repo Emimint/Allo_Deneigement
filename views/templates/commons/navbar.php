@@ -19,6 +19,7 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
                         <a id="demandesDeServices" href="?action=afficherDemandeDeServices" class="nav-link px-2 text-white" hidden>Mes demandes de service</a>
                     </li>
                     <li class="nav-link"><a href="<?php echo BASE_URL_VIEWS; ?>templates/pages/fournisseur.php" class="nav-link px-2 text-white">Liste de fournisseurs</a></li>
+                    <li class="nav-link"><a id="dashboard-admin" href="?action=afficherDashboardAdmin" class="nav-link px-2 text-white" hidden>Dashboard Admin</a></li>
                    
                     <li class="nav-link"><a href="?action=defaut" class="nav-link px-2 text-white">Nous joindre</a></li>
                     <li class="nav-link"><a href="#" class="nav-link px-2"><i class="fa-regular fa-bell" style="color: #ffffff;"></i></a></li>
@@ -35,10 +36,9 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
                         <?php
                         // Check if the user is logged in
                         if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] != "visiteur") {
-                            
+                            require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/fragments/nav-link.php");
                         ?>
-                        <!--si utilisateur est connecte afficher lien -->
-                           <script> document.getElementById('demandesDeServices').hidden = false;</script>
+                       
                             <div class="btn btn-outline-light dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent;border-color: transparent;">
                                     Bienvenue, <?php

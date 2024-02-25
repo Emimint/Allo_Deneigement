@@ -58,7 +58,9 @@ class AfficherDemandeDeServices extends Controleur
             return "historique-utilisateur";
         } elseif($this->acteur == "administrateur"){
                 //$controleur->getlisteDemandesUtilisateurs(), $controleur->getlisteFournisseursAssocies(), $controleur->getlisteServicesAssocies());
-                echo 'hi';
+                // $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherTous();
+                
+                // echo 'hi';
         }
         
         else {
