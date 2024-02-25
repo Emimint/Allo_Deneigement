@@ -86,6 +86,6 @@ class Fournisseur extends Personne
 
     public function __toString()
     {
-        return "ID Fournisseur: " . $this->id_fournisseur . ", " . parent::__toString() . ", Nom de la compagnie: " . $this->nom_de_la_compagnie . ", Nom du contact: " . $this->nom_contact . ", Prenom du contact: " . $this->prenom_contact . ", Description: " . $this->description . ", Note Globale: " . $this->note_globale;
+        return "{{ID Fournisseur: " . $this->id_fournisseur . ", " . parent::__toString() . ", Nom de la compagnie: " . $this->nom_de_la_compagnie . ", Nom du contact: " . $this->nom_contact . ", Prenom du contact: " . $this->prenom_contact . ", Description: " . $this->description . ", Note Globale: " . $this->note_globale . "}}";
     }
 }

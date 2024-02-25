@@ -24,6 +24,6 @@ include_once(DOSSIER_PAGES . $nomVue . ".php");
 //         echo $nomVue;
 //         var_dump($controleur);
 // }
-if (isset($_SESSION['infoUtilisateur'])) {
-        echo $_SESSION['infoUtilisateur'];
-}
+// if (isset($_SESSION['infoUtilisateur'])) {
+//         echo $_SESSION['infoUtilisateur'];
+// }

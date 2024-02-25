@@ -98,7 +98,7 @@ class UtilisateurDAO implements DAO
             $unUtilisateur->getPrenom(),
             $unUtilisateur->getTelephone(),
             $unUtilisateur->getUsername(),
-            $unUtilisateur->getMotDePasse(),
+            $unUtilisateur->getPassword(),
             $unUtilisateur->getUrlPhoto()
         ];
 

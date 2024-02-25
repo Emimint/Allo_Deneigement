@@ -42,17 +42,23 @@ class AfficherDemandeDeServices extends Controleur
         // echo $this->acteur;
         if ($this->acteur == "utilisateur" || $this->acteur == "fournisseur") {
 
-            $user_id = $_SESSION['infoUtilisateur']->getId();
-            $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_" . $_SESSION['utilisateurConnecte'] . "=" . $user_id . ";");
+            try {
+                $user_id = $_SESSION['infoUtilisateur']->getId();
+                $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_" . $_SESSION['utilisateurConnecte'] . "=" . $user_id . ";");
 
-            foreach ($this->listeDemandesUtilisateurs as $demande) {
-                $fournisseur = FournisseurDAO::chercher($demande->getIdFournisseur());
-                $nomFournisseur = $fournisseur->getNomDeLaCompagnie();
-                array_push($this->listeFournisseursAssocies, $nomFournisseur);
+                foreach ($this->listeDemandesUtilisateurs as $demande) {
+                    $fournisseur = FournisseurDAO::chercher($demande->getIdFournisseur());
+                    $nomFournisseur = $fournisseur->getNomDeLaCompagnie();
+                    array_push($this->listeFournisseursAssocies, $nomFournisseur);
 
-                $service = OffreDeServiceDAO::chercher($demande->getIdOffre());
-                $nomService = $service->getDescription();
-                array_push($this->listeServicesAssocies, $nomService);
+                    $service = OffreDeServiceDAO::chercher($demande->getIdOffre());
+                    $nomService = $service->getDescription();
+                    array_push($this->listeServicesAssocies, $nomService);
+                }
+            } catch (Exception $e) {
+                // echo $e->getMessage();
+                flash('Erreur', 'Une erreur s\'est produite. Veuillez réessayer plus tard.', FLASH_ERROR);
+                return "registration";
             }
             return "historique-utilisateur";
         } else {

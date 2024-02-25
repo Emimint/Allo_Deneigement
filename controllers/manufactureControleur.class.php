@@ -6,6 +6,7 @@ include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherDemandeDeServices.class
 include_once(DOSSIER_BASE_INCLUDE . "controllers/seDeconnecter.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/details-demande.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherProfile.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "controllers/creerUnCompte.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherOffreDeServices.class.php");
 
 class ManufactureControleur
@@ -17,16 +18,17 @@ class ManufactureControleur
             $controleur = new SeConnecter();
         } elseif ($action == "afficherDemandeDeServices") {
             $controleur = new AfficherDemandeDeServices();
-        }
-      elseif ($action == "afficherProfile") {
-            $controleur = new afficherProfile();
+        } elseif ($action == "afficherProfile") {
+            $controleur = new AfficherProfile();
+        } elseif ($action == "creerUnCompte") {
+            $controleur = new CreerUnCompte();
         } elseif ($action == "seDeconnecter") {
             $controleur = new SeDeconnecter();
         } elseif ($action == "voirPageAccueil") {
             $controleur = new Defaut();
-        }elseif($action == "details-demande"){
-               $controleur = new DetailDemande(); 
-        }elseif ($action == "afficherOffreDeServices") {
+        } elseif ($action == "details-demande") {
+            $controleur = new DetailDemande();
+        } elseif ($action == "afficherOffreDeServices") {
             $controleur = new AfficherOffreDeServices();
         } else {
             $controleur = new Defaut();

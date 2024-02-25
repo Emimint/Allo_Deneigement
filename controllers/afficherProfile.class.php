@@ -7,6 +7,7 @@ include_once(DOSSIER_BASE_INCLUDE . "models/DAO/AdresseDAO.class.php");
 class AfficherProfile extends  Controleur
 {
     private $liste_adresses;
+    private $liste_categorie_services;
 
     public function __construct()
     {
@@ -19,6 +20,11 @@ class AfficherProfile extends  Controleur
         return $this->liste_adresses;
     }
 
+    public function getListeCategorieServices()
+    {
+        return $this->liste_categorie_services;
+    }
+
     public function executerAction()
     {
         if ($this->acteur == "visiteur") {
@@ -29,6 +35,9 @@ class AfficherProfile extends  Controleur
 
         // Récuperer toutes les adresses de l'utilisateur courant :
         $this->liste_adresses = PersonneDAO::chercherAdresses($this->acteur, $_SESSION['infoUtilisateur']->getEmail());
+
+        // Récuperer toutes les catégories de service existantes :
+        $this->liste_categorie_services = OffreDeServiceDAO::chercherToutesLesCategories();
 
         if (($_SERVER['REQUEST_METHOD'] === 'POST')) {
             if (isset($_POST['submitProfil'])) {
@@ -78,16 +87,21 @@ class AfficherProfile extends  Controleur
                 }
             } else if (isset($_POST['nouvelleAdresse'])) {
 
+                try {
+                    $stringifyAdress = $_POST['newPostalCode'] . ', ' . $_POST['newNumero'] . ', ' . $_POST['newRue'] . ', ' . $_POST['newVille'] . ', ' . $_POST['newPays'] . ', ' . $_POST['newProvince'];
+                    $coordinates = AdresseDAO::geocodeAddress($stringifyAdress);
+                    // echo "Latitude : " . $coordinates[0] . " Longitude : " . $coordinates[1];
+                    if ($coordinates == null) {
+                        flash('Erreur', 'Impossible de trouver cette adresse. Veuillez vérifier vos saisies.', FLASH_ERROR);
+                        return "profilePage";
+                    }
 
-                $stringifyAdress = $_POST['newPostalCode'] . ', ' . $_POST['newNumero'] . ', ' . $_POST['newRue'] . ', ' . $_POST['newVille'] . ', ' . $_POST['newPays'] . ', ' . $_POST['newProvince'];
-                $coordinates = AdresseDAO::geocodeAddress($stringifyAdress);
-                echo "Latitude : " . $coordinates[0] . " Longitude : " . $coordinates[1];
-                if ($coordinates == null) {
-                    flash('Erreur', 'Impossible de trouver cette adresse. Veuillez vérifier vos saisies.', FLASH_ERROR);
-                    return "profilePage";
+                    $nouvelleAdresse = new Adresse("", $_POST['newPostalCode'], $_POST['newNumero'], $_POST['newRue'], $_POST['newVille'], $_POST['newPays'], $_POST['newProvince'], $coordinates[0], $coordinates[1]);
+                } catch (Exception $e) {
+                    // echo $e->getMessage();
+                    flash('Erreur', 'Une erreur s\'est produite côté serveur.', FLASH_ERROR);
+                    return "registration";
                 }
-
-                $nouvelleAdresse = new Adresse("", $_POST['newPostalCode'], $_POST['newNumero'], $_POST['newRue'], $_POST['newVille'], $_POST['newPays'], $_POST['newProvince'], $coordinates[0], $coordinates[1]);
 
                 try {
                     PersonneDAO::insererAdresse($_SESSION['utilisateurConnecte'], $nouvelleAdresse, $_SESSION['infoUtilisateur']->getEmail());
@@ -96,13 +110,62 @@ class AfficherProfile extends  Controleur
                     return "profilePage";
                 }
                 flash('Ajout adresse', 'Nouvelle adresse ajoutée avec succès.', FLASH_SUCCESS);
-                echo '<script>
-                            setTimeout(function(){
-                                window.location.reload();
-                            }, 2000); // 2000 milliseconds = 2 seconds
-                          </script>';
+                // echo '<script>
+                //             setTimeout(function(){
+                //                 window.location.reload();
+                //             }, 2000); // 2000 milliseconds = 2 seconds
+                //           </script>';
+                return "profilePage";
+            } else if (isset($_POST['submitCategoriesService'])) {
+                $selectedServices = array();
+
+                if (!empty($_POST['categorie-checkbox'])) {
+                    foreach ($_POST['categorie-checkbox'] as $key => $checkedService) {
+                        if (isset($_POST['price'][$key])) {
+                            $selectedServices[] = array(
+                                'service' => $checkedService,
+                                'price' => $_POST['price'][$key] ? $_POST['price'][$key] : 10,
+                                'description' => $_POST['description'][$key] ? $_POST['description'][$key] : "Votre service.",
+                                'type' => isset($_POST['service-type'][$key]) ? $_POST['service-type'][$key] : 3
+                            );
+                        }
+                    }
+                }
+
+                foreach ($selectedServices as $serviceInfo) {
+                    try {
+                        if (isset($serviceInfo['type']) && $_SESSION['infoUtilisateur'] instanceof Fournisseur) {
+                            if ($serviceInfo['type'] == 1) {
+                                $nouvelleOffre = new OffreDeService("", $_SESSION['infoUtilisateur']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Résidentiel", $serviceInfo['service']);
+                                OffreDeServiceDAO::inserer($nouvelleOffre);
+                            } elseif ($serviceInfo['type'] == 2) {
+                                $nouvelleOffre = new OffreDeService("", $_SESSION['infoUtilisateur']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Commercial", $serviceInfo['service']);
+                                OffreDeServiceDAO::inserer($nouvelleOffre);
+                            } else {
+                                $nouvelleOffre1 = new OffreDeService("", $_SESSION['infoUtilisateur']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Résidentiel", $serviceInfo['service']);
+                                $nouvelleOffre2 = new OffreDeService("", $_SESSION['infoUtilisateur']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Commercial", $serviceInfo['service']);
+                                OffreDeServiceDAO::inserer($nouvelleOffre1);
+                                OffreDeServiceDAO::inserer($nouvelleOffre2);
+                            }
+                            flash('Modification des services', 'Services mis à jour avec succès.', FLASH_SUCCESS);
+                            //                 echo '<script>
+                            //     setTimeout(function(){
+                            //         window.location.reload();
+                            //     }, 2000); // 2000 milliseconds = 2 seconds
+                            //   </script>';
+                        } else {
+                            echo 'Erreur';
+                        }
+                    } catch (Exception $e) {
+                        echo $e->getMessage();
+                        // flash('Erreur', 'Impossible de modifier vos offres de service. Veuillez vérifier vos saisies.', FLASH_ERROR);
+                        return "profilePage";
+                    }
+                }
+
                 return "profilePage";
             }
+
             if ($this->liste_adresses != null && count($this->liste_adresses) > 0) {
                 foreach ($this->liste_adresses as $addresse) {
                     if (isset($_POST["deleteAdresse" . $addresse->getIdAdresse()])) {

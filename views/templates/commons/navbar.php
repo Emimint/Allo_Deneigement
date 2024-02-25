@@ -14,7 +14,7 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
                     </div>
                 </a>
                 <ul class="d-flex align-items-center nav col-12 col-lg-auto mb-2 mb-md-0">
-                    <li class="nav-link"><a href="<?php echo DOSSIER_BASE_INCLUDE; ?>" class="nav-link px-2 text-white">A propos</a></li>
+                    <li class="nav-link"><a href="?action=" class="nav-link px-2 text-white">A propos</a></li>
                     <li class="nav-link">
                         <a href="?action=afficherDemandeDeServices" class="nav-link px-2 text-white">Mes demandes de service</a>
                     </li>
