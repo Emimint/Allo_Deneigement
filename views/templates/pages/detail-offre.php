@@ -27,10 +27,6 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
 
                     <!-- Hidden input to store the rating value -->
                     <input type="hidden" name="score" id="score" value="0">
-
-                    <div class="form-group">
-                        <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" />
-                    </div>
                     <div class="form-group">
                         <textarea name="review-comment" id="user_review" class="form-control" placeholder="Type Review Here"></textarea>
                     </div>
