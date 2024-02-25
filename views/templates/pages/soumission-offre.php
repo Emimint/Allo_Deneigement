@@ -22,26 +22,32 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
       <div class="d-flex flex-column align-items-center  justify-content-between">
         <div class="step-circle" onclick="displayStep(3)">3</div>
 
-        <h5>Infos complementaires</h5>
+        <h5>Infos complémentaires</h5>
       </div>
       <div class="d-flex flex-column align-items-center  justify-content-between">
         <div class="step-circle" onclick="displayStep(4)">4</div>
 
-        <h5>Recapitulatif</h5>
+        <h5>Récapitulatif</h5>
       </div>
     </div>
   </div>
 
-  <form id="multi-step-form" class="needs-validation" novalidate>
+  <form id="multi-step-form" class="needs-validation" novalidate action="?action=faireDemandeSoumission&id_fournisseur=<?php echo $controleur->getFournisseur()->getIdFournisseur(); ?>&id_offre=<?php echo $controleur->getOffreChoisie()->getIdOffre(); ?>" method="POST">
     <div class="step step-1 m-2">
-      <h3>Services offerts par [nom du fournisseur]</h3>
+      <h3>Services offerts par <?php echo $controleur->getFournisseur()->getNomDeLaCompagnie(); ?></h3>
       <div class="mb-3">
-        <label for="field1" class="form-label">Choisissez un type de service:</label>
-        <select class="form-control" id="field1" name="field1" required>
-          <option>Deneigement</option>
-          <option>Ependage</option>
-          <option>Transport de neige</option>
-        </select>
+        <label for="field1" class="form-label">Votre choix de service:</label>
+        <?php if (count($controleur->getListeServices()) > 0) { ?>
+          <select class="form-control" id="field-1" name="field-1" required disabled>
+            <option><?php echo $controleur->getOffreChoisie()->getDescription(); ?></option>
+            <?php foreach ($controleur->getListeServices() as
+              $index => $service) {
+              if ($service->getIdOffre() != $controleur->getOffreChoisie()->getIdOffre()) { ?>
+                <option><?php echo $service->getDescription(); ?></option>
+              <?php } ?>
+            <?php } ?>
+          <?php } ?>
+          </select>
       </div>
       <button type="button" class="btn next-step">Suivant</button>
     </div>
@@ -49,45 +55,57 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
     <div class="step step-2 m-2">
       <h3>Adresse de livraison</h3>
       <div class="mb-3">
-        <label for="field2" class="form-label">Choisissez l'adresse ou le service doit etre donne:</label>
-        <select id="field2" class="form-control" name="field2" required>
-          <option>Domicile : [Adresse du client]</option>
-          <option>Adresse secondaire : [Autre adresse au dossier]</option>
-          <option>Saississez une adresse...</option>
+        <label for="field2" class="form-label">Choisissez l'adresse ou le service doit etre donné:</label>
+        <select id="field2" class="form-control" name="field2" required onchange="updateSelectedAddress()">
+          <?php
+          if ($controleur->getListeAdresses() != null) {
+            foreach ($controleur->getListeAdresses() as
+              $index => $adresse) { ?>
+              <option data-address-id="<?php echo $adresse->getIdAdresse(); ?>"><?php echo $adresse->getNumeroCivique() . " " . $adresse->getNomRue() . ", " . $adresse->getCodePostal() . " " . $adresse->getProvince(); ?></option>
+          <?php }
+          } ?>
+          <option>...</option>
+          <form action="?action=faireDemandeSoumission" method="POST">
+            <option>Saississez une adresse...</option>
+          </form>
         </select>
       </div>
-      <button type="button" class="btn prev-step">Precedent</button>
+      <button type="button" class="btn prev-step">Précédent</button>
       <button type="button" class="btn next-step">Suivant</button>
     </div>
 
     <div class="step step-3 m-2">
       <h3>Infos sur le service</h3>
       <div class="mb-3">
-        <label for="field3" class="form-label">Veuillez donner des precisions sur le service: [Nombre approximatif de tonne de neige a deplacer] </label>
-        <select id="field3" class="form-control" name="field3" required>
-          <option> Moins de 500kg</option>
-          <option>De 500kg a 1 tonne </option>
-          <option>Plus d'une tonne</option>
+        <label for="field3" class="form-label">Sélectionnez la durée du service </label>
+        <select id="field3" class="form-control" name="field3" required onchange="updateDureeAndPrice()">
+          <option> Une heure: <?php echo $controleur->getOffreChoisie()->getPrixUnitaire(); ?>$</option>
+          <option> Une demie-journée: <?php echo $controleur->getOffreChoisie()->getPrixUnitaire() * 3; ?>$</option>
+          <option>Une journée: <?php echo $controleur->getOffreChoisie()->getPrixUnitaire() * 4; ?>$</option>
+          <option>Deux journées: <?php echo $controleur->getOffreChoisie()->getPrixUnitaire() * 5; ?>$</option>
+          <option>Forfait 10 journées: <?php echo $controleur->getOffreChoisie()->getPrixUnitaire() * 7; ?>$</option>
+          <option>Forfait 6 mois: <?php echo $controleur->getOffreChoisie()->getPrixUnitaire() * 10; ?>$</option>
         </select>
       </div>
-      <button type="button" class="btn prev-step">Precedent</button>
+      <button type="button" class="btn prev-step">Précédent</button>
       <button type="button" class="btn next-step">Suivant</button>
     </div>
 
     <div class="step step-4 m-2">
       <div class="mb-3 recapitulatif">
-        <label class="h2" for="field4" class="form-label">Recapitulatif de votre commande</label>
+        <label class="h2" for="field4" class="form-label">Récapitulatif de votre commande</label>
         <!-- <input type="text" class="form-control" id="field4" name="field4"> -->
         <div class="container mt-3">
           <h2>Votre service</h2>
           <ul class="list-group">
-            <li class="list-group-item">[Nom du service]</li>
+            <li class="list-group-item"><?php echo $controleur->getOffreChoisie()->getDescription(); ?></li>
           </ul>
           <h2>Adresse de livraison</h2>
-          <ul class="list-group">
-            <li class="list-group-item">[Adresse]</li>
-            <li class="list-group-item">[Adresse 2]</li>
-            <li class="list-group-item">[Adresse 3]</li>
+          <div id="id-selected-adress">
+            <input type="hidden" id="selected-address-id" name="selected-address-id" value="<?php echo $controleur->getListeAdresses()[0]->getIdAdresse(); ?>">
+          </div>
+          <ul id="selected-address" class="list-group">
+            <li class="list-group-item"><?php echo $controleur->getListeAdresses()[0]->getNumeroCivique() . " " . $controleur->getListeAdresses()[0]->getNomRue() . ", " . $controleur->getListeAdresses()[0]->getCodePostal() . " " . $controleur->getListeAdresses()[0]->getProvince(); ?></li>
           </ul>
           <h2>Facturation</h2>
           <div class="container">
@@ -95,17 +113,18 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
               <thead>
                 <tr>
                   <th scope="col">Service</th>
-                  <th scope="col">[Litrage/Tonnage/ect...]</th>
+                  <th scope="col">Duree/Forfait</th>
                   <th scope="col">Prix unitaire</th>
                   <th scope="col">Total</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">[Nom service]</th>
-                  <td>[moins dune tonne]</td>
-                  <td>100$</td>
-                  <td>100$</td>
+                  <th scope="row"><?php echo $controleur->getOffreChoisie()->getDescription(); ?></th>
+                  <td id="duree-forfait">Une heure</td>
+                  <input type="hidden" id="selected-duration" name="selected-duration" value="Une heure">
+                  <td><?php echo $controleur->getOffreChoisie()->getPrixUnitaire(); ?>$</td>
+                  <td id="total"><?php echo $controleur->getOffreChoisie()->getPrixUnitaire(); ?>$</td>
                 </tr>
               </tbody>
             </table>
@@ -113,12 +132,12 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
         </div>
         <div class="mb-3">
           <label for="commentaire-soumission" class="form-label">Ajoutez un commentaire (demande de details, informations importantes, ...):</label>
-          <textarea class="form-control" id="commentaire-soumission" rows="3"></textarea>
+          <textarea name="commentaires-demande" class="form-control" id="commentaire-soumission" rows="3"></textarea>
         </div>
       </div>
       <div class="d-flex justify-content-end">
-        <button type="button" class="btn m-2 prev-step">Precedent</button>
-        <button type="submit" class="btn m-2">Soumettre</button>
+        <button type="button" class="btn m-2 prev-step">Précédent</button>
+        <button name="submitNouvelleOffre" type="submit" class="btn m-2">Soumettre</button>
       </div>
     </div>
   </form>
@@ -126,6 +145,7 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
 <?php include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/footer.php"); ?>
 <script src="<?php echo BASE_URL_VIEWS; ?>static/scripts/trigger-modal.js"></script>
 <script src="<?php echo BASE_URL_VIEWS; ?>static/scripts/submission.js"></script>
+<script src="<?php echo BASE_URL_VIEWS; ?>static/scripts/demande-soumission-update.js"></script>
 </body>
 
 </html>

@@ -226,10 +226,11 @@ CREATE TABLE Demande_de_service (
     id_adresse INT NOT NULL,
     FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur),
     FOREIGN KEY (id_fournisseur) REFERENCES Fournisseur(id_fournisseur),
-    FOREIGN KEY (id_review) REFERENCES Review(id_review),
     FOREIGN KEY (id_offre) REFERENCES Offre_de_service(id_service),
-    FOREIGN KEY (id_adresse) REFERENCES Adresse(id_adresse)
+    FOREIGN KEY (id_adresse) REFERENCES Adresse(id_adresse),
+    FOREIGN KEY (id_review) REFERENCES Review(id_review) ON DELETE SET NULL
 );
+
 
 INSERT INTO Demande_de_service (date_debut, date_fin, status, commentaire, id_utilisateur, id_fournisseur, id_review, id_offre, id_adresse) VALUES
 ('2023-01-20', '2023-01-25', 'En attente', 'Besoin de déneigement urgent.', 6, 1, NULL, 1, 1),
