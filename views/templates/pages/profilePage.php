@@ -89,8 +89,10 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                 </button>
                                 <button class="nav-link  text-start text-white  border" style="background-color:#b50303; color: white;" id="v-pills-adresse-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mesAdresses" type="button" role="tab" aria-controls="v-pills-adresse" aria-selected="true"><i></i>Mes Adresses
                                 </button>
-                                <button class="nav-link  text-start text-white  border" style="background-color:#b50303; color: white;" id="v-pills-paiement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-paiement" type="button" role="tab" aria-controls="v-pills-paiement" aria-selected="true"><i></i>Paiement
-                                </button>
+                                <?php if (($_SESSION['utilisateurConnecte']) == "fournisseur" || $_SESSION['utilisateurConnecte'] == "administrateur") { ?>
+                                    <button class="nav-link  text-start text-white  border" style="background-color:#b50303; color: white;" id="v-pills-service-tab" data-bs-toggle="pill" data-bs-target="#v-pills-service" type="button" role="tab" aria-controls="v-pills-service" aria-selected="true"><i></i>Mes services
+                                    </button>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -233,8 +235,8 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                 </div>
                             </div>
                             <!-- Contenu de l'onglet Mes Adresses -->
-                            <form action="?action=afficherProfile" method="POST">
-                                <div class="tab-pane fade" id="v-pills-mesAdresses" role="tabpanel" aria-labelledby="v-pills-adresse-tab">
+                            <div class="tab-pane fade" id="v-pills-mesAdresses" role="tabpanel" aria-labelledby="v-pills-adresse-tab">
+                                <form action="?action=afficherProfile" method="POST">
                                     <div id="adresseContent" class="col-md-9 mt-3">
                                         <h2>Mes Adresses</h2>
                                         <div class="card mx-auto">
@@ -269,44 +271,50 @@ if (!defined('BASE_URL')) define('BASE_URL', 'http://localhost:80/Allo_Deneigeme
                                         </button>
                                         <button type="button" class="btn btn-light me-2" data-bs-target="#exampleModalCenter" id="filtrerButton" data-bs-toggle="modal">Ajouter une adresse</button>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Contenu de l'onglet Paiement -->
-                        <div class="tab-pane fade" id="v-pills-paiement" role="tabpanel" aria-labelledby="v-pills-paiement-tab">
-                            <div id="paiementContent" class="col-md-9 mt-3">
-                                <h4>Formulaire de Paiement</h4>
+                                </form>
                             </div>
-                            <form id="payment-form" action="?action=afficherProfile" method="POST">
-                                <!-- Informations de la carte -->
-                                <div class="mb-3">
-                                    <label for="card-number" class="form-label">Numéro de Carte</label>
-                                    <input type="text" class="form-control" id="card-number" placeholder="**** **** **** ****" required>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="expiration-date" class="form-label">Date d'Expiration</label>
-                                        <input type="text" class="form-control" id="expiration-date" placeholder="MM/YY" required>
+                            <!-- Contenu de l'onglet Mes Services -->
+                            <div class="tab-pane fade" id="v-pills-service" role="tabpanel" aria-labelledby="v-pills-service-tab">
+                                <div id="serviceContent" class="col-md-9 mt-3">
+                                    <div class="card p-3">
+                                        <form action="?action=afficherProfile" method="POST">
+                                            <h2>Mes Services</h2>
+                                            <h6 class="mb-3" style="color:red;"><em>avec tarification à l' <span class="text-decoration-underline">heure</span></em></h6>
+                                            <?php if ($controleur->getListeCategorieServices() != null && count($controleur->getListeCategorieServices()) > 0) { ?>
+                                                <?php foreach ($controleur->getListeCategorieServices() as $key => $value) { ?>
+                                                    <div class="row mb-3">
+                                                        <div class="col">
+                                                            <input class="form-check-input" type="checkbox" value="<?php echo $value; ?>" name="categorie-checkbox[]" id="<?php echo 'categorie-checkbox-' . $key; ?>">
+                                                            <label class="form-check-label" for="<?php echo 'categorie-checkbox-' . $key; ?>"><?php echo $value; ?></label><br>
+                                                            <input type="number" name="price[<?php echo $key; ?>]" class="form-control form-control-sm mt-1" placeholder="Ex: 10$/h" min="10">
+                                                        </div>
+                                                        <div class="col">
+                                                            <input type="text" name="description[<?php echo $key; ?>]" class="form-control form-control-sm" placeholder="Au sujet du service">
+                                                            <select class="form-select mt-1" name="service-type[<?php echo $key; ?>]" aria-label="Type de service">
+                                                                <option selected disabled>Type de service</option>
+                                                                <option value="1">Residentiel</option>
+                                                                <option value="2">Commercial</option>
+                                                                <option value="3">Les deux</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="my-4">
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <div class="col-md-12 text-center">
+                                                    <h5 class="container my-5 mx-5 p-3 border border-3 rounded rounded-3">Aucune catégorie de service n'a été trouvée.</h5>
+                                                </div>
+                                            <?php } ?>
+                                            <button name="submitCategoriesService" class="mt-3" type="submit">Ajouter un service</button>
+                                        </form>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="cvc" class="form-label">CVC</label>
-                                        <input type="text" class="form-control" id="cvc" placeholder="CVC" required>
-                                    </div>
                                 </div>
+                            </div>
 
-                                <!-- Informations du titulaire de la carte -->
-                                <div class="mt-3">
-                                    <label for="card-holder-name" class="form-label">Nom du Titulaire de la Carte</label>
-                                    <input type="text" class="form-control" id="card-holder-name" placeholder="Nom du Titulaire" required>
-                                </div>
 
-                                <!-- Bouton de Soumission -->
-                                <button type="submit" class="mt-4">Payer</button>
-                            </form>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

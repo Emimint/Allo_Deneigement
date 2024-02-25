@@ -147,31 +147,37 @@ class AdresseDAO implements DAO
 
     public static function geocodeAddress($address)
     {
-        $env = parse_ini_file('.env');
-        $GEO_API_KEY = $env["GEO_API_KEY"];
+        try {
+            $env = parse_ini_file('.env');
+            if (isset($env["GEO_API_KEY"])) $GEO_API_KEY = $env["GEO_API_KEY"];
+            else return null;
 
-        if (!$GEO_API_KEY) {
-            throw new Exception('GEO_API_KEY n\'est pas une variable d\' environment.');
-        }
+            if (!$GEO_API_KEY) {
+                throw new Exception('GEO_API_KEY n\'est pas une variable d\' environment.');
+            }
 
-        $apiKey = $GEO_API_KEY;
+            $apiKey = $GEO_API_KEY;
 
-        $address = urlencode($address);
+            $address = urlencode($address);
 
-        $url = "https://api.geoapify.com/v1/geocode/search?text=$address&apiKey=$apiKey";
+            $url = "https://api.geoapify.com/v1/geocode/search?text=$address&apiKey=$apiKey";
 
-        $response = file_get_contents($url);
+            $response = file_get_contents($url);
 
-        $data = json_decode($response);
+            $data = json_decode($response);
 
-        if (isset($data->features) && !empty($data->features)) {
+            if (isset($data->features) && !empty($data->features)) {
 
-            $latitude = $data->features[0]->properties->lat;
-            $longitude = $data->features[0]->properties->lon;
+                $latitude = $data->features[0]->properties->lat;
+                $longitude = $data->features[0]->properties->lon;
 
-            return array($latitude, $longitude);
-        } else {
-            return null;
+                return array($latitude, $longitude);
+            } else {
+                return null;
+            }
+        } catch (Exception $e) {
+            // echo $e->getMessage();
+            flash('Erreur', 'Une erreur s\'est produite côté serveur.', FLASH_ERROR);
         }
         return null;
     }

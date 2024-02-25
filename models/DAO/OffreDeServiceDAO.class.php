@@ -132,4 +132,28 @@ class OffreDeServiceDAO implements DAO
         $tableauInfos = [$uneOffre->getIdService()];
         return $requete->execute($tableauInfos);
     }
+
+    public static function chercherToutesLesCategories()
+    {
+        try {
+            $connexion = ConnexionBD::getInstance();
+        } catch (Exception $e) {
+            throw new Exception("Impossible d’obtenir la connexion à la BD.");
+        }
+
+        $tableau = [];
+
+        $requete = $connexion->prepare("SELECT DISTINCT categorie FROM Offre_de_service;");
+
+        $requete->execute();
+
+        foreach ($requete as $enr) {
+            array_push($tableau, $enr['categorie']);
+        }
+
+        $requete->closeCursor();
+        ConnexionBD::close();
+
+        return $tableau;
+    }
 }

@@ -29,6 +29,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/n
                 </label>
             </div>
             <button id="login-btn" class="btn w-100 py-2 btn-light btn-lg" type="submit">Connexion</button>
+            <p style="color:#2f2f2f;">Pas encore de compte? <a href="?action=creerUnCompte">Creer-en un ici</a></p>
             <p class="mt-5 mb-3 text-body-secondary">© 2024</p>
         </form>
     </div>

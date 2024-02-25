@@ -173,16 +173,13 @@ INSERT INTO Offre_de_service (id_fournisseur, prix_unitaire, description, type_c
 (4, 80.00, 'Entretien de chaudière à sel', 'Commercial', 'Chaudière de sel'),
 (5, 70.00, 'Chargement de neige après la tempête', 'Résidentiel', 'Chargement de neige');
 
+-- Ajout offres supplementaires pour fournisseur 1 :
+
 INSERT INTO Offre_de_service (id_fournisseur, prix_unitaire, description, type_clientele, categorie) VALUES
-
 (1, 55.00, 'Déneigement de l''allée de garage', 'Résidentiel', 'Entrée de garage'),
-
 (1, 40.00, 'Déneigement des escaliers extérieurs', 'Résidentiel', 'Pelletage'),
-
 (1, 65.00, 'Déneigement des trottoirs', 'Commercial', 'Epandage de sel'),
-
 (1, 85.00, 'Enlèvement de la glace sur le toit', 'Commercial', 'Chaudière de sel'),
-
 (1, 75.00, 'Déblaiement des accès piétonniers', 'Résidentiel', 'Chargement de neige');
 
 
@@ -205,22 +202,15 @@ INSERT INTO Review (score, commentaire, id_utilisateur, id_service, date_comment
 (5, 'Le chargement de neige a été réalisé rapidement après la tempête.', 5, 5, '2023-05-05');
 
 INSERT INTO Review (score, commentaire, id_utilisateur, id_service, date_commentaire) VALUES
-
 (5, 'Très satisfait du déneigement de l''allée, service rapide et efficace.', 1, 6, '2023-06-15'),
-
 (4, 'Le pelletage des escaliers extérieurs était bien fait, mais légèrement en retard par rapport à l''horaire convenu.', 2, 7, '2023-07-02'),
-
 (3, 'L''épandage de sel sur les trottoirs était satisfaisant mais un peu plus cher que prévu.', 3, 8, '2023-08-10'),
-
 (4, 'Le déneigement des accès piétonniers a été réalisé de manière professionnelle.', 4, 9, '2023-09-22'),
-
 (5, 'Très heureux du déblaiement de la glace sur le toit, service rapide et efficace.', 5, 10, '2023-10-05'),
-
 (4, 'Déneigement de l''allée rapide et bien fait, je le recommande.', 6, 6, '2024-01-15'),
-
 (5, 'Le pelletage des escaliers extérieurs était excellent, personnel poli et travail soigné.', 7, 7, '2024-02-02'),
-
 (3, 'L''épandage de sel sur les trottoirs était correct mais le prix était un peu élevé.', 8, 8, '2024-03-10');
+
 
 
 CREATE TABLE Demande_de_service (

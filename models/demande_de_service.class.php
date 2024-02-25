@@ -1,6 +1,6 @@
 <?php
 
-class DemandeDeService
+class DemandeDeService 
 {
     private $idDemande;
     private $dateDebut;
@@ -67,6 +67,13 @@ class DemandeDeService
         return $this->idReview;
     }
 
+
+    public function setIdReview($idReview)
+    {
+         $this->idReview = $idReview;
+    }
+
+
     public function getIdOffre()
     {
         return $this->idOffre;
@@ -76,9 +83,26 @@ class DemandeDeService
     {
         return $this->idAdresse;
     }
+    
+    
 
+
+    public function setIdDemande($idDemande) {
+        $this->idDemande = $idDemande;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
+    }
+    
+    public function setCommentaire($newCommentaire)
+    {
+       $this->commentaire = $newCommentaire;
+    }
     public function __toString()
     {
         return "Demande de service [ID: " . $this->idDemande . ", Date de début: " . $this->dateDebut . ", Date de fin: " . $this->dateFin . ", Status: " . $this->status . ", Commentaire: " . $this->commentaire . ", ID Utilisateur: " . $this->idUtilisateur . ", ID Fournisseur: " . $this->idFournisseur . ", ID Review: " . $this->idReview . ", ID Offre: " . $this->idOffre . ", ID Adresse: " . $this->idAdresse . "]";
     }
+
+   
 }
