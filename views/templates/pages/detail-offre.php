@@ -67,11 +67,11 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
     </div>
 <!--end review Modal-->
 <div class="step step-4 m-2">
-    <form action="" method="">
+    <form action="" method="POST">
 
    
 
-        <div class="mb-3 recapitulatif m-5">
+<div class="mb-3 recapitulatif m-5">
             <label class="h2 fw-bold" for="field4" class="form-label">Recapitulatif de votre commande</label>
            
             <div class="container mt-3 p-6">
