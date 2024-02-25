@@ -75,7 +75,8 @@ class Fournisseur extends Personne
 
     public function getNoteGlobale()
     {
-        return $this->note_globale;
+       
+       return $this->note_globale;
     }
 
     public function setNoteGlobale($note_globale)
