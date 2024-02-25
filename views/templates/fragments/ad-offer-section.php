@@ -52,7 +52,7 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
                             </li>
                         </ul>
                         <div class="card-body text-center">
-                            <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/soumission-offre.php" class="btn btn-lg">Selectionner</a>
+                            <a href="?action=seConnecter" class="btn btn-lg">Selectionner</a>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
                         <?php echo $offre->getDescription(); ?>
                         <br><br>
                         <div class="d-flex flex-row-reverse">
-                            <a href="?action=ToBeDetermined" class="btn btn-danger text-end">Selectionner</a>
+                            <a href="?action=seConnecter" class="btn btn-danger text-end">Selectionner</a>
                         </div>
                     </div>
                 </div>

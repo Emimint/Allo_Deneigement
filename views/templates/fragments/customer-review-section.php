@@ -41,7 +41,7 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
                                         </div>
                                     </div>
                                     <p class="card-text"><?php echo $review->getCommentaire() ?></p>
-                                    <a href="#" class="btn">Savoir plus <i class="fa-solid fa-chevron-right"></i></a>
+                                  
                                 </div>
                             </div>
                         </div>
