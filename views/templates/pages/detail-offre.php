@@ -129,18 +129,23 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
                         <thead>
                             <tr>
                                 <th scope="col">Service</th>
-                                <th scope="col">[Litrage/Tonnage/ect...]</th>
+                                <th scope="col">Duree/Forfait</th>
                                 <th scope="col">Prix unitaire</th>
                                 <th scope="col">Total</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-
-                                <th scope="row"><?php echo $offre->getDescription() ?></th>
-                                <td>[moins dune tonne]</td>
-                                <td><?php echo $offre->getPrixUnitaire() ?></td>
-                                <td><?php echo $offre->getPrixUnitaire() ?></td>
+                                <?php
+                                $description = $offre->getDescription();
+                                $duration = $controleur->calculateDuration($controleur->getDemande()->getDateDebut(), $controleur->getDemande()->getDateFin());
+                                $prixUnitaire = $offre->getPrixUnitaire();
+                                $total = $controleur->calculateTotalPrice($duration, $prixUnitaire);
+                                ?>
+                                <td scope="row"><?php echo $description; ?></td>
+                                <td><?php echo  $duration; ?></td>
+                                <td><?php echo $prixUnitaire; ?>$</td>
+                                <td><?php echo $total; ?>$</td>
                             </tr>
                         </tbody>
                     </table>

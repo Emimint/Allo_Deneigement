@@ -32,8 +32,6 @@ class DetailDemande extends Controleur
         return $this->utilisateurAssocies;
     }
 
-
-
     public function getStatus()
     {
         return $this->status;
@@ -57,8 +55,6 @@ class DetailDemande extends Controleur
         return $this->commentaire;
     }
 
-
-
     public function getOffreAssocies()
     {
         return $this->offreAssocies;
@@ -76,6 +72,46 @@ class DetailDemande extends Controleur
             exit;
         } catch (Exception $e) {
             flash("Error", "An error occurred while updating status: " . $e->getMessage(), FLASH_ERROR);
+        }
+    }
+
+    function calculateDuration($startDate, $endDate)
+    {
+        $diffInHours = round((strtotime($endDate) - strtotime($startDate)) / (60 * 60));
+
+        switch (true) {
+            case $diffInHours <= 12:
+                return "Une demie-journée";
+            case $diffInHours <= 24:
+                return "Une journée";
+            case $diffInHours <= 48:
+                return "Deux journées";
+            case $diffInHours <= 240:
+                return "Forfait 10 journées";
+            case $diffInHours <= 4380:
+                return "Forfait 6 mois";
+            default:
+                return "Custom duration"; // You can adjust this default value according to your needs
+        }
+    }
+
+    function calculateTotalPrice($duration, $pricePerHour)
+    {
+        switch ($duration) {
+            case "Une heure":
+                return $pricePerHour;
+            case "Une demie-journée":
+                return $pricePerHour * 3;
+            case "Une journée":
+                return $pricePerHour * 4;
+            case "Deux journées":
+                return $pricePerHour * 5;
+            case "Forfait 10 journées":
+                return $pricePerHour * 7;
+            case "Forfait 6 mois":
+                return $pricePerHour * 10;
+            default:
+                return 0;
         }
     }
 
@@ -97,7 +133,6 @@ class DetailDemande extends Controleur
             $demande = DemandeDeServiceDAO::chercher($demandeId);
 
             $this->addresseTrouvee = AdresseDAO::chercher($demande->getIdAdresse());
-            echo $this->addresseTrouvee;
 
             $this->demande = $demande;
 
