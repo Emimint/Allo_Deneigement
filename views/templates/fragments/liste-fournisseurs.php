@@ -4,6 +4,7 @@
     try {
         if (isset($_SESSION["liste_fournisseurs"])) {
             foreach ($_SESSION["liste_fournisseurs"] as $fournisseur) {
+               
                 $liste_adresses = PersonneDAO::chercherAdresses('fournisseur', $fournisseur->getEmail());
                 $offreAssocie = OffreDeServiceDAO::chercherAvecFiltre("WHERE id_fournisseur=" . $fournisseur->getIdFournisseur());
 
@@ -18,11 +19,15 @@
                         <div class="d-flex w-100 align-items-center justify-content-between">
                             <strong class="mb-1">
                                 <i class="fa-solid fa-map-pin" style="color:white"></i>
+                                
                                 <?php echo $fournisseur->getNomDeLaCompagnie(); ?>
                             </strong>
                             <small class="text-body-secondary">
                                 <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
-                                <?php echo $fournisseur->getNoteGlobale(); ?>/5
+                                <?php
+                                  $note = $fournisseur->getNoteGlobale();
+                                if( $note<1)
+                                 echo  'NA'; else echo $note.'/5' ?>
                             </small>
                         </div>
                         <div class="d-flex w-100 align-items-center justify-content-between">
@@ -32,7 +37,9 @@
                         </div>
                     </div>
                 <?php
-                } else { 
+                } else { ?>
+                  
+                <?php
                 }
                 ?>
         <?php }
