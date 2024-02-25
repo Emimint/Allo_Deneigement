@@ -117,18 +117,15 @@ class FaireDemandeSoumission extends  Controleur
                     $duration = $_POST['selected-duration'];
                     $startDate = date('Y-m-d H:i:s');
                     $endDate = date('Y-m-d H:i:s', strtotime("+" . $this->getDurationInHours($duration) . " hours"));
-                    echo "startDate: " . $startDate;
-                    echo "endDate: " .  $endDate;
 
                     $nouvelleDemandeService = new DemandeDeService("", $startDate, $endDate, "En attente", $_POST['commentaires-demande'], $_SESSION['infoUtilisateur']->getIdUtilisateur(), $_GET['id_fournisseur'], null, $_GET['id_offre'], $_POST['selected-address-id']);
                     DemandeDeServiceDAO::inserer($nouvelleDemandeService);
-                    echo $nouvelleDemandeService;
                     flash('Ajout demande', 'Votre demande de service a été créée avec succès.', FLASH_SUCCESS);
-                    return "historique-utilisateur";
+                    return "landing-page";
                 }
             } catch (Exception $e) {
-                // flash('Erreur', 'Impossible d\' ajouter votre demande. Veuillez vérifier vos information.', FLASH_ERROR);
-                echo $e->getMessage();
+                flash('Erreur', 'Impossible d\' ajouter votre demande. Veuillez vérifier vos information.', FLASH_ERROR);
+                // echo $e->getMessage();
                 return "soumission-offre";
             }
             return "soumission-offre";
