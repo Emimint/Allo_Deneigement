@@ -1,25 +1,23 @@
-$(document).ready(function() {
-  $('#recipeCarousel').carousel({
-    interval: 10000
+$(document).ready(function () {
+  $("#recipeCarousel").carousel({
+    interval: 10000,
   });
 
-  $('.carousel .carousel-item').each(function(){
-    var minPerSlide = 3;
+  $(".carousel .carousel-item").each(function () {
+    var minPerSlide = 1;
     var next = $(this).next();
     if (!next.length) {
-      next = $(this).siblings(':first');
+      next = $(this).siblings(":first");
     }
-    next.children(':first-child').clone().appendTo($(this));
+    next.children(":first-child").clone().appendTo($(this));
 
     for (var i = 0; i < minPerSlide; i++) {
       next = next.next();
       if (!next.length) {
-        next = $(this).siblings(':first');
+        next = $(this).siblings(":first");
       }
 
-      next.children(':first-child').clone().appendTo($(this));
+      next.children(":first-child").clone().appendTo($(this));
     }
   });
 });
-
-

@@ -11,6 +11,7 @@ class AfficherDemandeDeServices extends Controleur
     private $listeFournisseursAssocies;
     private $listeServicesAssocies;
 
+
     public function __construct()
     {
         parent::__construct();
@@ -23,6 +24,8 @@ class AfficherDemandeDeServices extends Controleur
     {
         return $this->listeDemandesUtilisateurs;
     }
+
+
 
     public function getlisteFournisseursAssocies()
     {
@@ -37,11 +40,11 @@ class AfficherDemandeDeServices extends Controleur
     public function executerAction()
     {
         // echo $this->acteur;
-        if ($this->acteur == "utilisateur") {
+        if ($this->acteur == "utilisateur" || $this->acteur == "fournisseur") {
 
             try {
-                $user_id = $_SESSION['infoUtilisateur']->getIdUtilisateur();
-                $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_" . strtolower($_SESSION['utilisateurConnecte']) . "=" . $user_id);
+                $user_id = $_SESSION['infoUtilisateur']->getId();
+                $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_" . $_SESSION['utilisateurConnecte'] . "=" . $user_id . ";");
 
                 foreach ($this->listeDemandesUtilisateurs as $demande) {
                     $fournisseur = FournisseurDAO::chercher($demande->getIdFournisseur());
