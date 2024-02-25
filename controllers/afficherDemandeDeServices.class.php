@@ -43,7 +43,7 @@ class AfficherDemandeDeServices extends Controleur
         if ($this->acteur == "utilisateur" || $this->acteur == "fournisseur") {
 
             try {
-                $user_id = $_SESSION['infoUtilisateur']->getIdUtilisateur();
+                $user_id = $_SESSION['infoUtilisateur']->getId();
                 $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_" . strtolower($_SESSION['utilisateurConnecte']) . "=" . $user_id);
 
                 foreach ($this->listeDemandesUtilisateurs as $demande) {

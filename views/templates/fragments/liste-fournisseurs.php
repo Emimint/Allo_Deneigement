@@ -22,7 +22,7 @@
                             <small class="text-body-secondary">
                                 <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
                                 <?php
-                                $note = $fournisseur->getNoteGlobale();
+                                $note = number_format($fournisseur->getNoteGlobale(), 1, ',', ' ');
                                 if ($note < 1)
                                     echo  'NA';
                                 else echo $note . '/5' ?>

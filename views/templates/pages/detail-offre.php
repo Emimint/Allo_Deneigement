@@ -86,21 +86,15 @@ if (!defined('BASE_URL_VIEWS')) define('BASE_URL_VIEWS', 'http://localhost:80/Al
                 <h2>Adresse de livraison</h2>
                 <ul class="list-group">
                     <?php
+                    $addresse = $controleur->getAddresseTrouvee();
 
-                    $addresses = $controleur->getlisteAddresseUtilisateur();
+                    $numeroCivique = $addresse->getNumeroCivique();
+                    $codePostal = $addresse->getCodePostal();
+                    $nomRue = $addresse->getNomRue();
+                    $ville = $addresse->getVille();
+                    $province = $addresse->getProvince();
 
-                    if ($addresses != null && count($addresses) > 0) {
-                        foreach ($addresses as $adresse) {
-                            echo '<li class="list-group-item">';
-                            echo '' . $adresse->getIdAdresse() . ',';
-                            echo ' ' . $adresse->getNomRue() . ',';
-                            echo ' ' . $adresse->getVille() . ',';
-
-                            echo ' ' . $adresse->getPays() . ',';
-                            echo '' . $adresse->getCodePostal();
-                            echo '</li>';
-                        }
-                    }
+                    echo $numeroCivique . ' ' . $nomRue . ', ' . $ville . ', ' . $province . ' ' . $codePostal;
                     ?>
                 </ul>
 
