@@ -18,10 +18,10 @@ class ManufactureControleur
             $controleur = new SeConnecter();
         } elseif ($action == "afficherDemandeDeServices") {
             $controleur = new AfficherDemandeDeServices();
+        } elseif ($action == "afficherProfile") {
+            $controleur = new AfficherProfile();
         } elseif ($action == "creerUnCompte") {
             $controleur = new CreerUnCompte();
-        } elseif ($action == "afficherProfile") {
-            $controleur = new afficherProfile();
         } elseif ($action == "seDeconnecter") {
             $controleur = new SeDeconnecter();
         } elseif ($action == "voirPageAccueil") {

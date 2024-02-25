@@ -110,11 +110,11 @@ class AfficherProfile extends  Controleur
                     return "profilePage";
                 }
                 flash('Ajout adresse', 'Nouvelle adresse ajoutée avec succès.', FLASH_SUCCESS);
-                echo '<script>
-                            setTimeout(function(){
-                                window.location.reload();
-                            }, 2000); // 2000 milliseconds = 2 seconds
-                          </script>';
+                // echo '<script>
+                //             setTimeout(function(){
+                //                 window.location.reload();
+                //             }, 2000); // 2000 milliseconds = 2 seconds
+                //           </script>';
                 return "profilePage";
             } else if (isset($_POST['submitCategoriesService'])) {
                 $selectedServices = array();
@@ -135,7 +135,6 @@ class AfficherProfile extends  Controleur
                 foreach ($selectedServices as $serviceInfo) {
                     try {
                         if (isset($serviceInfo['type']) && $_SESSION['infoUtilisateur'] instanceof Fournisseur) {
-                            var_dump($_SESSION['infoUtilisateur']);
                             if ($serviceInfo['type'] == 1) {
                                 $nouvelleOffre = new OffreDeService("", $_SESSION['infoUtilisateur']->getIdFournisseur(), $serviceInfo['price'], $serviceInfo['description'],  "Résidentiel", $serviceInfo['service']);
                                 OffreDeServiceDAO::inserer($nouvelleOffre);

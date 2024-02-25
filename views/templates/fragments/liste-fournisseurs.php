@@ -22,10 +22,9 @@
                             <small class="text-body-secondary">
                                 <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
                                 <?php
-                                $note = number_format($fournisseur->getNoteGlobale(), 1, ',', ' ');
-                                if ($note < 1)
-                                    echo  'NA';
-                                else echo $note . '/5' ?>
+                                if ($fournisseur->getNoteGlobale() < 1)
+                                    echo  'N/A';
+                                else echo number_format($fournisseur->getNoteGlobale(), 1, '.', '') . '/5' ?>
                             </small>
                         </div>
                         <div class="d-flex w-100 align-items-center justify-content-between">
@@ -36,7 +35,16 @@
                     </div>
                 <?php
                 } else { ?>
+                    <div><strong class="mb-1">
+                            <i class="fa-solid fa-map-pin" style="color:white"></i>
 
+                            <?php echo $fournisseur->getNomDeLaCompagnie(); ?>
+                        </strong></div>
+                    <div class="d-flex w-100 align-items-center justify-content-between">
+                        <div class="col-10 mb-1 small"><?php
+                                                        echo "Ce fournisseur n'a pas encore d'adresses."; ?></div>
+                        <a href="?action=afficherOffreDeServices&id=<?php echo $fournisseur->getIdFournisseur(); ?>" class="btn btn-light">Contacter</a>
+                    </div>
                 <?php
                 }
                 ?>

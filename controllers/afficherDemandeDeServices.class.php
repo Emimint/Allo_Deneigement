@@ -44,7 +44,7 @@ class AfficherDemandeDeServices extends Controleur
 
             try {
                 $user_id = $_SESSION['infoUtilisateur']->getId();
-                $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_" . strtolower($_SESSION['utilisateurConnecte']) . "=" . $user_id);
+                $this->listeDemandesUtilisateurs = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_" . $_SESSION['utilisateurConnecte'] . "=" . $user_id . ";");
 
                 foreach ($this->listeDemandesUtilisateurs as $demande) {
                     $fournisseur = FournisseurDAO::chercher($demande->getIdFournisseur());
