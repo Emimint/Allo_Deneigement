@@ -1,9 +1,0 @@
-{
-  "data": [
-    [1, "Ependage", "2024-01-13", "2024-01-13", "Complete", "<a href='http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php'>Solutions Neige Inc.</a>", "", ""],
-    [2, "Deneigement", "2024-01-13", "2024-01-13", "Annule", "<a href='http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php'>Services Hiver S.A.R.L.</a>", "", ""],
-    [3, "Transport", "2024-01-13", "2024-01-13", "En cours", "<a href='http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php'>Logistique Neige et Glace</a>", "", ""],
-    [4, "Ependage", "2024-01-13", "2024-01-13", "Complete", "<a href='http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php'>Routes Gelées Services</a>", "", ""],
-    [5, "Deneigement", "2024-01-13", "2024-01-13", "En cours", "<a href='http://localhost:80/Allo_Deneigement/views/templates/pages/fournisseur.php'>Solutions Déneigement</a>", "", ""]
-  ]
-}

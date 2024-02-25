@@ -5,7 +5,7 @@ if (!isset($controleur)) header("Location: " . DOSSIER_BASE_INCLUDE);
 ?>
 <div>
     <header class="p-3 text-white vw-100" style="background-color: #b50303">
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="<?php echo DOSSIER_BASE_INCLUDE; ?>" class="d-flex align-items-center mb-3 mb-lg-0 text-white text-decoration-none me-lg-auto">
                     <div class="d-flex align-items-center bd-highlight">
