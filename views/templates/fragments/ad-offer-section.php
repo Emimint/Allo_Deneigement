@@ -34,6 +34,7 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
   </section>
    <!-- Modal pour l'envoi d'email -->
    <form novalidate class="needs-validation" action="?action=emailController" method="POST">
+   <input type="hidden" name="action" value="emailController">
 
    <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -45,7 +46,7 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
       <div class="modal-body">
         <form>
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <label for="recipient-name" class="col-form-label">Destinataire:</label>
             <input name="email" type="text" class="form-control" id="recipient-name">
           </div>
           <div class="mb-3">
@@ -55,15 +56,15 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" name="btnEnvoyer" class="btn btn-primary">Send message</button>
+       <button type="button" style="background-color: #b50303; color: #FFFFFF;" data-bs-dismiss="modal">Close</button>
+       <button type="submit" name="btnEnvoyer" style="background-color: #b50303; color: #FFFFFF;">Envoyer message</button>
       </div>
     </div>
   </div>
 </div>
   </form>
   <script src="<?php echo BASE_URL_VIEWS; ?>static/scripts/css-validation.js"></script>
-
+ 
   <div class="ad-service container-fluid">
     <div class="container p-5">
       <!--      Principaux services du fournisseur:-->

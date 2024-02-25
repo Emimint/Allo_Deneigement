@@ -1,7 +1,15 @@
 <?php
 include_once(DOSSIER_BASE_INCLUDE . "controllers/controleur.abstract.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "views/templates/commons/flash.php");
-include_once(DOSSIER_BASE_INCLUDE . "models/DAO/FournisseurDAO.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "models/DAO/BilletDAO.class.php");
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 class EmailController extends Controleur
 {
@@ -10,31 +18,55 @@ class EmailController extends Controleur
         parent::__construct();
     }
 
-    public function executerAction()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btnEnvoyer'])) {
-           // The message
-// $message = "Line 1\r\nLine 2\r\nLine 3";
+    public function executerAction() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['btnEnvoyer'])) {
+            try {
+                // Récupérer les données du formulaire
+                $motif = $_POST['selectionMenu'] ?? '';
+                $texte = $_POST['info'] ?? '';
+                $email = $_POST['email'] ?? ''; // Récupérer l'adresse e-mail spécifiée dans le formulaire
 
-// In case any of our lines are larger than 70 characters, we should use wordwrap()
-// $message = wordwrap($message, 70, "\r\n");
+                // Insérer le billet dans la base de données
+                $dateBillet = date('Y-m-d H:i:s'); // Récupérer la date actuelle
+                $nouveauBillet = new Billet('', $motif, $texte, $dateBillet, $email);
+                BilletDAO::inserer($nouveauBillet);
 
-// Send
-              if(mail($_POST['email'], 'My Subject', $_POST['message'])){
-                  flash('Succès', 'L\'e-mail a été envoyé avec succès.', FLASH_SUCCESS);
-              }
-           
-            // $success = mail($to, $subject, $message, $headers);
-            return "fournisseur";
-            
-            // if ($success) {
-            //     flash('Succès', 'L\'e-mail a été envoyé avec succès.', FLASH_SUCCESS);
-            // } else {
-            //     flash('Erreur', 'Une erreur s\'est produite lors de l\'envoi de l\'e-mail.', FLASH_ERROR);
-            // }
+                // Configuration SMTP
+                $mail = new PHPMailer();
+                $mail->isSMTP(); 
+                $mail->SMTPDebug = 0;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Host = 'smtp.gmail.com'; 
+                $mail->SMTPAuth = true; 
+                $mail->Username = 'cyliaoudiai93@gmail.com'; // Votre adresse e-mail SMTP
+                $mail->Password = 'dxad lsas bevn jogg'; // Mot de passe de votre adresse e-mail SMTP
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Chiffrement TLS
+                $mail->Port = 587; // Port SMTP à 
+                
+
+                // Définir les destinataires et le contenu de l'e-mail
+                $mail->setFrom('cyliaoudiai93@gmail.com', 'Votre Nom');
+                $mail->addAddress($email, 'Destinataire'); 
+                $mail->Subject = 'Sujet de l\'e-mail';
+                $mail->Body = $texte; // Utiliser le texte spécifié dans le formulaire
+                
+               
+                $mail->send();
+
+               
+                flash('succes', 'Votre message a été envoyé avec succès', FLASH_SUCCESS);
+
+               
+                return "landing-page";
+            } catch (Exception $e) {
+          
+                flash('Erreur', 'Impossible d\'envoyer votre message. Veuillez vérifier vos informations.', FLASH_ERROR);
+                return "Fournisseur";
+            }
+        } else {
+         
+            return "Fournisseur";
         }
-        return "landing-page"; 
     }
-
 }
 ?>
