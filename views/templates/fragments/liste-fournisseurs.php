@@ -4,8 +4,12 @@
     try {
         if (isset($_SESSION["liste_fournisseurs"])) {
             foreach ($_SESSION["liste_fournisseurs"] as $fournisseur) {
+               
                 $liste_adresses = PersonneDAO::chercherAdresses('fournisseur', $fournisseur->getEmail());
-                if ($liste_adresses != null) {
+                $offreAssocie = OffreDeServiceDAO::chercherAvecFiltre("WHERE id_fournisseur=" . $fournisseur->getIdFournisseur());
+
+                //ne pas afficher si fournisseur na pas doffre
+                if ($liste_adresses != null &&  $offreAssocie!=null) {
                     $numeroCivique = $liste_adresses[0]->getNumeroCivique();
                     $codePostal = $liste_adresses[0]->getCodePostal();
                     $nomRue = $liste_adresses[0]->getNomRue();
@@ -15,11 +19,15 @@
                         <div class="d-flex w-100 align-items-center justify-content-between">
                             <strong class="mb-1">
                                 <i class="fa-solid fa-map-pin" style="color:white"></i>
+                                
                                 <?php echo $fournisseur->getNomDeLaCompagnie(); ?>
                             </strong>
                             <small class="text-body-secondary">
                                 <i class="fa fa-star-half-o" aria-hidden="true" style="color:yellow;"></i>
-                                <?php echo $fournisseur->getNoteGlobale(); ?>/5
+                                <?php
+                                  $note = $fournisseur->getNoteGlobale();
+                                if( $note<1)
+                                 echo  'NA'; else echo $note.'/5' ?>
                             </small>
                         </div>
                         <div class="d-flex w-100 align-items-center justify-content-between">
@@ -30,10 +38,7 @@
                     </div>
                 <?php
                 } else { ?>
-                    <div class="d-flex align-items-center justify-content-between p-2">
-                        <p class="m-0">Pas d'adresse pour <?php echo $fournisseur->getNomDeLaCompagnie(); ?>.</p>
-                        <a href="?action=afficherOffreDeServices&id=<?php echo $fournisseur->getIdFournisseur(); ?>" class="btn btn-light">Contacter</a>
-                    </div>
+                  
                 <?php
                 }
                 ?>

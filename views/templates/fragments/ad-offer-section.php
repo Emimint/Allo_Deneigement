@@ -11,13 +11,8 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
 
    
   }
-  #items{
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  .card-body{
-    
-  }
+
+ 
 </style>
 <div class="container-fluid">
   <section class="masthead text-black" style="background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('<?php echo BASE_URL_VIEWS; ?>/static/image/snow-plow.jpg'); background-size: cover; background-position: center;">
@@ -28,17 +23,14 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
   </section>
 
   <div class="ad-service container-fluid">
-    <div class="container p-5">
+    <div class="d-flex flex-row bd-highlight mb-3 container p-5 justify-content-around">
       <!--      Principaux services du fournisseur:-->
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <?php
-        $first = true;
-        foreach ($controleur->getOffre() as $offre):
-        ?>
-        <div class="carousel-item <?php echo $first ? 'active' : ''; ?>">
-            <div class="row" id="items">
-                <div class="col-lg-4 col-md-12 mb-4">
+      <?php
+      $offre_list_principaux = array_slice($controleur->getOffre(),0,3);
+      foreach($offre_list_principaux as $offre):
+      ?>
+      <div id="items">
+                <div class=" mb-4">
                     <div class="card h-100 shadow-lg" id="item-card">
                         <div class="card-body">
                             <div>
@@ -60,33 +52,21 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
                             </li>
                         </ul>
                         <div class="card-body text-center">
-                            <a href="http://localhost:80/Allo_Deneigement/views/templates/pages/soumission-offre.php" class="btn btn-lg">Selectionner</a>
+                            <a href="?action=seConnecter" class="btn btn-lg">Selectionner</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <?php
-        $first = false;
-        endforeach;
-        ?>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" style="margin-top: 20% ;margin-bottom: 20% ;">
-    <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" style="margin-top: 20% ;margin-bottom: 20% ;">
-    <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-
-
+        <?php endforeach?>
+      </div>    
       <!--      Autres services du fournisseurs-->
-      <div class="row mt-2">
+<div class="other row mt-2 p-5">
     <h3>Autres services</h3>
     <div class="accordion accordion-flush" id="accordionFlushExample">
-        <?php foreach ($controleur->getOffre() as $index => $offre): ?>
+
+        <?php 
+        $offre_list_autres = array_slice($controleur->getOffre(),2);
+        foreach ( $offre_list_autres as $index => $offre): ?>
             <div class="accordion-item border rounded">
                 <h2 class="accordion-header" id="flush-heading<?php echo $index; ?>">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo $index; ?>" aria-expanded="false" aria-controls="flush-collapse<?php echo $index; ?>">
@@ -98,7 +78,7 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
                         <?php echo $offre->getDescription(); ?>
                         <br><br>
                         <div class="d-flex flex-row-reverse">
-                            <a href="?action=ToBeDetermined" class="btn btn-danger text-end">Selectionner</a>
+                            <a href="?action=seConnecter" class="btn btn-danger text-end">Selectionner</a>
                         </div>
                     </div>
                 </div>
@@ -107,6 +87,3 @@ if (!defined('DOSSIER_BASE_INCLUDE'))  define("DOSSIER_BASE_INCLUDE", "http://lo
     </div>
 </div>
 
-    </div>
-
-    <div>

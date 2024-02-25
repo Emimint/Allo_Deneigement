@@ -35,7 +35,7 @@ class FournisseurDAO  implements DAO
                 $enr['username'],
                 $enr['password'],
                 $enr['url_photo'],
-                $enr['note_globale'],
+                $enr['note_globale']
             );
         }
 
@@ -75,7 +75,7 @@ class FournisseurDAO  implements DAO
                 $enr['username'],
                 $enr['password'],
                 $enr['url_photo'],
-                $enr['note_globale'],
+                $enr['note_globale']
             );
             array_push($tableau, $fournisseur);
         }

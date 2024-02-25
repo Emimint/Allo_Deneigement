@@ -19,20 +19,15 @@ if (count($controleur->getlisteDemandesUtilisateurs()) == 0) { ?>
                     <th>Debut</th>
                     <th>Fin</th>
                     <th>Status</th>
-                    <?php  if (isset($_SESSION['utilisateurConnecte']) && $_SESSION['utilisateurConnecte'] != "fournisseur") 
-                    {echo '<th>Fournisseur</th>';}
-                    ?>
-                  
                     <th>Details</th>
                     <th>Supprimer</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/create-table-body.php");
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/create-table-body-supplier.php");
                 require_once($_SERVER['DOCUMENT_ROOT'] . "/Allo_Deneigement/views/templates/commons/flash.php");
                 try {
-                   
                     afficherTableau($controleur->getlisteDemandesUtilisateurs(), $controleur->getlisteFournisseursAssocies(), $controleur->getlisteServicesAssocies());
                 } catch (Exception $e) {
                     format_flash_message(["Erreur", "Impossible d'afficher les demandes de services", FLASH_ERROR]);
