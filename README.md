@@ -18,7 +18,7 @@ A full stack website with MVC architechture made with PHP, Boostrap and MariaDB.
 
 ### The project
 
-Allo_Deneigement is a full-stack web site platform that aims to allow snow removal suppliers to communicate with potential clients. Four types types of users can access the website: suppliers offering, clients searching, admins, and unlogged visitors. With a session created at first with the persisting information of the logged user and specific controllers, each profile can be directed to specific pages. Basic CRUD operators are enabled for each profil, depending on authorization and identification.
+Allo_Deneigement is a full-stack website platform that aims to allow snow removal suppliers to communicate with potential clients. Four types of users can access the website: suppliers offering, clients searching, admins, and unlogged visitors. With a session created at first with the persisting information of the logged user and specific controllers, each profile can be directed to specific pages. Basic CRUD operators are enabled for each profiles, depending on authorization and identification.
 
 #### Screenshots
 
@@ -52,9 +52,9 @@ Built With
 
 ### Local installation
 
-1. To run the application locally, it is required to first download the project to your prefered web server (we used Apache [XAMPP](https://www.apachefriends.org/fr/download.html)). With XAMPP, install the app folder in the `htdocs` folder. Once you turn on Apache and MariaDB/MySQL, and set your database credentials (see next step below), the app should be served at `http://localhost/Allo_Deneigement/`.
+1. To run the application locally, it is required to first download the project to your preferred web server (we used Apache [XAMPP](https://www.apachefriends.org/fr/download.html)). With XAMPP, install the app folder in the `htdocs` folder. Once you turn on Apache and MariaDB/MySQL, and set your database credentials (see next step below), the app should be served at `http://localhost/Allo_Deneigement/`.
 
-2. In you prefered SQL database manager, load the database stored in the `database/deneigement_db.sql` file. A database called `deneigement_db` will be created.
+2. In your preferred SQL database manager, load the database stored in the `database/deneigement_db.sql` file. A database called `deneigement_db` will be created.
 
 3. To link the database to the app, you will need to configure your own `configBD.interface.php` file. It needs to be stored in `models/DAO/configs` (the `configs` folder needs to be manually created inside `models/DAO`). Here is the template of the file:
 
