@@ -90,7 +90,7 @@ class AfficherProfile extends  Controleur
                 try {
                     $stringifyAdress = $_POST['newPostalCode'] . ', ' . $_POST['newNumero'] . ', ' . $_POST['newRue'] . ', ' . $_POST['newVille'] . ', ' . $_POST['newPays'] . ', ' . $_POST['newProvince'];
                     $coordinates = AdresseDAO::geocodeAddress($stringifyAdress);
-                    // echo "Latitude : " . $coordinates[0] . " Longitude : " . $coordinates[1];
+
                     if ($coordinates == null) {
                         flash('Erreur', 'Impossible de trouver cette adresse. Veuillez vérifier vos saisies.', FLASH_ERROR);
                         return "profilePage";
@@ -110,11 +110,6 @@ class AfficherProfile extends  Controleur
                     return "profilePage";
                 }
                 flash('Ajout adresse', 'Nouvelle adresse ajoutée avec succès.', FLASH_SUCCESS);
-                // echo '<script>
-                //             setTimeout(function(){
-                //                 window.location.reload();
-                //             }, 2000); // 2000 milliseconds = 2 seconds
-                //           </script>';
                 return "profilePage";
             } else if (isset($_POST['submitCategoriesService'])) {
                 $selectedServices = array();
@@ -148,17 +143,12 @@ class AfficherProfile extends  Controleur
                                 OffreDeServiceDAO::inserer($nouvelleOffre2);
                             }
                             flash('Modification des services', 'Services mis à jour avec succès.', FLASH_SUCCESS);
-                            //                 echo '<script>
-                            //     setTimeout(function(){
-                            //         window.location.reload();
-                            //     }, 2000); // 2000 milliseconds = 2 seconds
-                            //   </script>';
                         } else {
                             echo 'Erreur';
                         }
                     } catch (Exception $e) {
                         echo $e->getMessage();
-                        // flash('Erreur', 'Impossible de modifier vos offres de service. Veuillez vérifier vos saisies.', FLASH_ERROR);
+
                         return "profilePage";
                     }
                 }

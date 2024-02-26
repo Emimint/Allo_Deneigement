@@ -63,7 +63,6 @@ class DetailDemande extends Controleur
     public function handleStatusUpdate($demande, $newStatus, $messageSuccess)
     {
         try {
-            // Modifier status
             $currentDemande = $demande;
             $currentDemande->setStatus($newStatus);
             DemandeDeServiceDAO::modifier($demande);
@@ -91,7 +90,7 @@ class DetailDemande extends Controleur
             case $diffInHours <= 4380:
                 return "Forfait 6 mois";
             default:
-                return "Custom duration"; // You can adjust this default value according to your needs
+                return "Custom duration";
         }
     }
 
@@ -136,14 +135,13 @@ class DetailDemande extends Controleur
 
             $this->demande = $demande;
 
-            // Check if the demand is not found
+
             if (!$demande) {
                 throw new Exception("Demande non trouvée");
             } else {
-                // Load the specific demand based on the ID
+
                 $this->status = $demande->getStatus();
 
-                // Process the demand and related information
                 $fournisseur = FournisseurDAO::chercher($demande->getIdFournisseur());
                 $this->FournisseursAssocies = $fournisseur->getNomDeLaCompagnie();
 
@@ -156,9 +154,8 @@ class DetailDemande extends Controleur
                 $utilisateur = UtilisateurDAO::chercher($demande->getIdUtilisateur());
                 $this->utilisateurAssocies = $utilisateur;
 
-                //$review = DemandeDeServiceDAO::chercherAvecFiltre("WHERE id_review=".$this->demande->getIdReview());
                 if (isset($_POST['updateComment'])) {
-                    // Set the new comment
+
                     $newComment = $_POST['commentaire'];
                     $demande->setCommentaire($newComment);
                     DemandeDeServiceDAO::modifier($demande);

@@ -75,9 +75,6 @@ class FaireDemandeSoumission extends  Controleur
 
         if (($_SERVER['REQUEST_METHOD'] === 'GET')) {
 
-            echo "id_fournisseur: " . $_GET['id_fournisseur'];
-            echo "id_service: " .  $_GET['id_service'];
-
             $this->offreChoisie = OffreDeServiceDAO::chercher($_GET['id_service']);
             $this->fournisseur = FournisseurDAO::chercher($_GET['id_fournisseur']);
             $filtre = "WHERE id_fournisseur=" . $_GET['id_fournisseur'] . ";";
