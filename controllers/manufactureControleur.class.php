@@ -4,6 +4,7 @@ include_once(DOSSIER_BASE_INCLUDE . "controllers/defaut.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/seConnecter.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherDemandeDeServices.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/seDeconnecter.class.php");
+include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherContactPage.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/details-demande.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/afficherProfile.class.php");
 include_once(DOSSIER_BASE_INCLUDE . "controllers/faireDemandeSoumission.class.php");
@@ -19,6 +20,8 @@ class ManufactureControleur
             $controleur = new SeConnecter();
         } elseif ($action == "afficherDemandeDeServices") {
             $controleur = new AfficherDemandeDeServices();
+        } elseif ($action == "afficherContactPage") {
+            $controleur = new AfficherContactPage();
         } elseif ($action == "afficherProfile") {
             $controleur = new AfficherProfile();
         } elseif ($action == "creerUnCompte") {

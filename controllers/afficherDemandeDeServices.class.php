@@ -39,7 +39,7 @@ class AfficherDemandeDeServices extends Controleur
 
     public function executerAction()
     {
-        // echo $this->acteur;
+
         if ($this->acteur == "utilisateur" || $this->acteur == "fournisseur") {
 
             try {
@@ -56,7 +56,6 @@ class AfficherDemandeDeServices extends Controleur
                     array_push($this->listeServicesAssocies, $nomService);
                 }
             } catch (Exception $e) {
-                // echo $e->getMessage();
                 flash('Erreur', 'Une erreur s\'est produite. Veuillez réessayer plus tard.', FLASH_ERROR);
                 return "registration";
             }
