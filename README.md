@@ -56,7 +56,7 @@ Built With
 
 2. In you prefered SQL database manager, load the database stored in the `database/deneigement_db.sql` file. A database called `deneigement_db` will be created.
 
-3. To link the database to the app, you will need to configure your own `configBD.interface.php`. It needs to be stored in `models/DAO/configs` (`configs` needs to be manually created). Here is the template of the file:
+3. To link the database to the app, you will need to configure your own `configBD.interface.php` file. It needs to be stored in `models/DAO/configs` (the `configs` folder needs to be manually created inside `models/DAO`). Here is the template of the file:
 
 ```
 <?php
