@@ -67,7 +67,7 @@ interface ConfigBD
 {
 	const BD_HOTE = "localhost";
 	const BD_UTILISATEUR = "your_database_username";
-	const BD_MOT_PASSE = "your_database_username";
+	const BD_MOT_PASSE = "your_database_password";
 	const BD_NOM = "deneigement_db";
 }
 
